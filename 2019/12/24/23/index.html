@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://hhhwwq.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="js处理异步的几种方式JavaScript语言的执行环境是“单线程”，这种模式容易因为某段耗时很长的任务而拖延整段程序的执行。 为了解决这个问题，JavaScript语言将任务的执行模式分成两种：同步和异步。 同步模式就是上一段的模式，后一个任务等待前一个任务结束，然后再执行，程序的执行顺序与任务的排列顺序是一致的，同步的。 异步模式非常重要，在浏览器端，耗时很长的操作都应该异步执行，避免浏览器失">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js处理异步的几种方式">
+<meta property="og:url" content="https://hhhwwq.github.io/2019/12/24/23/index.html">
+<meta property="og:site_name" content="Wanqing&#39;s Blog">
+<meta property="og:description" content="js处理异步的几种方式JavaScript语言的执行环境是“单线程”，这种模式容易因为某段耗时很长的任务而拖延整段程序的执行。 为了解决这个问题，JavaScript语言将任务的执行模式分成两种：同步和异步。 同步模式就是上一段的模式，后一个任务等待前一个任务结束，然后再执行，程序的执行顺序与任务的排列顺序是一致的，同步的。 异步模式非常重要，在浏览器端，耗时很长的操作都应该异步执行，避免浏览器失">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-24T07:36:05.000Z">
+<meta property="article:modified_time" content="2020-01-22T14:10:08.000Z">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://hhhwwq.github.io/2019/12/24/23/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>js处理异步的几种方式 | Wanqing's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wanqing's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2019/12/24/23/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wanqing's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          js处理异步的几种方式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-24 15:36:05" itemprop="dateCreated datePublished" datetime="2019-12-24T15:36:05+08:00">2019-12-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="js处理异步的几种方式"><a href="#js处理异步的几种方式" class="headerlink" title="js处理异步的几种方式"></a>js处理异步的几种方式</h1><p>JavaScript语言的执行环境是“单线程”，这种模式容易因为某段耗时很长的任务而拖延整段程序的执行。</p>
+<p>为了解决这个问题，JavaScript语言将任务的执行模式分成两种：同步和异步。</p>
+<p><strong>同步模式</strong>就是上一段的模式，后一个任务等待前一个任务结束，然后再执行，程序的执行顺序与任务的排列顺序是一致的，同步的。</p>
+<p><strong>异步模式</strong>非常重要，在浏览器端，耗时很长的操作都应该异步执行，避免浏览器失去响应，最好的例子就是Ajax操作。在服务器端，异步模式甚至是唯一的模式，因为执行环境是单线程的，如果允许同步执行所有http请求，服务器性能会急剧下降，很快就会失去响应。</p>
+<p>下面是处理异步的几种方法：</p>
+<h2 id="一，回调函数（callback）"><a href="#一，回调函数（callback）" class="headerlink" title="一，回调函数（callback）"></a>一，回调函数（callback）</h2><blockquote>
+<p>A callback is a function that is passed as an argument to another function and is executed after its parent function has completed.</p>
+</blockquote>
+<p>回调是一个函数被作为一个参数传递到另一个函数里，在那个函数执行完再执行。（ 也即：B函数被作为参数传递到A函数里，在A函数执行完后再执行B ）</p>
+<p>如果f1是一个很耗时的任务，可以考虑改写f1，把f2写成f1的回调函数。</p>
+<pre><code>function f1(callback)&#123;
+    setTimeout(function()&#123;
+        //f1的任务代码
+        callback();
+    &#125;,1000);
+&#125;
+//执行
+f1(f2)</code></pre>
+<p>采用这种方式，我们把同步操作变成了异步操作，f1不会堵塞程序运行，相当于先执行程序的主要逻辑，将耗时的操作推迟执行。</p>
+<p>回调函数是异步编程最基本的方法，其<strong>优点</strong>是简单，容易理解和部署，<strong>缺点</strong>是不利于代码的阅读和维护，各个部分之间高度耦合，流程会很混乱。而且每个任务只能指定一个回调函数。</p>
+<p><strong>注意区分回调函数和异步，回调并不一定是异步，他们之间没有直接关系</strong></p>
+<p>同步回调：</p>
+<pre><code>function A(callback)&#123;
+    console.log(&quot;I am A&quot;);
+    callback();//调用该函数
+&#125;
+function B()&#123;
+    console.log(&quot;I am B&quot;);
+&#125;
+A(B);</code></pre>
+<h2 id="二，事件监听"><a href="#二，事件监听" class="headerlink" title="二，事件监听"></a>二，事件监听</h2><p>事件驱动模式也可以，任务的执行不取决于代码的顺序，而<strong>取决于某个事件是否发生。</strong></p>
+<pre><code>//on
+f1.on(&#39;done&#39;,f2);
+//或者
+function f1()&#123;
+    settimeout(function()&#123;
+       //...f1的任务代码
+       f1.trigger(&#39;done&#39;);  //执行完成后，立即触发done事件，从而开始执行f2.
+    &#125;,1000);
+&#125;</code></pre>
+<p>这种方法的优点：容易理解，可以绑定<strong>多个事件</strong>，每一个事件可以指定多个回调函数，而且可以去<strong>耦合，有利于实现模块化</strong>。</p>
+<p>缺点：整个程序都要变成事件驱动型，运行<strong>流程会变得不清晰。</strong></p>
+<h3 id="事件监听方法："><a href="#事件监听方法：" class="headerlink" title="事件监听方法："></a>事件监听方法：</h3><p><strong>onclick</strong>:</p>
+<pre><code>element.onclick=function()&#123;
+   //处理函数
+&#125;</code></pre>
+<p>优点：写法兼容到主流浏览器</p>
+<p>缺点：当同一个element元素绑定多个事件时，只有最后一个事件会被添加，相当于一次只能添加一个事件；</p>
+<p><strong>attachEvent和addEvenListener</strong>:</p>
+<pre><code>//IE:attachEvent;三个方法执行顺序：3-2-1；
+elment.attachEvent(&quot;onclick&quot;,handler1);
+elment.attachEvent(&quot;onclick&quot;,handler2);
+elment.attachEvent(&quot;onclick&quot;,handler3);
+//标准addEventListener;执行顺序：1-2-3
+elment.addEvenListener(&quot;click&quot;,handler1,false);
+elment.addEvenListener(&quot;click&quot;,handler2,false);
+elment.addEvenListener(&quot;click&quot;,handler3,false);</code></pre>
+<p>注意：该方法的第三个参数是冒泡获取，是一个布尔值：当为false时表示由里向外（冒泡），true表示由外向里（捕获）。</p>
+<h2 id="三，发布-订阅"><a href="#三，发布-订阅" class="headerlink" title="三，发布/订阅"></a>三，发布/订阅</h2><p>假定存在一个信号中心，某个任务执行完成，就向信号中心“发布”一个信号，其他任务可以向信号中心“订阅”这个信号，从而知道什么时候自己可以开始执行。这就叫做“发布/订阅模式”，也称“观察者模式”。</p>
+<pre><code>//jQuery的一个插件 Ben Alman的Tiny Pub/Sub
+jQuery.subscribe(&quot;done&quot;, f2);//f2向&quot;信号中心&quot;jQuery订阅&quot;done&quot;信号。
+jQuery.unsubscribe(&quot;done&quot;, f2);//取消订阅（unsubscribe）
+//或者
+function f1()&#123;
+　　setTimeout(function () &#123;
+　　　　// ...f1的任务代码
+　　　　jQuery.publish(&quot;done&quot;);//f1执行完成后，向&quot;信号中心&quot;jQuery发布&quot;done&quot;信号，从而引发f2的执行
+　　&#125;, 1000);
+&#125;</code></pre>
+<h2 id="四，promise对象"><a href="#四，promise对象" class="headerlink" title="四，promise对象"></a>四，promise对象</h2><ol>
+<li><p>promise对象是commonJS工作组提出的一种规范，一种模式，目的是为了异步编程提供统一接口。</p>
+</li>
+<li></li>
+</ol>
+<p><strong>promise是一种模式，promise可以帮忙管理异步方式返回的代码</strong>。他将代码进行封装并添加一个类似于事件处理的管理层。我们可以使用promise来注册代码，这些代码会在在promise成功或者失败后运行。</p>
+<ol start="3">
+<li><p>promise完成之后，对应的代码也会执行。我们可以注册任意数量的函数再成功或者失败后运行，也可以在任何时候注册事件处理程序。</p>
+</li>
+<li><p>promise有两种状态：1、等待（pending）；2、完成（settled）。<br>promise会一直处于等待状态，直到它所包装的异步调用返回/超时/结束。</p>
+</li>
+<li><p>这时候promise状态变成完成。完成状态分成两类：1、解决（resolved）；2、拒绝（rejected）</p>
+<p> //promise<br> var p=new Promise(function(resolved))<br> //在这里进行处理。也许可以使用ajax<br> setTimeout(function(){<br> var result=10*5;<br> if(result===50){<br>   resolve(50);<br> }else{<br>  reject(new Error(‘Bad Math’));<br> }<br> },1000);<br> });<br> p.then(function(result){<br> console.log(‘Resolve with a values of %d’,result);<br> });<br> p.catch(function(){<br> console.error(‘Something went wrong’);<br> });</p>
+</li>
+</ol>
+<p>简单来讲，它的思想是：每一个异步任务返回一个promise对象，该对象有一个then方法，允许指定回调函数。<br>缺点：<strong>编写和理解都难</strong></p>
+<h2 id="五，async-await"><a href="#五，async-await" class="headerlink" title="五，async/await"></a>五，async/await</h2><p>async 函数书写的方式跟我们普通的函数书写方式一样，只不过是前面多了一个 async 关键字，并且函数返回的是一个 Promise 对象，所接收的值就是函数 return 的值。</p>
+<p>在 async 函数内部可以使用 await 命令，表示等待一个异步函数的返回。await 后面跟着的是一个 Promise 对象，如果不是的话，系统会调用 Promise.resolve() 方法，将其转为一个 resolve 的 Promise 的对象。</p>
+<pre><code>function fn1 () &#123;
+  console.log(&#39;Function 1&#39;)
+&#125;
+
+function fn2 () &#123;
+  return new Promise((resolve, reject) =&gt; &#123;
+    setTimeout(() =&gt; &#123;
+      console.log(&#39;Function 2&#39;)
+      resolve()
+    &#125;, 500)
+  &#125;)
+&#125;
+
+function fn3 () &#123;
+  console.log(&#39;Function 3&#39;)
+&#125;
+
+async function asyncFunArr () &#123;
+  fn1()
+  await fn2()
+  fn3()
+&#125;
+
+asyncFunArr()
+
+// output =&gt;
+// Function 1
+// Function 2
+// Function 3</code></pre>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/23/21/" rel="prev" title="第八，九章 BOM，客户端检测">
+      <i class="fa fa-chevron-left"></i> 第八，九章 BOM，客户端检测
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/27/24/" rel="next" title="some codes">
+      some codes <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#js%E5%A4%84%E7%90%86%E5%BC%82%E6%AD%A5%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">js处理异步的几种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%EF%BC%8C%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%EF%BC%88callback%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">一，回调函数（callback）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%EF%BC%8C%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC"><span class="nav-number">1.2.</span> <span class="nav-text">二，事件监听</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-number">1.2.1.</span> <span class="nav-text">事件监听方法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%EF%BC%8C%E5%8F%91%E5%B8%83-%E8%AE%A2%E9%98%85"><span class="nav-number">1.3.</span> <span class="nav-text">三，发布&#x2F;订阅</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%EF%BC%8Cpromise%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.4.</span> <span class="nav-text">四，promise对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%EF%BC%8Casync-await"><span class="nav-number">1.5.</span> <span class="nav-text">五，async&#x2F;await</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description">怕什么真理无穷，进一寸有进一寸的欢喜。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

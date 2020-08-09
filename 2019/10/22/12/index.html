@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://hhhwwq.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="防抖和节流;作用域和作用域链;DOM;Array.sort();Ajax防抖和节流 节流概念(Throttle)按照设定的时间固定执行一次函数，比如200ms一次。注意：固定就是你在mousemove过程中，执行这个节流函数，它一定是200ms（你设定的定时器延迟时间）内执行一次。没到200ms，一定会返回，没有执行回调函数的。 主要应用场景有：scroll、touchmove 防抖概念(Debo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="apply，bind，call的区别；new；this；闭包">
+<meta property="og:url" content="https://hhhwwq.github.io/2019/10/22/12/index.html">
+<meta property="og:site_name" content="Wanqing&#39;s Blog">
+<meta property="og:description" content="防抖和节流;作用域和作用域链;DOM;Array.sort();Ajax防抖和节流 节流概念(Throttle)按照设定的时间固定执行一次函数，比如200ms一次。注意：固定就是你在mousemove过程中，执行这个节流函数，它一定是200ms（你设定的定时器延迟时间）内执行一次。没到200ms，一定会返回，没有执行回调函数的。 主要应用场景有：scroll、touchmove 防抖概念(Debo">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-10-22T03:36:05.000Z">
+<meta property="article:modified_time" content="2020-01-22T13:32:42.000Z">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://hhhwwq.github.io/2019/10/22/12/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>apply，bind，call的区别；new；this；闭包 | Wanqing's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wanqing's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2019/10/22/12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wanqing's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          apply，bind，call的区别；new；this；闭包
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-22 11:36:05" itemprop="dateCreated datePublished" datetime="2019-10-22T11:36:05+08:00">2019-10-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="防抖和节流-作用域和作用域链-DOM-Array-sort-Ajax"><a href="#防抖和节流-作用域和作用域链-DOM-Array-sort-Ajax" class="headerlink" title="防抖和节流;作用域和作用域链;DOM;Array.sort();Ajax"></a>防抖和节流;作用域和作用域链;DOM;Array.sort();Ajax</h1><h2 id="防抖和节流"><a href="#防抖和节流" class="headerlink" title="防抖和节流 "></a>防抖和节流 </h2><h3 id="节流概念-Throttle"><a href="#节流概念-Throttle" class="headerlink" title="节流概念(Throttle)"></a>节流概念(Throttle)</h3><p>按照设定的时间固定执行一次函数，比如200ms一次。注意：固定就是你在mousemove过程中，执行这个节流函数，它一定是200ms（你设定的定时器延迟时间）内执行一次。没到200ms，一定会返回，没有执行回调函数的。</p>
+<p>主要应用场景有：scroll、touchmove</p>
+<h3 id="防抖概念-Debounce"><a href="#防抖概念-Debounce" class="headerlink" title="防抖概念(Debounce)"></a>防抖概念(Debounce)</h3><p>抖动停止后的时间超过设定的时间时执行一次函数。注意：这里的抖动停止表示你停止了触发这个函数，从这个时间点开始计算，当间隔时间等于你设定时间，才会执行里面的回调函数。如果你一直在触发这个函数并且两次触发间隔小于设定时间，则一定不会到回调函数那一步。</p>
+<p>主要应用场景有：input验证、搜索联想、resize</p>
+<h2 id="作用域和作用域链、执行期上下文"><a href="#作用域和作用域链、执行期上下文" class="headerlink" title="作用域和作用域链、执行期上下文 "></a>作用域和作用域链、执行期上下文 </h2><h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>js只有函数作用域（function-based），没有块级作用域，也就是只有函数会有自己的作用域，其他都没有。</p>
+<p>接着，作用域分为全局作用域与局部作用域。</p>
+<p>全局作用域中的对象可以在代码的任何地方访问，一般来说，下面情况的对象会在全局作用域中：</p>
+<ul>
+<li>最外层函数和在最外层函数外面定义的变量</li>
+<li>没有通过关键字”var”声明的变量</li>
+<li>浏览器中，window对象的属性</li>
+</ul>
+<p><strong>局部作用域</strong>又被称为函数作用域（Function scope），所有的变量和函数只能在作用域内部使用。</p>
+<pre><code>var foo = 1;
+window.bar = 2;
+
+function baz()&#123;
+    a = 3;
+    var b = 4;
+&#125;
+// Global scope: foo, bar, baz, a 
+// Local scope: b</code></pre>
+<p>在创建这个函数的时候，这个函数的作用域与作用域链（函数的作用域链将会在运行时用到）就已经决定了，而不是在调用的时候。</p>
+<h3 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h3><p>内部[[Scope]]属性包含一个函数被创建的作用域中对象的集合。此集合被称为函数的作用域链，它决定哪些数据可以由函数访问。</p>
+<h3 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h3><p>在JavaScript中有三种代码运行环境：</p>
+<ul>
+<li>Global Code +JavaScript代码开始运行的默认环境</li>
+<li>Function Code 代码进入一个JavaScript函数</li>
+<li>Eval Code 使用eval()执行代码</li>
+</ul>
+<p>为了表示不同的运行环境，JavaScript中有一个执行上下文（Execution<br>context，EC）的概念。也就是说，当JavaScript代码执行的时候，会进入不同的执行上下文，这些执行上下文就构成了一个执行上下文栈（Execution<br>context stack，ECS）。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>函数在定义时就会确定他的作用域与作用域链（静态），只有调用的时候才会创建一个执行上下文，其中包含了调用时的形参，其中的函数声明与变量（VO）,<br>同时创建活动对象（AO），并将AO压入执行上下文的作用域链的最前端并且包含了this的属性，执行上下文的作用域链是通过正在被调用函数的作用域链得到的（动态）。</p>
+<h2 id="DOM常见的操作方式"><a href="#DOM常见的操作方式" class="headerlink" title="DOM常见的操作方式 "></a>DOM常见的操作方式 </h2><h3 id="15-1常用的查找节点的方法有："><a href="#15-1常用的查找节点的方法有：" class="headerlink" title="15.1常用的查找节点的方法有："></a>15.1常用的查找节点的方法有：</h3><p>document.getElementById(‘id属性值’); 返回拥有指定id的对象的引用</p>
+<p>document.getElementsByClassName(‘class属性值’);<br>返回拥有指定class的对象集合</p>
+<p>document.getElementsByTagName(‘标签名’); 返回拥有指定标签名的对象集合</p>
+<h3 id="15-2常用的新建节点的方法有："><a href="#15-2常用的新建节点的方法有：" class="headerlink" title="15.2常用的新建节点的方法有："></a>15.2常用的新建节点的方法有：</h3><p>document.createElement(‘元素名’); 创建新的元素节点</p>
+<p>document.createAttribute(‘属性名’); 创建新的属性节点</p>
+<p>document.createTextNode(‘文本内容’); 创建新的文本节点</p>
+<h3 id="15-3常用的添加新节点的方法有："><a href="#15-3常用的添加新节点的方法有：" class="headerlink" title="15.3常用的添加新节点的方法有："></a>15.3常用的添加新节点的方法有：</h3><p>1.element.setAttribute(attributeName, attributeValue );<br>给元素增加指定属性，并设定属性值。</p>
+<p>2.element.setAttributeNode(attributeName ); 给元素增加属性节点。</p>
+<p>3.如需向HTML<br>DOM添加新元素，您必须首先创建该元素（元素节点），然后向一个已存在的元素追加该元素。</p>
+<p>1)document.createTextNode(‘新增文本内容’); 创建新的文本节点。</p>
+<p>2)parent.appendChild(创建的新节点);<br>向父节点的最后一个子节点后追加新节点，或使用parent.insertBefore(newChild,<br>existingChild ); 向父节点的某个特定子节点之前插入新节点。</p>
+<h3 id="15-4常用的删除节点的方法有："><a href="#15-4常用的删除节点的方法有：" class="headerlink" title="15.4常用的删除节点的方法有："></a>15.4常用的删除节点的方法有：</h3><p>parentNode.removeChild(existingChild );<br>删除已有的子节点，返回值为删除节点。</p>
+<p>DOM需要清楚你需要删除的元素，以及它的父元素。常用的解决方案：找到你希望删除的子元素，然后使用其parentNode属性来找到父元素：</p>
+<p>var<br>child=document.getElementById(“p1”);child.parentNode.removeChild(child);</p>
+<h3 id="15-5常用的修改节点的方法有："><a href="#15-5常用的修改节点的方法有：" class="headerlink" title="15.5常用的修改节点的方法有："></a>15.5常用的修改节点的方法有：</h3><p>parentNode.replaceChild(newChild, existingChild );<br>用新节点替换父节点中已有的子节点</p>
+<p>element.setAttribute(attributeName, attributeValue );<br>给元素增加指定属性，并设定属性值(若原元素已有该节点，此操作能达到修改该属性值的目的)</p>
+<p>element.setAttributeNode(attributeName );<br>给元素增加属性节点(若原元素已有该节点，此操作能达到修改该属性值的目的)</p>
+<h2 id="Array-sort-方法与实现机制"><a href="#Array-sort-方法与实现机制" class="headerlink" title="Array.sort()方法与实现机制 "></a>Array.sort()方法与实现机制 </h2><p>定义与用法：</p>
+<p>sort() 方法用于对数组的元素进行排序。</p>
+<p>语法：</p>
+<p>arrayObject.sort(sortby)</p>
+<p>注意：sortby必须是函数，规定排序顺序。可选参数</p>
+<p>返回值：</p>
+<p>对数组的引用。请注意，数组在原数组上进行排序，不生成副本。</p>
+<p>说明及原理：</p>
+<p>如果调用该方法时没有使用参数，将按字母顺序对数组中的元素进行排序，说得更精确点，是按照字符编码的顺序进行排序。要实现这一点，首先应把数组的元素都转换成字符串（如有必要），以便进行比较。</p>
+<h2 id="Ajax请求过程"><a href="#Ajax请求过程" class="headerlink" title="Ajax请求过程 "></a>Ajax请求过程 </h2><h3 id="Ajax是什么"><a href="#Ajax是什么" class="headerlink" title="Ajax是什么"></a>Ajax是什么</h3><p>是一种异步请求数据的技术，会带来更好的用户体验。</p>
+<h3 id="Ajax的使用"><a href="#Ajax的使用" class="headerlink" title="Ajax的使用"></a>Ajax的使用</h3><p>(1)创建<code>XMLHttpRequest</code>对象,也就是创建一个异步调用对象.</p>
+<p>(2)创建一个新的<code>HTTP</code>请求,并指定该<code>HTTP</code>请求的方法、<code>URL</code>及验证信息.</p>
+<p>(3)设置响应<code>HTTP</code>请求状态变化的函数.</p>
+<p>(4)发送<code>HTTP</code>请求.</p>
+<p>(5)获取异步调用返回的数据.</p>
+<p>(6)使用JavaScript和DOM实现局部刷新.</p>
+<pre><code>  var xmlHttp = new XMLHttpRequest();
+
+    xmlHttp.open(&#39;GET&#39;,&#39;demo.php&#39;,&#39;true&#39;);
+
+    xmlHttp.send()
+
+    xmlHttp.onreadystatechange = function()&#123;
+
+        if(xmlHttp.readyState === 4 &amp; xmlHttp.status === 200)&#123;
+
+        &#125;
+
+    &#125;</code></pre>
+<p>步骤详解： 1.创建Ajax核心对象XMLHttpRequest</p>
+<pre><code>var xmlhttp;
+if(window.XMLHttpRequest)&#123; 
+//IE7+,Chrome,Firefox,Safari,Opera执行此代码 
+    xmlhttp=new XMLHttpRequest;
+&#125;else&#123;
+   //IE5,IE6执行该代码
+   xmlhttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+&#125;</code></pre>
+<p>2.向服务器发送请求</p>
+<pre><code>xmlhttp.open(method,url,async);
+xmlhttp.send();</code></pre>
+<p>示例如下：</p>
+<pre><code> xmlhttp.open(&quot;GET&quot;,&quot;http://www.runoob.com/try/ajax/demo_get.php&quot;,true);
+ xmlhttp.send();</code></pre>
+<p><strong>注意一</strong>：open 的参数要牢记，很多面试官爱问这样的细节<br>method：请求的类型；GET 或 POST</p>
+<p>url：文件在服务器上的位置，相对位置或绝对位置</p>
+<p>async：true（异步）或 false（同步）</p>
+<p>为什么使用 Async=true ？</p>
+<p>我们的实例在 open() 的第三个参数中使用了<br>“true”,该参数规定请求是否异步处理。</p>
+<p>true 表示脚本会在 send() 方法之后继续执行，而不等待来自服务器的响应。</p>
+<p>onreadystatechange<br>事件使代码复杂化了。但是这是在没有得到服务器响应的情况下，防止代码停止的最安全的方法。</p>
+<p>通过把该参数设置为 “false”，可以省去额外的 onreadystatechange<br>代码。如果在请求失败时是否执行其余的代码无关紧要，那么可以使用这个参数。</p>
+<p><strong>注意二</strong>：post请求不同于get请求</p>
+<p>send(string)方法post请求时才使用字符串参数，否则不用带参数。</p>
+<p><strong>注意三</strong>：post请求一定要设置请求头的格式内容</p>
+<pre><code>xmlhttp.open(&quot;POST&quot;,&quot;ajax_test.html&quot;,true);
+xmlhttp.setRequestHeader(&quot;content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);
+xmlhttp.send(&quot;fname=Herry&amp;lname=Ford&quot;);</code></pre>
+<p>3.服务器响应处理</p>
+<p>responseText 获得字符串形式的响应数据。 responseXML 获得XML<br>形式的响应数据。</p>
+<p>3.1 同步处理</p>
+<pre><code>xmlhttp.open(&quot;GET&quot;,&quot;http://www.runoob.com/try/ajax/demo_get.php&quot;,false);
+xmlhttp.send();
+document.getElementById(&quot;mydiv&quot;).innerHTML=xmlhttp.responseText;</code></pre>
+<p>直接在send()后面处理返回来的数据。</p>
+<p>3.2 异步处理</p>
+<p>异步处理相对比较麻烦，要在请求状态改变事件中处理。</p>
+<pre><code> xmlhttp.onreadystatechange=function () &#123;//接收到服务端响应时触发
+      if(xmlhttp.readyState==4&amp;&amp;xmlhttp.status==200)&#123;
+            document.getElementById(&quot;mydiv&quot;).innerHTML=xmlhttp.responseText;
+       &#125;
+ &#125;</code></pre>
+<p>一共有5中请求状态，从0 到 4 发生变化。</p>
+<p>0: 请求未初始化</p>
+<p>1: 服务器连接已建立</p>
+<p>2: 请求已接收</p>
+<p>3: 请求处理中</p>
+<p>4: 请求已完成，且响应已就绪</p>
+<p>xmlhttp.status：响应状态码。这个也是面试比较爱问的，这个必须知道4个以上，比较常见的有：</p>
+<p>200: “OK”</p>
+<p>304：该资源在上次请求之后没有任何修改（这通常用于浏览器的缓存机制，使用GET请求时尤其需要注意）。</p>
+<p>403 （禁止） 服务器拒绝请求。</p>
+<p>404 （未找到） 服务器找不到请求的网页。</p>
+<p>408 （请求超时） 服务器等候请求时发生超时。</p>
+<p>500 （服务器内部错误） 服务器遇到错误，无法完成请求。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/10/17/11/" rel="prev" title="apply，bind，call的区别；new；this；闭包">
+      <i class="fa fa-chevron-left"></i> apply，bind，call的区别；new；this；闭包
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/10/22/13/" rel="next" title="垃圾回收机制;String、Array和Math方法;addEventListener和onClick();new和Object.create">
+      垃圾回收机制;String、Array和Math方法;addEventListener和onClick();new和Object.create <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81-%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE-DOM-Array-sort-Ajax"><span class="nav-number">1.</span> <span class="nav-text">防抖和节流;作用域和作用域链;DOM;Array.sort();Ajax</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81"><span class="nav-number">1.1.</span> <span class="nav-text">防抖和节流 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8A%82%E6%B5%81%E6%A6%82%E5%BF%B5-Throttle"><span class="nav-number">1.1.1.</span> <span class="nav-text">节流概念(Throttle)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B2%E6%8A%96%E6%A6%82%E5%BF%B5-Debounce"><span class="nav-number">1.1.2.</span> <span class="nav-text">防抖概念(Debounce)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE%E3%80%81%E6%89%A7%E8%A1%8C%E6%9C%9F%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-number">1.2.</span> <span class="nav-text">作用域和作用域链、执行期上下文 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">1.2.1.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE"><span class="nav-number">1.2.2.</span> <span class="nav-text">作用域链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-number">1.2.3.</span> <span class="nav-text">执行上下文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.2.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM%E5%B8%B8%E8%A7%81%E7%9A%84%E6%93%8D%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="nav-number">1.3.</span> <span class="nav-text">DOM常见的操作方式 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#15-1%E5%B8%B8%E7%94%A8%E7%9A%84%E6%9F%A5%E6%89%BE%E8%8A%82%E7%82%B9%E7%9A%84%E6%96%B9%E6%B3%95%E6%9C%89%EF%BC%9A"><span class="nav-number">1.3.1.</span> <span class="nav-text">15.1常用的查找节点的方法有：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-2%E5%B8%B8%E7%94%A8%E7%9A%84%E6%96%B0%E5%BB%BA%E8%8A%82%E7%82%B9%E7%9A%84%E6%96%B9%E6%B3%95%E6%9C%89%EF%BC%9A"><span class="nav-number">1.3.2.</span> <span class="nav-text">15.2常用的新建节点的方法有：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-3%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B7%BB%E5%8A%A0%E6%96%B0%E8%8A%82%E7%82%B9%E7%9A%84%E6%96%B9%E6%B3%95%E6%9C%89%EF%BC%9A"><span class="nav-number">1.3.3.</span> <span class="nav-text">15.3常用的添加新节点的方法有：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-4%E5%B8%B8%E7%94%A8%E7%9A%84%E5%88%A0%E9%99%A4%E8%8A%82%E7%82%B9%E7%9A%84%E6%96%B9%E6%B3%95%E6%9C%89%EF%BC%9A"><span class="nav-number">1.3.4.</span> <span class="nav-text">15.4常用的删除节点的方法有：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-5%E5%B8%B8%E7%94%A8%E7%9A%84%E4%BF%AE%E6%94%B9%E8%8A%82%E7%82%B9%E7%9A%84%E6%96%B9%E6%B3%95%E6%9C%89%EF%BC%9A"><span class="nav-number">1.3.5.</span> <span class="nav-text">15.5常用的修改节点的方法有：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-sort-%E6%96%B9%E6%B3%95%E4%B8%8E%E5%AE%9E%E7%8E%B0%E6%9C%BA%E5%88%B6"><span class="nav-number">1.4.</span> <span class="nav-text">Array.sort()方法与实现机制 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ajax%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B"><span class="nav-number">1.5.</span> <span class="nav-text">Ajax请求过程 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ajax%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.5.1.</span> <span class="nav-text">Ajax是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ajax%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.5.2.</span> <span class="nav-text">Ajax的使用</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description">怕什么真理无穷，进一寸有进一寸的欢喜。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

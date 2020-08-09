@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://hhhwwq.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="vue3.0源码已经发布了半年了，尤雨溪大大最近也频繁开课更新进展，本着持续学习的态度，整理了需了解的3.0的新特性和修改的地方。 主要参考资料的链接： Composition API详情  monorepo结构介绍  用户意见收集RFC   vue3.0源码的github地址    尤雨溪4.21B站直播ppt   尤雨溪5.28发布微博 尤雨溪6.4直播ppt   阮一峰的ES6 下面是六个主">
+<meta property="og:type" content="article">
+<meta property="og:title" content="了解Vue3.0新特性">
+<meta property="og:url" content="https://hhhwwq.github.io/2020/06/16/0616/index.html">
+<meta property="og:site_name" content="Wanqing&#39;s Blog">
+<meta property="og:description" content="vue3.0源码已经发布了半年了，尤雨溪大大最近也频繁开课更新进展，本着持续学习的态度，整理了需了解的3.0的新特性和修改的地方。 主要参考资料的链接： Composition API详情  monorepo结构介绍  用户意见收集RFC   vue3.0源码的github地址    尤雨溪4.21B站直播ppt   尤雨溪5.28发布微博 尤雨溪6.4直播ppt   阮一峰的ES6 下面是六个主">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-16T06:36:56.000Z">
+<meta property="article:modified_time" content="2020-06-28T13:50:14.000Z">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://hhhwwq.github.io/2020/06/16/0616/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>了解Vue3.0新特性 | Wanqing's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wanqing's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2020/06/16/0616/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wanqing's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          了解Vue3.0新特性
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-16 14:36:56" itemprop="dateCreated datePublished" datetime="2020-06-16T14:36:56+08:00">2020-06-16</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>vue3.0源码已经发布了半年了，尤雨溪大大最近也频繁开课更新进展，本着持续学习的态度，整理了需了解的3.0的新特性和修改的地方。</p>
+<p>主要参考资料的链接：</p>
+<p><a target="_blank" rel="noopener" href="https://composition-api.vuejs.org/api.html#advanced-reactivity-apis">Composition API详情</a> </p>
+<p><a target="_blank" rel="noopener" href="https://trunkbaseddevelopment.com/monorepos/">monorepo结构介绍</a> </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/vuejs/rfcs/blob/function-apis/active-rfcs/0000-function-api.md">用户意见收集RFC</a>  </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-next">vue3.0源码的github地址</a>   </p>
+<p><a target="_blank" rel="noopener" href="https://juejin.im/post/5e9f6b3251882573a855cd52">尤雨溪4.21B站直播ppt</a>  </p>
+<p><a target="_blank" rel="noopener" href="https://increment.com/frontend/making-vue-3/">尤雨溪5.28发布微博</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA4MDU1MDExMg==&mid=2247483829&idx=1&sn=75ef516c9174cda030db48d4ab5722e3&chksm=9fa3c03aa8d4492c5d49866df093f61aeb3f8484bf6b75ad87a63d207cfdc3d18910fe42702f&token=454539811&lang=zh_CN#rd">尤雨溪6.4直播ppt</a>  </p>
+<p><a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/#docs/proxy">阮一峰的ES6</a></p>
+<h2 id="下面是六个主要的新特性："><a href="#下面是六个主要的新特性：" class="headerlink" title="下面是六个主要的新特性："></a>下面是六个主要的新特性：</h2><h2 id="1-双向绑定"><a href="#1-双向绑定" class="headerlink" title="1.双向绑定"></a>1.双向绑定</h2><p>2.0现有限制：</p>
+<pre><code>1、无法检测到新的属性添加/删除 
+
+2、无法监听数组的变化 
+
+3、需要深度遍历，浪费内存</code></pre>
+<p>3.0优化：</p>
+<pre><code>1、允许框架拦截对象上的操作 
+
+2、Proxy默认可以支持数组 
+
+3、多层对象嵌套，使用懒代理</code></pre>
+<p>【注意：要看这部分源码，先保证对阮一峰的ES6博客中Proxy、Reflect、Set和Map有一定程度的了解】</p>
+<p>核心：主要通过函数reactive()给对象新增一个Proxy对象监听内部的属性来实现数据监听，部分代码如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> toProxy=<span class="keyword">new</span> <span class="built_in">WeakMap</span>();<span class="comment">//正向缓存</span></span><br><span class="line"><span class="keyword">let</span> toRaw=<span class="keyword">new</span> <span class="built_in">WeakMap</span>();<span class="comment">//反向缓存</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reactive</span>(<span class="params">target</span>)</span>&#123;<span class="comment">//构建Proxy监听对象</span></span><br><span class="line"><span class="keyword">let</span> observed=toProxy.has(target);<span class="comment">//判断是否已经监听</span></span><br><span class="line"><span class="keyword">if</span>(observed)&#123;</span><br><span class="line">    <span class="keyword">return</span> observed;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(toRaw.has(target))&#123;<span class="comment">//判断是否是observed，避免重复代理</span></span><br><span class="line">    <span class="keyword">return</span> target;</span><br><span class="line">&#125;</span><br><span class="line">observed= <span class="keyword">new</span> <span class="built_in">Proxy</span>(target, handle);</span><br><span class="line">toProxy.set(target,observed);<span class="comment">//缓存存储</span></span><br><span class="line">toRaw.set(observed,target);</span><br><span class="line"><span class="keyword">return</span> observed;<span class="comment">//返回被监听的对象，读取/修改observed时触发Proxy中的get/set方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>解析：通过<code>observed = new Proxy(target, handle);</code>给每一个传入的target对象包一个Proxy对象，有操作时触发handle方法；其中<code>let toProxy = new WeakMap()</code>，WeakMap是弱引用，key为对象，用于缓存代理的target，<code>let toRaw = new WeakMap()</code>，用于缓存observed，避免重复代理；handle方法中有get()和set()，在get()中执行track()依赖收集，在set()中执行trigger()触发更新。</p>
+<h2 id="2-虚拟DOM"><a href="#2-虚拟DOM" class="headerlink" title="2.虚拟DOM"></a>2.虚拟DOM</h2><p>2.0VDOM性能瓶颈： </p>
+<pre><code>1、虽然vue能够保证触发更新的组件最小化，但单个组件部分变化需要遍历该组件的整个vdom树 
+
+2、传统vdom性能跟模版大小正相关，跟动态节点的数量无关</code></pre>
+<p>3.0优化工作 </p>
+<pre><code>1、将AST基于动态节点指令（if,for,slot）切割为嵌套的区块 
+
+2、主动检测模版中的静态节点 
+
+3、给元素一个追踪标记，无论层级嵌套多深，更新时可以直接遍历动态节点</code></pre>
+<p>3.0的新策略将vdom更新性能与模版大小解耦，变为与动态节点的数量相关，整体比vue2性能提升2～5倍。</p>
+<h2 id="3-Tree-Shaking"><a href="#3-Tree-Shaking" class="headerlink" title="3.Tree-Shaking"></a>3.Tree-Shaking</h2><p>2.0现有限制： 并不是每个人都使用框架的所有功能，但仍需下载/解析相应代码</p>
+<p>3.0优化：将大多数全局API和内部组件移至ES模块导出，tree-shaking更友好</p>
+<p>4月份的数据显示，vue2.0的运行时大小是22.5kb，3.0在13.5kb。</p>
+<h2 id="4-Composition-API"><a href="#4-Composition-API" class="headerlink" title="4.Composition API"></a>4.Composition API</h2><p>太多了，主要参考这里的<br><a target="_blank" rel="noopener" href="https://composition-api.vuejs.org/api.html#advanced-reactivity-apis">Composition API详情</a> </p>
+<h2 id="5-使用TS"><a href="#5-使用TS" class="headerlink" title="5.使用TS"></a>5.使用TS</h2><p>整个3.0的源码都是用ts重构的，TypeScript的好处是有类型检查</p>
+<h2 id="6-内部模块解耦"><a href="#6-内部模块解耦" class="headerlink" title="6.内部模块解耦"></a>6.内部模块解耦</h2><p><a target="_blank" rel="noopener" href="https://trunkbaseddevelopment.com/monorepos/">神奇的monorepo结构</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/10/vue%20%E9%94%99%E8%AF%AF/" rel="prev" title="Vue打包后放到服务器出现Loading chunk {n} failed 错误的解决办法">
+      <i class="fa fa-chevron-left"></i> Vue打包后放到服务器出现Loading chunk {n} failed 错误的解决办法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/24/0624/" rel="next" title="Vue中不能监听数组变化的解决方案">
+      Vue中不能监听数组变化的解决方案 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E6%98%AF%E5%85%AD%E4%B8%AA%E4%B8%BB%E8%A6%81%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">下面是六个主要的新特性：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A"><span class="nav-number">2.</span> <span class="nav-text">1.双向绑定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%99%9A%E6%8B%9FDOM"><span class="nav-number">3.</span> <span class="nav-text">2.虚拟DOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Tree-Shaking"><span class="nav-number">4.</span> <span class="nav-text">3.Tree-Shaking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Composition-API"><span class="nav-number">5.</span> <span class="nav-text">4.Composition API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%BD%BF%E7%94%A8TS"><span class="nav-number">6.</span> <span class="nav-text">5.使用TS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%86%85%E9%83%A8%E6%A8%A1%E5%9D%97%E8%A7%A3%E8%80%A6"><span class="nav-number">7.</span> <span class="nav-text">6.内部模块解耦</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description">怕什么真理无穷，进一寸有进一寸的欢喜。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://hhhwwq.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="原型和原型链;prototype与proto的关系与区别;继承;深拷贝与浅拷贝原型和原型链 一、什么是原型：任何对象都有一个原型对象，这个原型对象由对象的内置属性_proto_指向它的构造函数的prototype指向的对象，即任何对象都是由一个构造函数创建的，但是不是每一个对象都有prototype，只有方法才有prototype。     function Person() &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="apply，bind，call的区别；new；this；闭包">
+<meta property="og:url" content="https://hhhwwq.github.io/2019/10/17/11/index.html">
+<meta property="og:site_name" content="Wanqing&#39;s Blog">
+<meta property="og:description" content="原型和原型链;prototype与proto的关系与区别;继承;深拷贝与浅拷贝原型和原型链 一、什么是原型：任何对象都有一个原型对象，这个原型对象由对象的内置属性_proto_指向它的构造函数的prototype指向的对象，即任何对象都是由一个构造函数创建的，但是不是每一个对象都有prototype，只有方法才有prototype。     function Person() &amp;#123;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-10-17T02:10:50.000Z">
+<meta property="article:modified_time" content="2020-01-22T08:36:00.000Z">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://hhhwwq.github.io/2019/10/17/11/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>apply，bind，call的区别；new；this；闭包 | Wanqing's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wanqing's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2019/10/17/11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wanqing's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          apply，bind，call的区别；new；this；闭包
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-17 10:10:50" itemprop="dateCreated datePublished" datetime="2019-10-17T10:10:50+08:00">2019-10-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="原型和原型链-prototype与proto的关系与区别-继承-深拷贝与浅拷贝"><a href="#原型和原型链-prototype与proto的关系与区别-继承-深拷贝与浅拷贝" class="headerlink" title="原型和原型链;prototype与proto的关系与区别;继承;深拷贝与浅拷贝"></a>原型和原型链;prototype与proto的关系与区别;继承;深拷贝与浅拷贝</h1><h2 id="原型和原型链"><a href="#原型和原型链" class="headerlink" title="原型和原型链 "></a>原型和原型链 </h2><h3 id="一、什么是原型："><a href="#一、什么是原型：" class="headerlink" title="一、什么是原型："></a>一、什么是原型：</h3><p>任何对象都有一个原型对象，这个原型对象由对象的内置属性_proto_指向它的构造函数的prototype指向的对象，即任何对象都是由一个构造函数创建的，但是不是每一个对象都有prototype，只有方法才有prototype。</p>
+<pre><code>    function Person() &#123;
+    &#125;
+    var p = new Person();
+    //方法才有prototype,普通对象无prototype
+    console.log(Person.prototype); // Object&#123;&#125; 
+    console.log(p.prototype); // undifined
+
+    //任何对象都是有构造函数的,Person这种方法的构造函数是Function。
+    //备注:constructor很容易被改变，一般不用它，此处只是打印下列对象的构造函数是什么。
+
+    console.log(p.constructor); //function Person()&#123;&#125;  
+    console.log(Person.constructor); //function Function()&#123;&#125; 
+    console.log(&#123;&#125;.constructor); // function Object()&#123;&#125;
+    console.log(Object.constructor); // function Function() &#123;&#125;
+    console.log([].constructor);  //function Array()&#123;&#125; 
+    那什么是构造函数呢？</code></pre>
+<p>用function声明的都是函数，而如果直接调用的话，那么Person()就是一个普通函数，只有用函数new产生对象时，这个函数才是new出来对象的构造函数。</p>
+<h3 id="二、创建对象的过程（采用new关键）"><a href="#二、创建对象的过程（采用new关键）" class="headerlink" title="二、创建对象的过程（采用new关键）"></a>二、创建对象的过程（采用new关键）</h3><p>2.1 、声明方法的过程</p>
+<p> 首先，当我们声明一个function关键字的方法时，会为这个方法添加一个prototype属性，指向默认的原型对象，并且此prototype的constructor属性也指向方法对象。此二个属性会在创建对象时被对象的属性引用。</p>
+<pre><code>    function Hello() &#123;
+    &#125;
+    console.log(Hello.prototype); // Object &#123;&#125; -- &gt; 内部的constructor 指向Hello方法
+    console.log(Hello.prototype.constructor); // function Hello()&#123;&#125;</code></pre>
+<p>2.2、我们如果用Hello创建一个对象h，看这个对象有什么属性。</p>
+<pre><code>    console.log(h.constructor); // function Hello()&#123;&#125;
+    console.log(Object.getPrototypeOf(h)==Hello.prototype); // true  备注：getPrototypeOf是获取_proto_</code></pre>
+<p>我们惊喜的发现，new出来的对象，它的constructor指向了方法对象，它的_proto_和prototype相等。</p>
+<p>即new一个对象，它的_proto_属性指向了方法的prototype属性，并且constructor指向了prototype的constructor属性。</p>
+<p>2.3 、创建一个对象的过程</p>
+<pre><code>    function Hehe(name) &#123;
+        this.name = name;
+    &#125;
+    var h = new Hehe(&quot;笑你妹&quot;);
+    //伪代码:
+    function newObj(name)&#123;
+        var obj = &#123;&#125;;
+        obj.__proto__ = Hehe.prototype; 
+        obj.constructor = Hehe.prototype.constructor;
+        var result = Hehe.call(obj, name);
+        return typeof result===&#39;object&#39;&amp;&amp; result!=null ? result : obj;  //当无返回对象或默认时返回obj。
+    &#125;
+    var hh = newObj(&quot;笑你妹&quot;);
+    console.log(hh);
+    console.log(h);
+    //虽然hh!=h,但是可以看到这个hh就和h的结构一样了。</code></pre>
+<p>过程：先创建一个空对象，设置一个_proto_指向方法的原型，设置constructor，用新对象做this指向方法，返回新对象。</p>
+<p>2.4、延伸</p>
+<p>从上面说明的过程中，我们发现只要是对象就是有构造函数来创建的，并且内部二个属性是从构造函数的prototype衍生的一个指向，而构造函数的prototype也是一个对象，那么它应该肯定也有一个构造函数，首先它是一个Object<br>{}<br>对象，那么它的构造函数肯定是Object,所以就会有一个指针_proto_指向Object.prototype。最后Object.prototype因为没有_proto_，指向null，这样就构成了一个原型链。</p>
+<h3 id="三、原型链"><a href="#三、原型链" class="headerlink" title="三、原型链"></a>三、原型链</h3><p>1）什么是原型链？</p>
+<p> 原型链的核心就是依赖对象的_proto_的指向，当自身不存在的属性时，就一层层的扒出创建对象的构造函数，直至到Object时，就没有_proto_指向了。</p>
+<p>2）如何分析原型链?</p>
+<p>因为_proto_实质找的是prototype，所以我们只要找这个链条上的构造函数的prototype。其中Object.prototype是没有_proto_属性的，它==null。</p>
+<p>3.1、最简单的原型链分析</p>
+<pre><code>    function Person(name)&#123;
+            this.name = name;
+    &#125;
+    var p = new Person();
+    //p ---&gt; Person.prototype ---&gt;Object.prototype----&gt;null</code></pre>
+<p>属性搜索原则：</p>
+<p>1.当访问一个对象的成员的时候，会现在自身找有没有,如果找到直接使用。</p>
+<p>2.如果没有找到，则去<strong>原型链指向的对象的构造函数的prototype中找</strong>，找到直接使用，没找到就返回undifined或报错。</p>
+<h2 id="prototype与proto的关系与区别（）"><a href="#prototype与proto的关系与区别（）" class="headerlink" title=" prototype与proto的关系与区别（） "></a> prototype与<strong>proto</strong>的关系与区别（） </h2><p><strong>proto</strong>是每个对象都有的一个属性，而prototype是函数才会有的属性!!!<br>使用Object.getPrototypeOf()代替<strong>proto</strong>!!!</p>
+<h3 id="10-1、prototype"><a href="#10-1、prototype" class="headerlink" title="10.1、prototype"></a>10.1、prototype</h3><p>几乎所有的函数（除了一些内建函数）都有一个名为prototype（原型）的属性，这个属性是一个指针，指向一个对象，而这个对象的用途是包含可以有特定类型的所有实例共享的属性和方法。prototype是通过调用构造函数而创建的那个对象实例的原型对象。hasOwnProperty()判断指定属性是否为自有属性；in操作符对原型属性和自有属性都返回true。</p>
+<p>示例：自有属性&amp;原型属性</p>
+<pre><code>var obj = &#123;a: 1&#125;;
+obj.hasOwnProperty(&quot;a&quot;); // true
+obj.hasOwnProperty(&quot;toString&quot;); // false
+&quot;a&quot; in obj; // true
+&quot;toString&quot; in obj; // true</code></pre>
+<p>示例：鉴别原型属性</p>
+<pre><code>function hasPrototypeProperty(obj, name)&#123;
+    return name in obj &amp;&amp; !obj.hasOwnProperty(name);
+&#125;</code></pre>
+<h3 id="10-2、-—proto—"><a href="#10-2、-—proto—" class="headerlink" title="10.2、 —proto—"></a>10.2、 —proto—</h3><p>对象具有属性<strong>proto</strong>，可称为隐式原型，一个对象的隐式原型指向构造该对象的构造函数的原型，这也保证了实例能够访问在构造函数原型中定义的属性和方法。</p>
+<pre><code>function Foo()&#123;&#125;
+var Boo = &#123;name: &quot;Boo&quot;&#125;;
+Foo.prototype = Boo;
+var f = new Foo();
+
+console.log(f.__proto__ === Foo.prototype); // true
+console.log(f.__proto__ === Boo);   // true
+Object.getPrototypeOf(f) === f.__proto__;   // true</code></pre>
+<h2 id="继承的实现方式及比较"><a href="#继承的实现方式及比较" class="headerlink" title="继承的实现方式及比较 "></a>继承的实现方式及比较 </h2><p>许多语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际的方法。由于函数没有签名，在ECMAScript中无法实现接口继承。ECMAScript只支持实现继承，而且其实现继承主要是依靠原型链实现的。</p>
+<h3 id="11-1-原型链"><a href="#11-1-原型链" class="headerlink" title="11.1 原型链"></a>11.1 原型链</h3><p>基本思想为利用原型让一个引用类型继承另一个引用类型的属性和方法。<br>（1）可以通过两种方式确定原型和实例的关系：instanceof操作符和isPrototypeOf（）方法，只要是原型链中出现过的原型，都可以说时原型链所派生的实例的原型。<br>（2）应谨慎地定义方法，给原型添加方法的代码一定要放在替换原型的语句之后，而且在通过原型链实现继承时，不能使用对象字面量创建原型方法。</p>
+<h3 id="11-2-借用构造函数"><a href="#11-2-借用构造函数" class="headerlink" title="11.2 借用构造函数"></a>11.2 借用构造函数</h3><p>在解决原型中包含引用类型值所带来的问题中，开发人员开始使用一种叫做<strong>借用构造函数</strong>的技术，基本思想为在子类型构造函数的内部调用超类型构造函数。<br>（1）传递参数</p>
+<pre><code>function SuperType(name)&#123;
+    this.name=name;
+&#125;
+function SubType()&#123;
+    //继承了SuperType，同时还传递了参数。
+    SuperType.call(this,&quot;Nicholas&quot;);
+    //实例属性
+    this.age=29;
+&#125;
+var instance=new SubType();
+alert(instance.name);       //&quot;Nicholas&quot;
+alert(instance.age);        //29</code></pre>
+<p>（2）借用构造函数的问题<br>构造函数模式始终存在的问题为：方法在构造函数中定义，因此函数复用就无从谈起了。</p>
+<h3 id="11-3-组合继承（最常用）"><a href="#11-3-组合继承（最常用）" class="headerlink" title="11.3 组合继承（最常用）"></a>11.3 组合继承（最常用）</h3><p>组合继承时指将原型链和借用构造函数的技术组合到一块，从而发挥二者之长的一种继承模式。思路是使用原型链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承。<br>最大问题为无论在什么情况下都会调用两次超类型构造函数：一次是在创建子类型原型的时候，另一次是在子类型构造函数内部。</p>
+<h3 id="11-4-原型式继承"><a href="#11-4-原型式继承" class="headerlink" title="11.4 原型式继承"></a>11.4 原型式继承</h3><p>es5通过新增Object.create()方法规范化了原型式继承，这个方法接收两个参数：一个用作新对象原型的对象和（可选的）一个为新对象定义额外属性的对象。</p>
+<h3 id="11-5-寄生式继承"><a href="#11-5-寄生式继承" class="headerlink" title="11.5 寄生式继承"></a>11.5 寄生式继承</h3><p>基本思想为创建一个仅用于封装继承过程的函数，该函数在内部以某种方式来增强对象，最后再像真地是它做了所有工作一样返回对象。以下代码示范了寄生式继承模式。</p>
+<pre><code>function createAnother(original)&#123;
+    var clone=object(original); //通过调用函数创建一个新对象
+    clone.sayHi=function()&#123;     //以某种方式来增强这个对象
+        alert(&quot;hi);
+    &#125;;
+    return clone;               //返回这个对象
+&#125;</code></pre>
+<p>使用寄生式继承来为对象添加函数，会由于不能做到函数复用而降低效率，这一点与构造函数模式类似。</p>
+<h3 id="11-6-寄生组合式继承"><a href="#11-6-寄生组合式继承" class="headerlink" title="11.6 寄生组合式继承"></a>11.6 寄生组合式继承</h3><p>基本思想为不必为了指定子类型的原型而调用超类型的构造函数。</p>
+<pre><code>function inheritPrototype(subType,superType)&#123;
+    var prototype=object(superTypr.prototype);  //创建对象
+    prototype.constructor=subType;              //增强对象
+    subType.prototype=prototype;                //指定对象。
+&#125;</code></pre>
+<p>总结：</p>
+<p>JavaScript主要通过<strong>原型链实现继承</strong>。原型链的构建是通过将一个类型的实例赋值给另一个构造函数的原型实现的。这样，子类型就能够访问超类型的所有属性和方法，这一点与基于类的继承很相似。</p>
+<p><strong>原型链的问题是对象实例共享所有继承的属性和方法，因此不适宜单独使用。</strong></p>
+<p>解决这个问题的技术是借用构造函数，即在子类型构造函数的内部调用超类型构造函数。这样就可以做到每个实例都具有自己的属性，同时还能保证只使用构造函数模式来定义类型。使用最多的继承模式是<strong>组合继承，这种模式使用原型链继承共享的属性和方法，而通过借用构造函数继承实力属性。</strong></p>
+<p>此外，还存在下列可供选择的继承模式。</p>
+<p><strong>原型式继承</strong>，可以在不必预先定义构造函数的情况下实现继承，其本质是执行对给定对象的浅复制。而复制得到的副本还可以得到进一步改造。</p>
+<p><strong>寄生式继承</strong>，与原型式继承非常相似，也是基于某个对象或某些信息创建一个对象，然后增强对象，最后返回对象。为了解决组合继承模式由于多次调用超类型构造函数而导致的低效率问题，可以将这个模式和组合模式一起使用。</p>
+<p><strong>寄生组合式继承</strong>，集寄生式继承和组合继承的优点于一身，是实现基于类型继承的最有效方式。</p>
+<h2 id="深拷贝与浅拷贝"><a href="#深拷贝与浅拷贝" class="headerlink" title=" 深拷贝与浅拷贝 "></a> 深拷贝与浅拷贝 </h2><p><strong>赋值</strong>是赋的是该对象的在栈中的地址，而不是堆中的数据，也就是两个对象指向的是同一个存储空间，是联动的；</p>
+<p><strong>浅拷贝</strong>只复制一层对象的属性，如果属性是基本类型，拷贝的就是基本类型的值；如果属性是内存地址（引用类型），拷贝的就是内存地址<br>，并不包括对象里面的为引用类型的数据；</p>
+<p><strong>浅拷贝的实现：</strong><br>1.Object.assign()：把任意多个的源对象自身的可枚举属性拷贝给目标对象，然后返回目标对象，拷贝的是对象的属性的引用，而不是对象本身。</p>
+<pre><code>var obj = &#123; a: &#123;a: &quot;copy&quot;, b: 1&#125; &#125;;
+var newlObj = Object.assign(&#123;&#125;, obj);//-----------
+initalObj.a.a = &quot;swallow&quot;;
+console.log(obj.a.a); //swallow</code></pre>
+<p>2.Array.prototype.concat()：修改新对象会改到原对象</p>
+<pre><code>let arr = [1, 2, &#123;    username: &#39;copy&#39;    &#125;];
+let arr2=arr.concat();//----------------    
+arr2[2].username = &#39;swallow&#39;;
+console.log(arr);</code></pre>
+<p>3.Array.prototype.slice()：同样修改新对象会改到原对象</p>
+<pre><code>let arr = [1, 2, &#123;    username: &#39;copy&#39;    &#125;];
+let arr2=arr.slice();//----------------    
+arr2[2].username = &#39;swallow&#39;;
+console.log(arr);</code></pre>
+<p>注：Array的slice和concat方法不修改原数组，只会返回一个浅复制了原数组中的元素的一个新数组。</p>
+<p><strong>深拷贝</strong>是对对象以及对象的所有子对象进行拷贝。</p>
+<p><strong>深拷贝</strong>的实现：</p>
+<p>1.JSON.parse(JSON.stringify())：用JSON.stringify将对象转成JSON字符串，再用JSON.parse()把字符串解析成对象，一去一来，<strong>新的对象产生了，而且对象会开辟新的栈</strong>，可以<strong>实现数组或对象深拷贝</strong>，但<strong>不能处理函数。</strong></p>
+<p>因为JSON.stringify() 方法是将一个JavaScript值(对象或者数组)转换为一个<br>JSON字符串，不能接受函数</p>
+<pre><code>let arr = [1, 3, &#123;    username: &#39; copy&#39;&#125;];
+let arr2 = JSON.parse(JSON.stringify(arr));
+arr2[2].username = &#39;shen&#39;; 
+console.log(arr, arr4)</code></pre>
+<p>2.递归：递归方法实现深度克隆原理：<strong>遍历对象、数组直到里边都是基本数据类型，然后再去复制，就是深度拷贝。</strong></p>
+<pre><code> //定义检测数据类型的功能函数
+    function checkedType(target) &#123;
+      return Object.prototype.toString.call(target).slice(8, -1)
+    &#125;
+    //实现深度克隆---对象/数组
+    function clone(target) &#123;
+      //判断拷贝的数据类型
+      //初始化变量result 成为最终克隆的数据
+      let result, targetType = checkedType(target)
+      if (targetType === &#39;Object&#39;) &#123;
+        result = &#123;&#125;
+      &#125; else if (targetType === &#39;Array&#39;) &#123;
+        result = []
+      &#125; else &#123;
+        return target
+      &#125;
+      //遍历目标数据
+      for (let i in target) &#123;
+        //获取遍历数据结构的每一项值。
+        let value = target[i]
+        //判断目标结构里的每一值是否存在对象/数组
+        if (checkedType(value) === &#39;Object&#39; ||
+          checkedType(value) === &#39;Array&#39;) &#123; //对象/数组里嵌套了对象/数组
+          //继续遍历获取到value值
+          result[i] = clone(value)
+        &#125; else &#123; //获取到value值是基本的数据类型或者是函数。
+          result[i] = value;
+        &#125;
+      &#125;
+      return result
+    &#125;
+
+  // 内部方法：用户合并一个或多个对象到第一个对象
+    // 参数：
+    // target 目标对象  对象都合并到target里
+    // source 合并对象
+    // deep 是否执行深度合并
+    function extend(target, source, deep) &#123;
+        for (key in source)
+            if (deep &amp;&amp; (isPlainObject(source[key]) || isArray(source[key]))) &#123;
+// source[key]是对象，而target[key]不是对象，则target[key]=&#123;&#125;初始化一下，否则递归会出错的
+                if (isPlainObject(source[key]) &amp;&amp; !isPlainObject(target[key]))
+                    target[key] = &#123;&#125;
+
+// source[key] 是数组，而 target[key]不是数组，则 target[key] = []初始化一下，否则递归会出错的
+                if (isArray(source[key]) &amp;&amp; !isArray(target[key]))
+                    target[key] = []
+                // 执行递归
+                extend(target[key], source[key], deep)
+            &#125;
+            // 不满足以上条件，说明 source[key] 是一般的值类型，直接赋值给 target 就是了
+            else if (source[key] !== undefined) target[key] = source[key]
+    &#125;
+
+    // Copy all but undefined properties from one or more
+    // objects to the `target` object.
+    $.extend = function(target)&#123;
+        var deep, args = slice.call(arguments, 1);
+
+        //第一个参数为boolean值时，表示是否深度合并
+        if (typeof target == &#39;boolean&#39;) &#123;
+            deep = target;
+            //target取第二个参数
+            target = args.shift()
+        &#125;
+        // 遍历后面的参数，都合并到target上
+        args.forEach(function(arg)&#123; extend(target, arg, deep) &#125;)
+        return target
+    &#125;</code></pre>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/10/16/10/" rel="prev" title="apply，bind，call的区别；new；this；闭包">
+      <i class="fa fa-chevron-left"></i> apply，bind，call的区别；new；this；闭包
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/10/22/12/" rel="next" title="apply，bind，call的区别；new；this；闭包">
+      apply，bind，call的区别；new；this；闭包 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE-prototype%E4%B8%8Eproto%E7%9A%84%E5%85%B3%E7%B3%BB%E4%B8%8E%E5%8C%BA%E5%88%AB-%E7%BB%A7%E6%89%BF-%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="nav-number">1.</span> <span class="nav-text">原型和原型链;prototype与proto的关系与区别;继承;深拷贝与浅拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="nav-number">1.1.</span> <span class="nav-text">原型和原型链 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E5%8E%9F%E5%9E%8B%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">一、什么是原型：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%BF%87%E7%A8%8B%EF%BC%88%E9%87%87%E7%94%A8new%E5%85%B3%E9%94%AE%EF%BC%89"><span class="nav-number">1.1.2.</span> <span class="nav-text">二、创建对象的过程（采用new关键）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="nav-number">1.1.3.</span> <span class="nav-text">三、原型链</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#prototype%E4%B8%8Eproto%E7%9A%84%E5%85%B3%E7%B3%BB%E4%B8%8E%E5%8C%BA%E5%88%AB%EF%BC%88%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text"> prototype与proto的关系与区别（） </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1%E3%80%81prototype"><span class="nav-number">1.2.1.</span> <span class="nav-text">10.1、prototype</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2%E3%80%81-%E2%80%94proto%E2%80%94"><span class="nav-number">1.2.2.</span> <span class="nav-text">10.2、 —proto—</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%AF%94%E8%BE%83"><span class="nav-number">1.3.</span> <span class="nav-text">继承的实现方式及比较 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1-%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="nav-number">1.3.1.</span> <span class="nav-text">11.1 原型链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-%E5%80%9F%E7%94%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.2.</span> <span class="nav-text">11.2 借用构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF%EF%BC%88%E6%9C%80%E5%B8%B8%E7%94%A8%EF%BC%89"><span class="nav-number">1.3.3.</span> <span class="nav-text">11.3 组合继承（最常用）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-4-%E5%8E%9F%E5%9E%8B%E5%BC%8F%E7%BB%A7%E6%89%BF"><span class="nav-number">1.3.4.</span> <span class="nav-text">11.4 原型式继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-5-%E5%AF%84%E7%94%9F%E5%BC%8F%E7%BB%A7%E6%89%BF"><span class="nav-number">1.3.5.</span> <span class="nav-text">11.5 寄生式继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-6-%E5%AF%84%E7%94%9F%E7%BB%84%E5%90%88%E5%BC%8F%E7%BB%A7%E6%89%BF"><span class="nav-number">1.3.6.</span> <span class="nav-text">11.6 寄生组合式继承</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="nav-number">1.4.</span> <span class="nav-text"> 深拷贝与浅拷贝 </span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description">怕什么真理无穷，进一寸有进一寸的欢喜。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

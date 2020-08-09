@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://hhhwwq.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="vue-router中传递参数主要分两大类： 编程式的导航  router.push 声明式的导航 router-link 编程式导航又分两种方式： 第一种是 命名路由params，第二种是查询参数query 命名路由params1、先演示使用 params 只传递一个参数的写法  只传递一个参数，直接在path中添加 &#x2F;:id  (取名根据实际需要)来对应 $router.push 中path携">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue-router 路由怎么传递一个或多个参数？">
+<meta property="og:url" content="https://hhhwwq.github.io/2020/05/31/31/index.html">
+<meta property="og:site_name" content="Wanqing&#39;s Blog">
+<meta property="og:description" content="vue-router中传递参数主要分两大类： 编程式的导航  router.push 声明式的导航 router-link 编程式导航又分两种方式： 第一种是 命名路由params，第二种是查询参数query 命名路由params1、先演示使用 params 只传递一个参数的写法  只传递一个参数，直接在path中添加 &#x2F;:id  (取名根据实际需要)来对应 $router.push 中path携">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-31T13:52:48.000Z">
+<meta property="article:modified_time" content="2020-05-31T14:22:14.000Z">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://hhhwwq.github.io/2020/05/31/31/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>vue-router 路由怎么传递一个或多个参数？ | Wanqing's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wanqing's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2020/05/31/31/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wanqing's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vue-router 路由怎么传递一个或多个参数？
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-31 21:52:48" itemprop="dateCreated datePublished" datetime="2020-05-31T21:52:48+08:00">2020-05-31</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>vue-router中传递参数主要分两大类：</p>
+<p>编程式的导航  router.push</p>
+<p>声明式的导航 router-link</p>
+<p>编程式导航又分两种方式：</p>
+<p>第一种是 命名路由params，第二种是查询参数query</p>
+<h2 id="命名路由params"><a href="#命名路由params" class="headerlink" title="命名路由params"></a>命名路由params</h2><p>1、先演示使用 params 只传递一个参数的写法</p>
+<p> 只传递一个参数，直接在path中添加 /:id  (取名根据实际需要)来对应 $router.push 中path携带的参数</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span>点击跳转的方法</span><br><span class="line"> goPwdList(index, row) &#123;</span><br><span class="line">      this.<span class="variable">$router</span>.push(&#123;</span><br><span class="line"><span class="regexp">//</span>直接调用<span class="variable">$router</span>.push 实现携带参数的跳转</span><br><span class="line">        path: `<span class="regexp">/index/</span>passwordlist/<span class="variable">$&#123;row.houseNo&#125;</span>`</span><br><span class="line"> &#125;);</span><br><span class="line"> </span><br><span class="line"><span class="regexp">//</span>路由  路由跳转路径需要配置参数</span><br><span class="line"> &#123;</span><br><span class="line">     path: <span class="string">&#x27;passwordlist/:houseno&#x27;</span>,</span><br><span class="line">     component: PasswordList</span><br><span class="line">  &#125;,</span><br><span class="line"> </span><br><span class="line"><span class="regexp">//</span>在目标页面获取父组件通过路由传递过来的参数</span><br><span class="line">var house_id = this.<span class="variable">$route</span>.params.houseId;</span><br></pre></td></tr></table></figure>
+<p>2、params  传递多个参数</p>
+<p>传递多个参数时，params可以配合路由中的name 来使用，也可以和传递一个参数那样 直接在路由路径上拼接多个参数</p>
+<p>对应目标组件获取路由上传过来的参数：是this.route 而不是 this.router</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span>点击跳转的方法</span><br><span class="line"> goPwdList(index, row) &#123;</span><br><span class="line">      this.<span class="variable">$router</span>.push(&#123;</span><br><span class="line"><span class="regexp">//</span>直接调用<span class="variable">$router</span>.push 实现携带参数的跳转</span><br><span class="line">        path: `<span class="regexp">/index/</span>passwordlist<span class="regexp">/$&#123;row.houseNo&#125;/</span><span class="variable">$&#123;row.houseId&#125;</span>/<span class="variable">$&#123;row.apartmentId&#125;</span>`</span><br><span class="line"> &#125;);</span><br><span class="line"> </span><br><span class="line"><span class="regexp">//</span>路由  路由跳转路径需要配置参数</span><br><span class="line"> &#123;</span><br><span class="line">     path: <span class="string">&#x27;passwordlist/:houseno/:houseId/:apartmentId&#x27;</span>,</span><br><span class="line">     component: PasswordList</span><br><span class="line">  &#125;,</span><br><span class="line"> </span><br><span class="line"><span class="regexp">//</span>在目标页面获取父组件通过路由传递过来的参数</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="查询参数query"><a href="#查询参数query" class="headerlink" title="查询参数query"></a>查询参数query</h2><p>使用查询参数的方式，在路由配置中，path就不用再拼接参数，在父组件中，直接将需要传递的参数放在query里，在子组件中使用this.route.query 接收参数</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//路由  路由跳转路径需要配置参数</span></span><br><span class="line"> this.<span class="variable">$router</span>.push(&#123;</span><br><span class="line">     path: <span class="string">&#x27;/index/passwordlist&#x27;</span>,</span><br><span class="line">     query:&#123;</span><br><span class="line">         id:row<span class="selector-class">.id</span>,</span><br><span class="line">         apart:row<span class="selector-class">.apart</span>,</span><br><span class="line">        lockId:row.lockId</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;),</span><br><span class="line"> ps：使用params传递参数，url上只会出现数据，不会出现具体字段,而使用查询参数query的方式，url上会出现具体的字段，比较不安全</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/11/0602/" rel="prev" title="hexo发布博客流程&&md文件规范">
+      <i class="fa fa-chevron-left"></i> hexo发布博客流程&&md文件规范
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/03/0605/" rel="next" title="js报错：Required String parameter 'XXX' is not present错误的几种可能性">
+      js报错：Required String parameter 'XXX' is not present错误的几种可能性 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E5%90%8D%E8%B7%AF%E7%94%B1params"><span class="nav-number">1.</span> <span class="nav-text">命名路由params</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%8F%82%E6%95%B0query"><span class="nav-number">2.</span> <span class="nav-text">查询参数query</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description">怕什么真理无穷，进一寸有进一寸的欢喜。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

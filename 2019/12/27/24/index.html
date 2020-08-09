@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://hhhwwq.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="十段一定要会的代码分别有promise封装ajax、Promise.all()、手写ajax、串行ajax请求处理、手写闭包、柯里化、节流防抖、bind底层、cookie封装、数组扁平化。 1.promise封装ajaxconst getJSON &#x3D; function(url) &amp;#123;   const promise &#x3D; new Promise(function(resolve, rejec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="some codes">
+<meta property="og:url" content="https://hhhwwq.github.io/2019/12/27/24/index.html">
+<meta property="og:site_name" content="Wanqing&#39;s Blog">
+<meta property="og:description" content="十段一定要会的代码分别有promise封装ajax、Promise.all()、手写ajax、串行ajax请求处理、手写闭包、柯里化、节流防抖、bind底层、cookie封装、数组扁平化。 1.promise封装ajaxconst getJSON &#x3D; function(url) &amp;#123;   const promise &#x3D; new Promise(function(resolve, rejec">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-27T07:36:05.000Z">
+<meta property="article:modified_time" content="2020-01-22T14:17:42.000Z">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://hhhwwq.github.io/2019/12/27/24/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>some codes | Wanqing's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wanqing's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2019/12/27/24/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wanqing's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          some codes
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-27 15:36:05" itemprop="dateCreated datePublished" datetime="2019-12-27T15:36:05+08:00">2019-12-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="十段一定要会的代码"><a href="#十段一定要会的代码" class="headerlink" title="十段一定要会的代码"></a>十段一定要会的代码</h1><p>分别有promise封装ajax、Promise.all()、手写ajax、串行ajax请求处理、手写闭包、柯里化、节流防抖、bind底层、cookie封装、数组扁平化。</p>
+<h2 id="1-promise封装ajax"><a href="#1-promise封装ajax" class="headerlink" title="1.promise封装ajax"></a>1.promise封装ajax</h2><pre><code>const getJSON = function(url) &#123;
+  const promise = new Promise(function(resolve, reject)&#123;
+    const handler = function() &#123;
+      if (this.readyState !== 4) &#123;
+        return;
+      &#125;
+      if (this.status === 200) &#123;
+        resolve(this.response);
+      &#125; else &#123;
+        reject(new Error(this.statusText));
+      &#125;
+    &#125;;
+    const client = new XMLHttpRequest();
+    client.open(&quot;GET&quot;, url);
+    client.onreadystatechange = handler;
+    client.responseType = &quot;json&quot;;
+    client.setRequestHeader(&quot;Accept&quot;, &quot;application/json&quot;);
+    client.send();
+
+  &#125;);
+
+  return promise;
+&#125;;
+
+getJSON(&quot;/posts.json&quot;).then(function(json) &#123;
+  console.log(&#39;Contents: &#39; + json);
+&#125;, function(error) &#123;
+  console.error(&#39;出错了&#39;, error);
+&#125;);</code></pre>
+<p><code>getJson</code>是对<code>XMLHttpRequest</code>对象的封装，用于发出一个针对<code>JSON</code>数据的<code>HTTP</code>请求，并且返回一个<code>Promise</code>对象。需要注意的是，在<code>getJSON</code>内部，<code>resolve</code>函数和<code>reject</code>函数调用时，都带有参数。<code>reject</code>函数的参数通常是<code>Error</code>对象的实例，表示抛出的错误；<code>resolve</code>函数的参数除了正常的值以为，还可能是另一个<code>Promise</code>实例。</p>
+<h2 id="2-promise-all"><a href="#2-promise-all" class="headerlink" title="2.promise.all()"></a>2.promise.all()</h2><pre><code>// 生成一个Promise对象的数组
+const promises = [2, 3, 5, 7, 11, 13].map(function (id) &#123;
+  return getJSON(&#39;/post/&#39; + id + &quot;.json&quot;);
+&#125;);
+
+Promise.all(promises).then(function (posts) &#123;
+  // ...
+&#125;).catch(function(reason)&#123;
+  // ...
+&#125;);</code></pre>
+<p><code>promises</code>是包含 6 个 <code>Promise</code>实例的数组，只有这 6 个实例的状态都变成<code>fulfilled</code>，或者其中有一个变为<code>rejected</code>，才会调用<code>Promise.all</code>方法后面的回调函数。</p>
+<h2 id="3-手写ajax"><a href="#3-手写ajax" class="headerlink" title="3.手写ajax"></a>3.手写ajax</h2><pre><code>var Ajax = &#123;
+    get: function(url,fn)&#123;
+        // XMLHttpRequest对象用于在后台与服务器交换数据
+        var xhr=new XMLHttpRequest();
+        xhr.open(&#39;GET&#39;,url,false);
+        xhr.onreadystatechange=function()&#123;
+            // readyState == 4说明请求已完成
+            if(xhr.readyState==4)&#123;
+                if(xhr.status==200 || xhr.status==304)&#123;
+                    console.log(xhr.responseText);
+                    fn.call(xhr.responseText);
+                &#125;
+            &#125;
+        &#125;
+        xhr.send();
+    &#125;,
+
+
+    // data应为&#39;a=a1&amp;b=b1&#39;这种字符串格式，在jq里如果data为对象会自动将对象转成这种字符串格式
+    post: function(url,data,fn)&#123;
+        var xhr=new XMLHttpRequest();
+        xhr.open(&#39;POST&#39;,url,false);
+        // 添加http头，发送信息至服务器时内容编码类型
+        xhr.setRequestHeader(&#39;Content-Type&#39;,&#39;application/x-www-form-urlencoded&#39;);
+        xhr.onreadystatechange=function()&#123;
+            if (xhr.readyState==4)&#123;
+                if (xhr.status==200 || xhr.status==304)&#123;
+                    // console.log(xhr.responseText);
+                    fn.call(xhr.responseText);
+                &#125;
+            &#125;
+        &#125;
+        xhr.send(data);
+    &#125;
+&#125;;</code></pre>
+<h2 id="4-串行ajax请求处理"><a href="#4-串行ajax请求处理" class="headerlink" title="4.串行ajax请求处理"></a>4.串行ajax请求处理</h2><p>串行执行分为两种。</p>
+<p>一种是用同步模式async：false，三个ajax请求连着写就可以了。</p>
+<pre><code>$.ajax(&#123;
+  url:&quot;ajax请求1&quot;,
+  async:false,
+  success:function(data)&#123;
+    console.log(&quot;ajax请求1 完成&quot;);
+  &#125;
+
+&#125;);
+$.ajax(&#123;
+    url:&quot;ajax请求2&quot;,
+    async:false,
+    success:function(data)&#123;
+    console.log(&quot;ajax请求2 完成&quot;);
+&#125;);
+$.ajax(&#123;
+    url:&quot;ajax请求3&quot;,
+    async:false,
+    success:function(data)&#123;
+    console.log(&quot;ajax请求3 完成&quot;);
+&#125;);</code></pre>
+<p>二是用异步模式async：ture，三个ajax请求嵌套写。</p>
+<pre><code>$.ajax(&#123;
+url:&quot;ajax请求1&quot;,
+async:true,
+success:function(data)&#123;
+  console.log(&quot;ajax请求1 完成&quot;);
+  $.ajax(&#123;
+    url:&quot;ajax请求2&quot;,
+    async:true,
+    success:function(data)&#123;
+      console.log(&quot;ajax请求2 完成&quot;);
+      $.ajax(&#123;
+        url:&quot;ajax请求3&quot;,
+        async:true,
+        success:function(data)&#123;
+          console.log(&quot;ajax请求3 完成&quot;);
+        &#125;
+      &#125;);
+    &#125;
+  &#125;);
+&#125;
+&#125;);</code></pre>
+<h2 id="5-手写闭包"><a href="#5-手写闭包" class="headerlink" title="5.手写闭包"></a>5.手写闭包</h2><pre><code>var outerValue=&quot;out&quot;;//在全局作用域定义一个变量。
+var later;
+
+function outerFunction()&#123;
+  var innerValue=&quot;in&quot;;
+  function innerFunction()&#123;
+    assert(outerValue===&quot;out&quot;,&quot;i can see the out&quot;);
+    assert(innerValue===&quot;in&quot;,&quot;i can see the in&quot;);
+  &#125;
+  later=innerFunction;
+&#125;
+outerFunction();
+later();//通过later调用内部函数，我们不能直接调用内部函数，因为它的作用域被限制在外部函数outerFunction之内。</code></pre>
+<h2 id="6-柯里化-currying"><a href="#6-柯里化-currying" class="headerlink" title="6.柯里化(currying)"></a>6.柯里化(currying)</h2><p>函数柯里化用于<strong>创建已经设置好了一个或多个参数的函数</strong>，它的基本方法和函数绑定一样的：使用一个闭包返回一个函数。</p>
+<pre><code>curry的主要工作就是将被返回函数的参数进行排序。
+function curry(fn)&#123;
+  var args=Array.prototype.slice.call(arguments,1);//获取第一个参数之后的所有参数。（外部函数的参数）
+  return function()&#123;
+    var innerArgs=Array.prototype.slice.call(arguments);//存放所有传入的参数。
+    var finalArgs=args.concat(innerArgs);
+    return fn.apply(null,finalArgs);//没有考虑到执行环境，所以第一个参数是null。
+  &#125;
+&#125;</code></pre>
+<p>可以按照以下方式应用：</p>
+<pre><code>function add(num1,num2)&#123;
+  return num1+num2;
+&#125;
+var curriedAdd=curry(add,5);
+alert(curriedAdd(3));//8</code></pre>
+<h2 id="7-节流防抖"><a href="#7-节流防抖" class="headerlink" title="7.节流防抖"></a>7.节流防抖</h2><p>函数防抖：在事件被触发n秒后再执行回调，如果再这n秒内又被触发，则重新计时。</p>
+<pre><code>function debounce(fn, delay) &#123;
+    //维护一个timer，用来记录当前执行函数状态
+    let timer=null;
+      return function () &#123;
+           //通过&#39;this&#39;和&#39;arguments&#39;获取函数的作用域和变量
+          let context = this;
+          let args = arguments;
+          //清理正在执行的函数，并重新执行
+          clearTimeout(timer);
+          timer = setTimeout(function () &#123;
+              fn.apply(context, args);
+          &#125;, delay);
+      &#125;
+  &#125;
+  let flag=0;//记录当前函数调用次数
+  //当前用户滚动时被调用的次数
+  function foo()&#123;
+      flag++;
+      console.log(&#39;number of calls: %d&#39;,flag);
+  &#125;
+  //debounce中包装过我们的函数，过2秒触发一次
+  document.body.addEventListener(&#39;scroll&#39;,debounce(foo,2000));</code></pre>
+<p>函数节流：规定在一个单位时间内，只能触发一次函数。如果这个单位时间内触发多次函数，只有一次生效。</p>
+<pre><code>fucntion throttle(func,delay)&#123;
+  let timer=null;
+  return function()&#123;
+    let context=this;
+    let args=arguments;
+    if(!timer)&#123;
+      timer=setTimeout(function()&#123;
+        func.apply(context,args);
+        timer=null;
+        &#125;,delay);
+    &#125;
+  &#125;
+&#125;</code></pre>
+<h2 id="8-bind底层"><a href="#8-bind底层" class="headerlink" title="8.bind底层"></a>8.bind底层</h2><p>参考链接：<a target="_blank" rel="noopener" href="https://juejin.im/post/59093b1fa0bb9f006517b906">https://juejin.im/post/59093b1fa0bb9f006517b906</a></p>
+<pre><code>Function.prototype.bind2 = function (context) &#123;
+
+    if (typeof this !== &quot;function&quot;) &#123;
+      throw new Error(&quot;Function.prototype.bind - what is trying to be bound is not callable&quot;);
+    &#125;
+
+    var self = this;
+    var args = Array.prototype.slice.call(arguments, 1);
+    var fNOP = function () &#123;&#125;;
+
+    var fbound = function () &#123;
+        self.apply(this instanceof self ? this : context, args.concat(Array.prototype.slice.call(arguments)));
+    &#125;
+
+    fNOP.prototype = this.prototype;
+    fbound.prototype = new fNOP();
+
+    return fbound;
+
+&#125;</code></pre>
+<h2 id="9-cookie封装"><a href="#9-cookie封装" class="headerlink" title="9.cookie封装"></a>9.cookie封装</h2><pre><code>        &lt;script type=&quot;text/javascript&quot;&gt;
+        /*****设置cookie*****/
+        function setCookie(name,value,iDay)&#123;
+            var oDate = new Date();//获取日期毫秒数
+            oDate.setDate(oDate.getDate()+iDay);//设置延期日
+            document.cookie = name+&#39;=&#39;+value+&#39;;expires=&#39;+oDate;//到这里的oDate是延期后的时间毫秒数
+        &#125;
+        /*****获取cookie*****/
+        function getCookie(name)&#123;
+            var arr = document.cookie.split(&quot;; &quot;);
+            for(var i=0;i&lt;arr.length;i++)&#123;
+                var arr2 = arr[i].split(&quot;=&quot;);
+                if(arr2[0]==name)&#123;
+                    return arr2[1];
+                &#125;
+            &#125;
+            return &quot;&quot;
+        &#125;
+        /*****移除cookie*****/
+        function removeCookie(name)&#123;
+            setCookie(name,1,-1);//让计算机以为这条数据昨天过期，自己删除本条数据。
+        &#125;;
+        /*****测试cookie*****/
+        setCookie(&#39;123&#39;,&#39;321&#39;,1)
+        setCookie(&#39;124&#39;,&#39;421&#39;,1)
+        removeCookie(&#39;123&#39;);
+        var m = getCookie(&#39;124&#39;);
+        alert(m);
+        document.write(&quot;&lt;hr/&gt;&quot;+document.cookie);
+        &lt;/script&gt;</code></pre>
+<p>getCookie:传一个参数，就是要查找记录的name值，讲现有的cookie字符串进行切割扔个arr，此时的arr就是{name=1,name2=2,name3=3&hellip;}的一个object，就像一个json，此时，再遍历，将arr的每一个元素分别提取出来然后通过等号切割，扔个arr2，这样，arr2就成了俩值得数组，遍历一遍，就被扔进来一对，把扔进来的这对进行判断，如果他的名字等于传进来的要查找的参数值，那么arr2内部的第2个数值就是要找的名字对应值，把他弹出来。否则，遍历完了还没有，就弹回空或者其他的“没找到”等提示语。</p>
+<h2 id="10-数组扁平化"><a href="#10-数组扁平化" class="headerlink" title="10.数组扁平化"></a>10.数组扁平化</h2><pre><code>/*实现一：递归 */
+function flatArray(arr) &#123;
+    var result = [];
+    for (var i = 0; i &lt; arr.length; i++) &#123;
+        if (Array.isArray(arr[i])) &#123;
+            result = result.concat(flatArray(arr[i]));
+        &#125; else &#123;
+            result.push(arr[i]);
+        &#125;
+    &#125;
+    return result;
+&#125;
+/*实现二：如果数组的元素均为数字，可以考虑使用toString()方法或者join()方法，再使用split方法转换为数组。*/
+function flatArray2(arr) &#123;
+    return arr.toString().split(&#39;,&#39;).map(item =&gt; +item);
+&#125;
+/*实现三：使用ES6新增的扩展运算符 */
+function flatArray3(arr) &#123;
+    while (arr.some(item =&gt; Array.isArray(item))) &#123;
+        arr = [].concat(...arr);
+    &#125;
+    return arr;
+&#125;
+/*实现四：reduce */
+function flatArray4(arr) &#123;
+    return arr.reduce((result, item) =&gt; &#123;
+        return result.concat(Array.isArray(item) ? flatArray4(item) : item);
+
+    &#125;, []);
+&#125;</code></pre>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/24/23/" rel="prev" title="js处理异步的几种方式">
+      <i class="fa fa-chevron-left"></i> js处理异步的几种方式
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/15/page/" rel="next" title="Vue知识点总结">
+      Vue知识点总结 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E6%AE%B5%E4%B8%80%E5%AE%9A%E8%A6%81%E4%BC%9A%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">十段一定要会的代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-promise%E5%B0%81%E8%A3%85ajax"><span class="nav-number">1.1.</span> <span class="nav-text">1.promise封装ajax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-promise-all"><span class="nav-number">1.2.</span> <span class="nav-text">2.promise.all()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%89%8B%E5%86%99ajax"><span class="nav-number">1.3.</span> <span class="nav-text">3.手写ajax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E4%B8%B2%E8%A1%8Cajax%E8%AF%B7%E6%B1%82%E5%A4%84%E7%90%86"><span class="nav-number">1.4.</span> <span class="nav-text">4.串行ajax请求处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%89%8B%E5%86%99%E9%97%AD%E5%8C%85"><span class="nav-number">1.5.</span> <span class="nav-text">5.手写闭包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%9F%AF%E9%87%8C%E5%8C%96-currying"><span class="nav-number">1.6.</span> <span class="nav-text">6.柯里化(currying)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96"><span class="nav-number">1.7.</span> <span class="nav-text">7.节流防抖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-bind%E5%BA%95%E5%B1%82"><span class="nav-number">1.8.</span> <span class="nav-text">8.bind底层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-cookie%E5%B0%81%E8%A3%85"><span class="nav-number">1.9.</span> <span class="nav-text">9.cookie封装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E6%95%B0%E7%BB%84%E6%89%81%E5%B9%B3%E5%8C%96"><span class="nav-number">1.10.</span> <span class="nav-text">10.数组扁平化</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description">怕什么真理无穷，进一寸有进一寸的欢喜。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
