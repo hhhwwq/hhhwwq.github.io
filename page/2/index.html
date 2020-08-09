@@ -5,22 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.0.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/wqBlog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/wqBlog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/wqBlog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/wqBlog/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/wqBlog/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/wqBlog/lib/font-awesome/css/font-awesome.min.css">
 
 
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     hostname: new URL('https://hhhwwq.github.io').hostname,
-    root: '/',
+    root: '/wqBlog/',
     scheme: 'Gemini',
     version: '7.7.1',
     exturl: false,
@@ -109,7 +109,7 @@
   <div class="site-meta">
 
     <div>
-      <a href="/" class="brand" rel="start">
+      <a href="/wqBlog/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Wanqing's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -132,22 +132,22 @@
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+    <a href="/wqBlog/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+    <a href="/wqBlog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+    <a href="/wqBlog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+    <a href="/wqBlog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
   </ul>
@@ -176,10 +176,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2020/03/09/30/">
+    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2020/06/05/0605_1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/wqBlog/images/avatar.gif">
       <meta itemprop="name" content="">
       <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
     </span>
@@ -190,7 +190,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/03/09/30/" class="post-title-link" itemprop="url">Vuex是什么？如何使用？</a>
+            <a href="/wqBlog/2020/06/05/0605_1/" class="post-title-link" itemprop="url">js数组中常用的方法总结</a>
         </h1>
 
         <div class="post-meta">
@@ -200,7 +200,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-03-09 15:35:10" itemprop="dateCreated datePublished" datetime="2020-03-09T15:35:10+08:00">2020-03-09</time>
+              <time title="创建时间：2020-06-05 16:24:56" itemprop="dateCreated datePublished" datetime="2020-06-05T16:24:56+08:00">2020-06-05</time>
             </span>
 
           
@@ -214,188 +214,48 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Vuex是什么"><a href="#Vuex是什么" class="headerlink" title="Vuex是什么?"></a>Vuex是什么?</h2><p>Vuex 是一个专为 Vue.js 应用程序开发的<strong>状态管理模式</strong>。</p>
-<h2 id="什么是“状态管理模式”？"><a href="#什么是“状态管理模式”？" class="headerlink" title="什么是“状态管理模式”？"></a>什么是“状态管理模式”？</h2><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  <span class="comment">// state</span></span><br><span class="line">  data () &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="keyword">count</span>: <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// view</span></span><br><span class="line">  template: `</span><br><span class="line">    &lt;<span class="keyword">div</span>&gt;&#123;&#123; <span class="keyword">count</span> &#125;&#125;&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">  `,</span><br><span class="line">  <span class="comment">// actions</span></span><br><span class="line">  methods: &#123;</span><br><span class="line">    increment () &#123;</span><br><span class="line">      <span class="keyword">this</span>.<span class="keyword">count</span>++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>这个状态自管理应用包含以下几个部分：</p>
-<ul>
-<li>state，驱动应用的数据源；</li>
-<li>view，以声明方式将 state 映射到视图；</li>
-<li>actions，响应在 view 上的用户输入导致的状态变化。</li>
-</ul>
-<p>以下是一个表示“单向数据流”理念的简单示意:</p>
-<p><img src="https://github.com/hhhwwq/MarkdownPhotos/blob/master/vuex_flow.png?raw=true"></p>
-<p>vuex是专为 Vue.js 应用程序开发的<strong>状态管理模式</strong>。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。</p>
-<p><strong>主要用于管理vue中的数据，可以兄弟组件互相传值；</strong></p>
-<p><img src="https://github.com/hhhwwq/MarkdownPhotos/blob/master/vuex.png?raw=true" alt="vuex"></p>
-<p>解释：</p>
-<ol>
-<li><code>Vue Components </code>是我们的 <code>vue </code>组件，组件会触发<code>（dispatch）</code>一些事件或动作<code>( Actions)</code>;</li>
-<li>我们在组件中发出的动作，肯定是想获取或者改变数据的，但是在<code>vuex</code>中，数据是集中管理的，我们不能直接去更改数据，所以会把这个动作提交<code>（Commit）</code>到<code>Mutations</code>中； </li>
-<li>然后<code>Mutations</code>就去改变<code>（Mutate）State </code>中的数据； </li>
-<li>当 <code>State </code>中的数据被改变之后，就会重新渲染<code>（Render）</code>到<code> Vue Components</code> (组件)中去， <code>Vue Components</code> (组件)展示更新后的数据，完成一个流程。</li>
+          <ol>
+<li><p>push()后增</p>
+<p>push()方法可以向数组后添加一个新的元素，并返回新数组的长度。</p>
+<p> <strong>末尾添加，返回长度，改变原数组</strong></p>
+ <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">var</span> a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="attribute">var</span> b=a.push(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="attribute">console</span>.log(a);//[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>]</span><br><span class="line"><span class="attribute">console</span>.log(b);//<span class="number">4</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>unshift() 前增</p>
+<p> unshift()可以向数组前添加一个或多个元素，并返回新的长度</p>
+<p> <strong>首部添加，返回长度，改变原数组</strong></p>
+ <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">var</span> a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="attribute">var</span> b=a.unshift(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="attribute">console</span>.log(a);//[<span class="number">5</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="attribute">console</span>.log(b);//<span class="number">4</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>pop() 后删</p>
+<p> pop() 用于删除并返回最后一个元素。</p>
+<p> <strong>尾部删除，返回被删除的元素，改变原数组</strong></p>
+</li>
+<li><p>shift() 前删</p>
+<p> shift() 用于删除并返回首个元素</p>
+<p> <strong>删除首部元素，返回被删元素，改变原数组</strong></p>
+</li>
+<li><p>splice() 修改删除</p>
+<p> splice(index,length,增加的元素1,增加的元素2….,增加的元素N) 表示从index开始删除length个元素，并从index开始新增元素1~N，放回被删除的元素组成的数组</p>
+<p> <strong>对数组进行删除修改，返回被删除的元素组成的数组，改变原数组</strong></p>
+ <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">var</span> a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="attribute">var</span> b=a.splice(<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>,[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="attribute">console</span>.log(a);//[<span class="number">1</span>,<span class="number">3</span>,[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],<span class="number">5</span>,<span class="number">3</span>]</span><br><span class="line"><span class="attribute">console</span>.log(b);//[<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>concat() 拼接</p>
+<p> concat() 方法用来合并两个或多个数组</p>
+<p> <strong>合并两个或多个数组，返回新数组，不会改变原数组</strong></p>
+</li>
+<li><p>slice() 剪切 </p>
+<p> slice(startIndex,endIndex)  返回从startIndex开始(包括)，到endIndex(不包括)之间的原属组成的数组</p>
+<p> <strong>返回新数组，不改变原数组</strong></p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> b=a.slice(<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line"><span class="comment">//不填参数则表示剪切整个数组</span></span><br><span class="line"><span class="keyword">var</span> c=a.slice();</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//[1,2,3]</span></span><br><span class="line"><span class="built_in">console</span>.log(b);<span class="comment">//[1]</span></span><br><span class="line"><span class="built_in">console</span>.log(c);<span class="comment">//[1,2,3]</span></span><br><span class="line"><span class="built_in">console</span>.log(a===c);<span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//slice()方法在第一个参数为负数时不管第二个参数为正数还是负数都会返回”“；第二个参数为负数时会将负的参数加上字符串的长度。</span></span><br><span class="line"><span class="keyword">var</span> d=a.slice(<span class="number">-1</span>,<span class="number">-2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(d);<span class="comment">//[]</span></span><br><span class="line"><span class="keyword">var</span> e=a.slice(<span class="number">-1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(e);<span class="comment">//[3]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>filter() 过滤</p>
+<p> <strong>filter() 方法返回数组中满足条件的元素组成的新数组，原数组不变</strong></p>
+<p> filter()的参数是一个方法</p>
+ <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">11</span>];</span><br><span class="line">//<span class="keyword">current</span>当前值 <span class="keyword">index</span>当前值下标 <span class="keyword">array</span>这个数组</span><br><span class="line">var b=a.<span class="keyword">filter</span>(<span class="keyword">function</span>(<span class="keyword">current</span>,<span class="keyword">index</span>,<span class="keyword">array</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">current</span>&lt;<span class="number">10</span>;</span><br><span class="line">&#125;)</span><br><span class="line">console.log(a);//[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">11</span>]</span><br><span class="line">console.log(b);//[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>map() 格式化数组</p>
+<p> <strong>map() 方法来根据需求格式化原数组，返回格式化后的数组。原数组不变</strong></p>
+ <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">11</span>];</span><br><span class="line"><span class="comment">//current当前值 index当前值下标 array这个数组</span></span><br><span class="line">var b=a.map(function(current,index,<span class="built_in">array</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> current+<span class="number">1</span>;</span><br><span class="line">&#125;)</span><br><span class="line">console.log(a);<span class="comment">//[1,2,3,4,11]</span></span><br><span class="line">console.log(b);<span class="comment">//[2,3,4,5,12]</span></span><br></pre></td></tr></table></figure></li>
 </ol>
-<p><strong>Vuex 的核心是 Store（仓库）</strong>，相当于是一个容器，一个Store实例中包含以下属性的方法：</p>
-<ol>
-<li><code>state</code> 定义属性（状态 、数据） <code>getters </code>用来获取属性【就像计算属性，<code>getter</code> 的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算；<code>getter </code>接受<code>state</code>作为其第一个参数；】 </li>
-<li><code>actions</code>定义方法（动作）【也可以直接修改<code>state</code>，通过提交<code> mutation</code> 的方式，而非直接改变<code> this.$store.state.count</code>，是因为我们想要更明确地追踪到状态的变化；】 </li>
-<li><code>commit </code>提交变化，修改数据的唯一方式就是显示的提交<code>mutations mutations</code>定义变化，处理状态（数据）的改变【操作<code>state</code>中的数据<code>store.commit(&#39;increment&#39;)；</code>】 </li>
-<li><code>mapGetters</code>用来获取属性（数据） <code>mapActions </code>用来获取方法（动作）<code>state</code>：管理项目的数据（进行数据初始化）；</li>
-</ol>
-<h2 id="什么情况下我应该使用-Vuex？"><a href="#什么情况下我应该使用-Vuex？" class="headerlink" title="什么情况下我应该使用 Vuex？"></a>什么情况下我应该使用 Vuex？</h2><p>Vuex 可以帮助我们<strong>管理共享状态</strong>，并附带了更多的概念和框架。这需要对短期和长期效益进行权衡。</p>
-<p>如果您不打算开发<strong>大型单页应用</strong>，使用 Vuex 可能是繁琐冗余的。确实是如此——如果您的应用够简单，您最好不要使用 Vuex。一个简单的 store 模式就足够您所需了。但是，如果您需要构建一个中大型单页应用，您很可能会考虑如何更好地在组件外部管理状态，Vuex 将会成为自然而然的选择。</p>
-<h2 id="vuex的使用"><a href="#vuex的使用" class="headerlink" title="vuex的使用"></a>vuex的使用</h2><p>需要在跟实例main.js中传入store</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">&#x27;./store&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;styles/reset.css&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;styles/border.css&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;styles/iconfont.css&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;swiper/dist/css/swiper.css&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.config.productionTip = <span class="literal">false</span></span><br><span class="line">fastClick.attach(<span class="built_in">document</span>.body)</span><br><span class="line">Vue.use(VueAwesomeSwiper)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">  router,</span><br><span class="line">  store,</span><br><span class="line">  components: &#123; App &#125;,</span><br><span class="line">  template: <span class="string">&#x27;&lt;App/&gt;&#x27;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>写在一个页面上的话，需要判断本地是否已经有这个数据了<br>在<code>src-store-index.js</code>中声明<code>state,mutations</code></p>
-<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import Vue <span class="keyword">from</span> &#x27;vue&#x27;</span><br><span class="line">import Vuex <span class="keyword">from</span> &#x27;vuex&#x27;</span><br><span class="line">import <span class="keyword">state</span> <span class="keyword">from</span> &#x27;./<span class="keyword">state</span>&#x27;</span><br><span class="line">import mutations <span class="keyword">from</span> &#x27;./mutations&#x27;</span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line">export <span class="keyword">default</span> new Vuex.Store(&#123;</span><br><span class="line">  <span class="keyword">state</span>,</span><br><span class="line">  mutations</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>然后在<code>src–store–state.js</code>中声明公共使用的数据</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> defaultCity = <span class="string">&#x27;上海&#x27;</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">localStorage</span>.city) &#123;</span><br><span class="line">    defaultCity = <span class="built_in">localStorage</span>.city</span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  city: defaultCity <span class="comment">//调用的时候，调用city就可以了</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在<code>src–store–mutations.js</code>中声明改变公共变量的方法</p>
-<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">export <span class="keyword">default</span> &#123;</span><br><span class="line">  changeCity (<span class="keyword">state</span>, city) &#123; //调用的时候使用changeCity就可以了</span><br><span class="line">    <span class="keyword">state</span>.city = city</span><br><span class="line">    try &#123;</span><br><span class="line">      localStorage.city = city</span><br><span class="line">    &#125; catch (e) &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在实际使用的页面中可以直接使用</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> 调用数据</span><br><span class="line">this.<span class="variable">$store</span>.state.city;</span><br><span class="line"><span class="regexp">//</span>修改store中的内容</span><br><span class="line">this.<span class="variable">$store</span>.dispatch(<span class="string">&#x27;name&#x27;</span>,value);</span><br><span class="line"><span class="regexp">//</span>或者直接使用commit进行修改</span><br><span class="line">this.<span class="variable">$store</span>.commit(<span class="string">&#x27;name&#x27;</span>,value);</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2020/03/02/webpack-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wanqing's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/02/webpack-2/" class="post-title-link" itemprop="url">webpack原理</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-02 14:13:09" itemprop="dateCreated datePublished" datetime="2020-03-02T14:13:09+08:00">2020-03-02</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>webpack原理可以从以下二个方面着手理解:</p>
-<p>1.webpack是把项目当作一个整体，通过给定的一个主文件，webpack将从这个主文件开始找到你项目当中的所有依赖的文件，使用loaders来处理它们，最后打包成一个或多个浏览器可识别的js文件</p>
-<p>2.以下是webpack.config.js的配置</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span>webpack的配置文件 由于webpack是基于Node构建的，webpack配置文件中所有的合法node语法都可以用</span><br><span class="line"></span><br><span class="line">var path=require(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span>如果要配置插件,需要在导出的对象上添加plugins节点</span><br><span class="line"></span><br><span class="line">var htmlWebpackPlugin=require(<span class="string">&#x27;html-webpack-plugin&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span>配置导出对象</span><br><span class="line"></span><br><span class="line">module.exports=&#123;</span><br><span class="line"></span><br><span class="line">    <span class="regexp">//</span>入口文件</span><br><span class="line"></span><br><span class="line">    entry : path.join(__dirname,<span class="string">&#x27;./src/main.js&#x27;</span>),</span><br><span class="line"></span><br><span class="line">    <span class="regexp">//</span>指定输出选项</span><br><span class="line"></span><br><span class="line">    output : &#123;</span><br><span class="line"></span><br><span class="line">        path : path.join(__dirname,<span class="string">&#x27;./dist&#x27;</span>), <span class="regexp">//</span>指定输出路径</span><br><span class="line"></span><br><span class="line">        filename : <span class="string">&#x27;bundle.js&#x27;</span> <span class="regexp">//</span>指定输出文件的名字</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="regexp">//</span>插件对象节点</span><br><span class="line"></span><br><span class="line">    plugins : [</span><br><span class="line"></span><br><span class="line">    new htmlWebpackPlugin(&#123;</span><br><span class="line"></span><br><span class="line">        template : path.join(__dirname,<span class="string">&#x27;./src/index.html&#x27;</span>), <span class="regexp">//</span>指定模板文件路径</span><br><span class="line"></span><br><span class="line">        filename : <span class="string">&#x27;index.html&#x27;</span> <span class="regexp">//</span>设置生成内存页面的的名字</span><br><span class="line"></span><br><span class="line">    &#125;),</span><br><span class="line"></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    <span class="regexp">//</span>配置所有第三方loader(载入程序)模块</span><br><span class="line"></span><br><span class="line">    module : &#123;</span><br><span class="line"></span><br><span class="line">        <span class="regexp">//</span>第三方模块的匹配规则</span><br><span class="line"></span><br><span class="line">        rules : [</span><br><span class="line"></span><br><span class="line">        <span class="regexp">//</span>这里的test于正则的test一样</span><br><span class="line"></span><br><span class="line">        <span class="regexp">//</span>处理css文件的loader</span><br><span class="line"></span><br><span class="line">        &#123;test : <span class="regexp">/\.(css|scss)$/</span>,use : [<span class="string">&#x27;style-loader&#x27;</span>,<span class="string">&#x27;css-loader&#x27;</span>,<span class="string">&#x27;sass-loader&#x27;</span>]&#125;,</span><br><span class="line"></span><br><span class="line">        <span class="regexp">//</span>处理图片路径的loader 这里的limit为图片的大小(单位是字节)</span><br><span class="line"></span><br><span class="line">        &#123;test : <span class="regexp">/\.(jpg|png|gif|jpeg|bmp)$/</span>,use : <span class="string">&#x27;url-loader?limit=349950&amp;name=[hash:8]-[name].[ext]&#x27;</span>&#125;,</span><br><span class="line"></span><br><span class="line">        <span class="regexp">//</span>处理字体图标的loader</span><br><span class="line"></span><br><span class="line">        &#123;test : <span class="regexp">/\.(ttf|eot|svg|woff|woff2)$/</span>,use : <span class="string">&#x27;url-loader&#x27;</span>&#125;,</span><br><span class="line"></span><br><span class="line">        <span class="regexp">//</span>把Es6的高级语法转换成浏览器可以识别的低级语言</span><br><span class="line"></span><br><span class="line">        &#123;test : <span class="regexp">/\.js$/</span>,use : <span class="string">&#x27;babel-loader&#x27;</span>,exclude : <span class="regexp">/node_modules/</span>&#125;,</span><br><span class="line"></span><br><span class="line">        <span class="regexp">//</span>处理vue文件的loader</span><br><span class="line"></span><br><span class="line">        &#123;test : <span class="regexp">/\.vue$/</span>,use : <span class="string">&#x27;vue-loader&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="regexp">//</span>配置导入包的路径</span><br><span class="line"></span><br><span class="line">/*  resolve : &#123;</span><br><span class="line"></span><br><span class="line">        alias : &#123; <span class="regexp">//</span>alias别名 修改vue导入的路径</span><br><span class="line"></span><br><span class="line">            <span class="string">&quot;vue$&quot;</span> : <span class="string">&quot;vue/dist/vue.js&quot;</span></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;*/</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2020/02/28/webpack_study/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wanqing's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/28/webpack_study/" class="post-title-link" itemprop="url">webpack 基础</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-28 12:24:09" itemprop="dateCreated datePublished" datetime="2020-02-28T12:24:09+08:00">2020-02-28</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>webpack主要的应用场景是单页面富应用(SPA)，下图是webpack官方网站的经典模块化示意图。左边是业务中写的各种格式文件，通过特定的加载器loader编译后，最终统一成为.JS,.CSS,.PNG等静态资源文件。</p>
-<p><img src="https://github.com/hhhwwq/MarkdownPhotos/blob/master/webpack.png?raw=true" alt="webpack"></p>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
-<li>Entry: 入口，Webpack 执行构建的第一步将从 Entry 开始，可抽象成输入。</li>
-<li>Module: 模块，在 Webpack 里一切皆模块，一个模块对应着一个文件。Webpack 会从配置的 Entry 开始递归找出所有依赖的模块。</li>
-<li>Chunk: 代码块，一个 Chunk 由多个模块组合而成，用于代码合并与分割。</li>
-<li>Loader: 模块转换器，用于把模块原内容按照需求转换成新内容。</li>
-<li>Plugin: 扩展插件，在 Webpack 构建流程中的特定时机会广播出对应的事件，插件可以监听这些事件的发生，在特定时机做对应的事情。</li>
-</ul>
-<h2 id="安装webpack"><a href="#安装webpack" class="headerlink" title="安装webpack"></a>安装webpack</h2><p>首先创建一个目录如demo，使用NPM初始化配置</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> init</span><br></pre></td></tr></table></figure>
-<p>之后在本地局部安装webpack</p>
-<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack --<span class="built_in">save</span>-<span class="built_in">dev</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="创建文件夹scripts里面创建index-js文件"><a href="#创建文件夹scripts里面创建index-js文件" class="headerlink" title="创建文件夹scripts里面创建index.js文件"></a>创建文件夹scripts里面创建index.js文件</h2><p>index.js</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const s=<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;s init&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line">s()</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建webpack-config-js文件"><a href="#创建webpack-config-js文件" class="headerlink" title="创建webpack.config.js文件"></a>创建webpack.config.js文件</h2><p>webpack.config.js</p>
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const path = require(<span class="string">&quot;path&quot;</span>);</span><br><span class="line">module.exports = &#123;</span><br><span class="line"><span class="symbol">    entry:</span> &#123;</span><br><span class="line"><span class="symbol">        index:</span> <span class="string">&quot;./scripts/index.js&quot;</span> <span class="comment">//入口文件，若不配置webpack4将自动查找src目录下的index.js文件</span></span><br><span class="line">    &#125;,</span><br><span class="line"><span class="symbol">    output:</span> &#123;</span><br><span class="line"><span class="symbol">        filename:</span> <span class="string">&quot;[name].bundle.js&quot;</span>,<span class="comment">//输出文件名，[name]表示入口文件js名</span></span><br><span class="line"><span class="symbol">        path:</span> path.join(__dirname, <span class="string">&quot;dist&quot;</span>)<span class="comment">//输出文件路径</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>执行webpack –mode development将会生成dist/index.bundle.js</p>
-<h2 id="创建index-html-并引入js"><a href="#创建index-html-并引入js" class="headerlink" title="创建index.html,并引入js"></a>创建index.html,并引入js</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>$Title$<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">$END$</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;./dist/index.bundle.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="加载器-loader"><a href="#加载器-loader" class="headerlink" title="加载器(loader)"></a>加载器(loader)</h2><p>在入口文件 index.js 中，我们还可以引用样式文件和图片例如：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require(‘.<span class="regexp">/styles/</span>style.css‘);</span><br></pre></td></tr></table></figure>
-<p>默认情况下<code>webpack</code>只认识js文件，所以它只能打包js文件。然而可以通过给<code> webpack</code>添加 <code>loader </code>来让 <code>webpack </code>识别更多的文件类型。比如我们可以添加<code>style-loader</code>和<code>css-loader</code>让<code> webpack</code> 识别样式文件并且打包，并且注入页面中。<br>安装完毕之后，我们还需要对<code>loader</code>进行配置。告诉这个<code>loader</code>应该指定对哪些文件进行识别和处理，在<code>webpack.config.js</code>中添加对<code>loader</code>的配置，添加在<code>module</code>字段中：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">module</span>: &#123;</span><br><span class="line">    <span class="attribute">loaders</span>: [&#123;</span><br><span class="line">        test: /\.css$/,</span><br><span class="line">        exclude:path.<span class="built_in">join</span>(_dirname,),</span><br><span class="line">        use: [‘style-loader‘, ‘css-loader‘]</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这段配置的意思就是，当<code>webpack</code>编译过程遇到<code>require()</code>或<code>import</code>语句导入一个后缀名为<code>.css</code>的文件时，先将它通过<code>css-loader</code>转换，再通过<code>style-loader</code>转换，然后继续打包。use选项的值可以是数组或字符串，如果是数组，它的编译顺序就是从后往前。</p>
 
       
     </div>
@@ -415,10 +275,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2020/01/15/page/">
+    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2020/06/05/0604/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/wqBlog/images/avatar.gif">
       <meta itemprop="name" content="">
       <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
     </span>
@@ -429,7 +289,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/01/15/page/" class="post-title-link" itemprop="url">Vue知识点总结</a>
+            <a href="/wqBlog/2020/06/05/0604/" class="post-title-link" itemprop="url">git的使用</a>
         </h1>
 
         <div class="post-meta">
@@ -439,7 +299,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-01-15 17:21:44" itemprop="dateCreated datePublished" datetime="2020-01-15T17:21:44+08:00">2020-01-15</time>
+              <time title="创建时间：2020-06-05 10:50:56" itemprop="dateCreated datePublished" datetime="2020-06-05T10:50:56+08:00">2020-06-05</time>
             </span>
 
           
@@ -453,1072 +313,297 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="双向数据绑定原理"><a href="#双向数据绑定原理" class="headerlink" title="双向数据绑定原理"></a>双向数据绑定原理</h2><p>简单来概括就是：采用数据劫持结合发布者-订阅者模式的方式，通过<code>Object.defineProperty()</code>来劫持各个属性的<code>setter，getter</code>，在数据变动时发布消息给订阅者，触发相应的监听回调。</p>
-<p><code>Object.defineProperty()</code>接收的三个参数为：要操作的对象，要定义或修改的对象属性名，<strong>属性描述符。</strong> <code>Object.defineProperty()</code> 方法存在以下缺陷：每次只能设置一个具体的属性，导致需要遍历对象来设置属性，同时也导致了无法探测新增属性；</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123; &#125;;</span><br><span class="line"><span class="keyword">var</span> <span class="keyword">data</span>;</span><br><span class="line">Object.defineProperty(obj, <span class="string">&quot;data&quot;</span>, &#123;</span><br><span class="line">    <span class="comment">//读取值</span></span><br><span class="line">    <span class="keyword">get</span>:function () &#123;<span class="keyword">return</span> <span class="keyword">data</span>;&#125;,</span><br><span class="line">    <span class="comment">//设置值</span></span><br><span class="line">    <span class="keyword">set</span>:function (<span class="keyword">val</span>) &#123;<span class="keyword">data</span> = <span class="keyword">val</span>;console.log(<span class="keyword">val</span>);&#125;</span><br><span class="line">&#125;)</span><br><span class="line">    obj.<span class="keyword">data</span> = <span class="string">&#x27;aaa&#x27;</span>;<span class="comment">//赋值调用set</span></span><br><span class="line">       console.log(obj.<span class="keyword">data</span>); <span class="comment">//取值调用get</span></span><br></pre></td></tr></table></figure>
-<h2 id="双向数据绑定实现方法"><a href="#双向数据绑定实现方法" class="headerlink" title="双向数据绑定实现方法"></a>双向数据绑定实现方法</h2><ol>
-<li><p>实现一个数据<code>监听器Observer</code>，能够对数据对象的所有属性进行监听，如有变动可拿到最新值并通知订阅者</p>
+          <p>场景：工作里面经常使用git，自己拉分支，或者多人在一个分支上面开发；</p>
+<h2 id="经常使用的操作"><a href="#经常使用的操作" class="headerlink" title="经常使用的操作"></a>经常使用的操作</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git pull origin <span class="comment">#先拉一下分支</span></span><br><span class="line">git checkout branch <span class="comment"># 切换到指定分支</span></span><br><span class="line">git add ./指定文件名（带路径）</span><br><span class="line">git <span class="keyword">commit</span> -m <span class="string">&#x27;简要描述这次修改/解决的问题&#x27;</span></span><br><span class="line">git <span class="keyword">reset</span> <span class="keyword">HEAD</span>~ <span class="comment">#撤销上一次的commit操作</span></span><br><span class="line">git <span class="keyword">status</span> <span class="comment"># 在每一步操作后都可以执行一下，看下现在的状态</span></span><br><span class="line">git pull origin <span class="comment"># 再拉一下远程代码，确认冲突</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">git </span><span class="string">diff </span><span class="string">branch1 </span><span class="string">branch2 </span>                 <span class="comment"># 显示出所有有差异的文件的详细差异</span></span><br><span class="line"><span class="string">git </span><span class="string">diff </span><span class="string">branch1 </span><span class="string">branch2 </span><span class="built_in">--stat</span>           <span class="comment"># 显示出所有有差异的文件列表</span></span><br><span class="line"><span class="string">git </span><span class="string">diff </span><span class="string">branch1 </span><span class="string">branch2 </span>文件名(带路径)     <span class="comment"># 显示指定文件的详细差异</span></span><br><span class="line"> </span><br><span class="line"><span class="string">git </span><span class="string">remote </span><span class="built_in">set-url</span> <span class="string">origin </span><span class="string">http:</span>//新仓库地址   <span class="comment"># 直接修改整个仓库的地址</span></span><br><span class="line"><span class="string">git </span><span class="string">branch </span><span class="built_in">--set-upstream-to=origin/master</span>  <span class="comment"># 修改当前本地分支的跟踪</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="代码迁移"><a href="#代码迁移" class="headerlink" title="代码迁移"></a>代码迁移</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span>原代码仓库目录中执行</span><br><span class="line"><span class="regexp">//</span><span class="number">1</span>、重命名origin</span><br><span class="line">git remote rename origin old-origin</span><br><span class="line"><span class="regexp">//</span><span class="number">2</span>、指定新仓库地址</span><br><span class="line">git remote add origin http:<span class="regexp">//</span>新仓库地址</span><br><span class="line"><span class="regexp">//</span><span class="number">3</span>、上传代码到新仓库</span><br><span class="line">git push origin --all</span><br><span class="line"><span class="regexp">//</span><span class="number">4</span>、上传tags</span><br><span class="line">git push origin --tags</span><br><span class="line"><span class="regexp">//</span><span class="number">5</span>、切换分支-------------------------------笔试</span><br><span class="line">git checkout -b 分支名</span><br><span class="line"><span class="regexp">//</span><span class="number">6</span>、上传分支</span><br><span class="line">git push origin --all</span><br><span class="line"><span class="regexp">//</span><span class="number">7</span>、如果有多个分支，重复<span class="number">5</span>和<span class="number">6</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="创建新分支-本地和远程"><a href="#创建新分支-本地和远程" class="headerlink" title="创建新分支(本地和远程)"></a>创建新分支(本地和远程)</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span><span class="number">1</span> 创建dev_pg分支</span><br><span class="line">git branch dev_pg  </span><br><span class="line"><span class="regexp">//</span><span class="number">2</span> 切换到新分支(dev_pg)</span><br><span class="line">git checkout dev_pg</span><br><span class="line"><span class="regexp">//</span><span class="number">3</span> 创建并推送代码到远程分支(dev_pg)</span><br><span class="line">git push origin dev_pg</span><br><span class="line"></span><br><span class="line">git checkout -b 分支名：创建分支并切换</span><br><span class="line"><span class="regexp">//</span>相当于：</span><br><span class="line">git branch 分支名   <span class="comment">#创建分支</span></span><br><span class="line">git checkout 分支名 <span class="comment">#切换分支</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span><span class="number">1</span> 删除本地分支(dev_pg)</span><br><span class="line">git branch -D dev_pg</span><br><span class="line"><span class="regexp">//</span><span class="number">2</span> 删除远程分支(dev_pg)</span><br><span class="line">git branch -r -D origin/dev_pg</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询分支"><a href="#查询分支" class="headerlink" title="查询分支"></a>查询分支</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> <span class="number">1</span> 列出所有分支(本地及远程) -a（all的意思）</span><br><span class="line">git branch -a</span><br><span class="line"><span class="regexp">//</span> <span class="number">2</span> 列出远程分支 -r(remote)</span><br><span class="line">git branch -r </span><br><span class="line"><span class="regexp">//</span> <span class="number">3</span> 列出本地分支 -l(local)</span><br><span class="line">git branch -l</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询本地git状态"><a href="#查询本地git状态" class="headerlink" title="查询本地git状态"></a>查询本地git状态</h2><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git status</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="合并代码"><a href="#合并代码" class="headerlink" title="合并代码"></a>合并代码</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span><span class="number">1</span> 切换到合并分支 (例如dev分支开发，需要合并到master分支。则先切换到master分支)</span><br><span class="line">git checkout master</span><br><span class="line"><span class="regexp">//</span><span class="number">2</span> 合并代码</span><br><span class="line">git merge dev</span><br><span class="line"><span class="regexp">//</span><span class="number">3</span> 查看是否有冲突</span><br><span class="line">git status</span><br><span class="line"><span class="regexp">//</span><span class="number">4</span> 再次拉一次代码</span><br><span class="line">git pull origin master</span><br><span class="line"><span class="regexp">//</span><span class="number">5</span> 推送到远程</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2020/06/03/0605/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/wqBlog/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wanqing's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/wqBlog/2020/06/03/0605/" class="post-title-link" itemprop="url">js报错：Required String parameter 'XXX' is not present错误的几种可能性</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-03 15:14:56" itemprop="dateCreated datePublished" datetime="2020-06-03T15:14:56+08:00">2020-06-03</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="错误原因："><a href="#错误原因：" class="headerlink" title="错误原因： "></a>错误原因： </h2><p>（1）头文件类型不对，可以在MediaType中选择合适的类型，例如GET和POST</p>
+<p>（2）jquery提交delete时，不支持@RequestParam，只支持@PathVariable形式</p>
+<p>（3）api在调用的时候，如果存在重类型，但不重名；例如：/id与/name，两者在类型上是一样的</p>
+<p>（4）传递的参数里面包含特殊符号，比如前台传递字符串不能包含逗号等</p>
+<p>（5）传的参数是undefined</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2020/05/31/31/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/wqBlog/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wanqing's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/wqBlog/2020/05/31/31/" class="post-title-link" itemprop="url">vue-router 路由怎么传递一个或多个参数？</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-31 21:52:48" itemprop="dateCreated datePublished" datetime="2020-05-31T21:52:48+08:00">2020-05-31</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>vue-router中传递参数主要分两大类：</p>
+<p>编程式的导航  router.push</p>
+<p>声明式的导航 router-link</p>
+<p>编程式导航又分两种方式：</p>
+<p>第一种是 命名路由params，第二种是查询参数query</p>
+<h2 id="命名路由params"><a href="#命名路由params" class="headerlink" title="命名路由params"></a>命名路由params</h2><p>1、先演示使用 params 只传递一个参数的写法</p>
+<p> 只传递一个参数，直接在path中添加 /:id  (取名根据实际需要)来对应 $router.push 中path携带的参数</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span>点击跳转的方法</span><br><span class="line"> goPwdList(index, row) &#123;</span><br><span class="line">      this.<span class="variable">$router</span>.push(&#123;</span><br><span class="line"><span class="regexp">//</span>直接调用<span class="variable">$router</span>.push 实现携带参数的跳转</span><br><span class="line">        path: `<span class="regexp">/index/</span>passwordlist/<span class="variable">$&#123;row.houseNo&#125;</span>`</span><br><span class="line"> &#125;);</span><br><span class="line"> </span><br><span class="line"><span class="regexp">//</span>路由  路由跳转路径需要配置参数</span><br><span class="line"> &#123;</span><br><span class="line">     path: <span class="string">&#x27;passwordlist/:houseno&#x27;</span>,</span><br><span class="line">     component: PasswordList</span><br><span class="line">  &#125;,</span><br><span class="line"> </span><br><span class="line"><span class="regexp">//</span>在目标页面获取父组件通过路由传递过来的参数</span><br><span class="line">var house_id = this.<span class="variable">$route</span>.params.houseId;</span><br></pre></td></tr></table></figure>
+<p>2、params  传递多个参数</p>
+<p>传递多个参数时，params可以配合路由中的name 来使用，也可以和传递一个参数那样 直接在路由路径上拼接多个参数</p>
+<p>对应目标组件获取路由上传过来的参数：是this.route 而不是 this.router</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span>点击跳转的方法</span><br><span class="line"> goPwdList(index, row) &#123;</span><br><span class="line">      this.<span class="variable">$router</span>.push(&#123;</span><br><span class="line"><span class="regexp">//</span>直接调用<span class="variable">$router</span>.push 实现携带参数的跳转</span><br><span class="line">        path: `<span class="regexp">/index/</span>passwordlist<span class="regexp">/$&#123;row.houseNo&#125;/</span><span class="variable">$&#123;row.houseId&#125;</span>/<span class="variable">$&#123;row.apartmentId&#125;</span>`</span><br><span class="line"> &#125;);</span><br><span class="line"> </span><br><span class="line"><span class="regexp">//</span>路由  路由跳转路径需要配置参数</span><br><span class="line"> &#123;</span><br><span class="line">     path: <span class="string">&#x27;passwordlist/:houseno/:houseId/:apartmentId&#x27;</span>,</span><br><span class="line">     component: PasswordList</span><br><span class="line">  &#125;,</span><br><span class="line"> </span><br><span class="line"><span class="regexp">//</span>在目标页面获取父组件通过路由传递过来的参数</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="查询参数query"><a href="#查询参数query" class="headerlink" title="查询参数query"></a>查询参数query</h2><p>使用查询参数的方式，在路由配置中，path就不用再拼接参数，在父组件中，直接将需要传递的参数放在query里，在子组件中使用this.route.query 接收参数</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//路由  路由跳转路径需要配置参数</span></span><br><span class="line"> this.<span class="variable">$router</span>.push(&#123;</span><br><span class="line">     path: <span class="string">&#x27;/index/passwordlist&#x27;</span>,</span><br><span class="line">     query:&#123;</span><br><span class="line">         id:row<span class="selector-class">.id</span>,</span><br><span class="line">         apart:row<span class="selector-class">.apart</span>,</span><br><span class="line">        lockId:row.lockId</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;),</span><br><span class="line"> ps：使用params传递参数，url上只会出现数据，不会出现具体字段,而使用查询参数query的方式，url上会出现具体的字段，比较不安全</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2020/05/11/0602/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/wqBlog/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wanqing's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/wqBlog/2020/05/11/0602/" class="post-title-link" itemprop="url">hexo发布博客流程&&md文件规范</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-11 16:20:56" itemprop="dateCreated datePublished" datetime="2020-05-11T16:20:56+08:00">2020-05-11</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="hexo发布博客流程"><a href="#hexo发布博客流程" class="headerlink" title="hexo发布博客流程"></a>hexo发布博客流程</h2><ol>
+<li><p>新建博文</p>
+<p> 用gitbash在post目录下运行以下指令：</p>
+ <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> <span class="string">&quot;blog1&quot;</span></span><br></pre></td></tr></table></figure>
+<p> 于是便生成blog1.md文件</p>
 </li>
-<li><p>实现一个<code>解析器Compile</code>，对每个元素节点的指令进行扫描和解析，根据指令模板替换数据，以及绑定相应的更新函数</p>
+<li><p>生成静态文件</p>
+ <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">generate</span><span class="comment">//简写hexo g</span></span><br><span class="line">hexo g -d<span class="comment">//文件生成之后立即部署网站</span></span><br><span class="line">hexo g -w<span class="comment">//监视文件变动</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>实现一个<code>订阅者Watcher</code>，作为连接Observer和Compile的桥梁，能够订阅并收到每个属性变动的通知，执行指令绑定的相应回调函数，从而更新视图</p>
-</li>
-<li><p>mvvm入口函数，整合以上三者</p>
+<li><p>清除缓存(db.json)和已经生成的静态文件(public)，当发现对站点的更改无效时，比如更换主题后，执行此命令</p>
+ <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo clean</span></span><br></pre></td></tr></table></figure>
+
 </li>
 </ol>
-<p>Observer（Objec.defineProperty中的set）<strong>监听data</strong>的变化，当data有变化的时候<strong>通知观察者列表Dep</strong>（里面有与data变化对应的update函数）,watcher负责<strong>向观察者列表里添加（订阅）对应的更新函数</strong>，Dep里的更新函数<strong>执行完了之后将最新的值更新到view上</strong>。<br><img src="https://github.com/hhhwwq/MarkdownPhotos/blob/master/mvvm.PNG?raw=true" alt="mvvm"></p>
-<h2 id="v-model原理"><a href="#v-model原理" class="headerlink" title="v-model原理"></a>v-model原理</h2><p>在官网可以得知，v-model只是语法糖而已。</p>
+<h2 id="md文件规范"><a href="#md文件规范" class="headerlink" title="md文件规范"></a>md文件规范</h2><ol>
+<li><p>标题</p>
+ <figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line"></span><br><span class="line">## 二级标题</span><br><span class="line"></span><br><span class="line">### 三级标题</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> 效果如下所示：</p>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3></li>
+</ol>
+<ol start="2">
+<li><p>字体<br><strong>加粗</strong> <code>**加粗**</code></p>
+<p><em>斜体</em> <code>*斜体*</code></p>
+<p><strong><em>斜体加粗</em></strong> <code>***斜体加粗***</code></p>
+<p><del>删除线</del> <code>~~删除线~~</code></p>
+</li>
+<li><p>引用</p>
+<p>引用的文字前加&gt;即可。引用也可以嵌套，如加两个&gt;&gt;三个&gt;&gt;&gt;<br>n个…</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;这是引用的内容</span><br><span class="line"><span class="meta">&gt;&gt;</span>这是引用的内容</span><br></pre></td></tr></table></figure>
+
 <blockquote>
-<p>语法糖：也译为糖衣语法，主要是方便程序员使用，通常来说使用语法糖能够增加程序的可读性，从而减少程序代码出错的机会。</p>
+<p>这是引用的内容</p>
+<blockquote>
+<p>这是引用的内容</p>
 </blockquote>
-<p><img src="https://github.com/hhhwwq/MarkdownPhotos/blob/master/v-model.png?raw=true" alt="v-model"><br>总结下来就是：给<code>&lt;input /&gt;</code>元素添加<code>v-model</code>属性时，默认会把value作为元素的属性，然后把<code>&#39;input&#39;</code>事件作为实时传递value的触发事件。</p>
-<h2 id="组件传值"><a href="#组件传值" class="headerlink" title="组件传值"></a>组件传值</h2><ol>
-<li><p>父传子</p>
-<p> 先在父组件中绑定变量<code>&lt;child :msg=&quot;parent&quot;&gt;&lt;/child&gt;</code>，parent是定义在父组件中的变量/值；</p>
-<p> 再在子组件中添加props属性接收父组件传递过来的变量<code>props:[&#39;msg&#39;]</code>；</p>
-<p> 最后就可以在子组件中使用<code>msg</code>来表示父组件中<code>parent</code>变量中的值了。</p>
-</li>
-<li><p>子传父<br> 先在子组件中绑定事件<code>@change=&quot;sendChild&quot;</code>，<br> 触发的时候在<code>setChild</code>事件中用<code>$emit()</code>触发父组件中的函数，并将子组件中的变量作为参数传递:</p>
- <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">methods</span>:&#123;</span><br><span class="line">    <span class="attribute">sendChild</span>:<span class="built_in">function</span>()&#123;</span><br><span class="line">        this.$<span class="built_in">emit</span>(<span class="string">&#x27;transparent&#x27;</span>,this.msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 在父组件中绑定事件<code>&lt;child @transparent=&quot;getChild&quot;&gt;&lt;/child&gt;</code>，当子组件触发这个事件的时候，就可以调用<code>getChild</code>方法获取到传递过来的参数；</p>
- <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">methods:</span>&#123;</span><br><span class="line">getChild(msg)&#123;</span><br><span class="line">    <span class="built_in">this</span>.user=msg;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>兄弟组件间互相传值</p>
-<p> 3.1 通过Vuex状态管理传值<br>  先通过npm加载vuex，创建store.js文件</p>
-  <figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> //store.js</span><br><span class="line">import Vue <span class="keyword">from</span> &#x27;vue&#x27;</span><br><span class="line">import Vuex <span class="keyword">from</span> &#x27;vuex&#x27;</span><br><span class="line">Vue.use(Vuex);</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">state</span>=&#123;name:&#x27;Alice&#x27;&#125;;</span><br><span class="line"><span class="keyword">const</span> mutations=&#123;</span><br><span class="line">    newName(<span class="keyword">state</span>,message)&#123;</span><br><span class="line">        <span class="keyword">state</span>.name=message</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">export <span class="keyword">default</span> new Vuex.Store(&#123;<span class="keyword">state</span>,mutations&#125;)</span><br></pre></td></tr></table></figure>
-
-<p> 3.2 引入bus.js文件，发布者订阅者模式</p>
- <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import Bus from <span class="string">&#x27;./bus.js&#x27;</span></span><br><span class="line"><span class="regexp">//</span>一个子组件触发</span><br><span class="line">methods:&#123;</span><br><span class="line">Bus.<span class="variable">$emit</span>(<span class="string">&#x27;触发的方法名&#x27;</span>，需要传递的值);</span><br><span class="line">&#125;</span><br><span class="line"><span class="regexp">//</span>一个子组件监听</span><br><span class="line">mounted:&#123;</span><br><span class="line">    bus.<span class="variable">$on</span>(<span class="string">&quot;方法名&quot;</span>,(传递的值)=&gt;&#123; &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p> 3.3 $root</p>
- <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span>一个子组件触发</span><br><span class="line">this.<span class="variable">$root</span>.<span class="variable">$emit</span>(<span class="string">&#x27;触发的方法名&#x27;</span>，需要传递的值);</span><br><span class="line"><span class="regexp">//</span>一个子组件监听</span><br><span class="line">this.<span class="variable">$root</span>.<span class="variable">$off</span>(<span class="string">&quot;方法名&quot;</span>);<span class="regexp">//</span>每次进入先关闭一下</span><br><span class="line">this.<span class="variable">$root</span>.<span class="variable">$on</span>(<span class="string">&quot;方法名&quot;</span>,(传递的值)=&gt;&#123; &#125;)</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<h2 id="vue和其他框架的区别（一般react），"><a href="#vue和其他框架的区别（一般react），" class="headerlink" title="vue和其他框架的区别（一般react），"></a>vue和其他框架的区别（一般react），</h2><h2 id="vue代码优化，"><a href="#vue代码优化，" class="headerlink" title="vue代码优化，"></a>vue代码优化，</h2><h2 id="vue-router原理（如何加入动态参数），"><a href="#vue-router原理（如何加入动态参数），" class="headerlink" title="vue-router原理（如何加入动态参数），"></a>vue-router原理（如何加入动态参数），</h2><h2 id="vuex解决了什么有哪些模块"><a href="#vuex解决了什么有哪些模块" class="headerlink" title="vuex解决了什么有哪些模块"></a>vuex解决了什么有哪些模块</h2><h2 id="diff算法"><a href="#diff算法" class="headerlink" title="diff算法"></a>diff算法</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2019/12/27/24/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wanqing's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/27/24/" class="post-title-link" itemprop="url">some codes</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-27 15:36:05" itemprop="dateCreated datePublished" datetime="2019-12-27T15:36:05+08:00">2019-12-27</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="十段一定要会的代码"><a href="#十段一定要会的代码" class="headerlink" title="十段一定要会的代码"></a>十段一定要会的代码</h1><p>分别有promise封装ajax、Promise.all()、手写ajax、串行ajax请求处理、手写闭包、柯里化、节流防抖、bind底层、cookie封装、数组扁平化。</p>
-<h2 id="1-promise封装ajax"><a href="#1-promise封装ajax" class="headerlink" title="1.promise封装ajax"></a>1.promise封装ajax</h2><pre><code>const getJSON = function(url) &#123;
-  const promise = new Promise(function(resolve, reject)&#123;
-    const handler = function() &#123;
-      if (this.readyState !== 4) &#123;
-        return;
-      &#125;
-      if (this.status === 200) &#123;
-        resolve(this.response);
-      &#125; else &#123;
-        reject(new Error(this.statusText));
-      &#125;
-    &#125;;
-    const client = new XMLHttpRequest();
-    client.open(&quot;GET&quot;, url);
-    client.onreadystatechange = handler;
-    client.responseType = &quot;json&quot;;
-    client.setRequestHeader(&quot;Accept&quot;, &quot;application/json&quot;);
-    client.send();
-
-  &#125;);
-
-  return promise;
-&#125;;
-
-getJSON(&quot;/posts.json&quot;).then(function(json) &#123;
-  console.log(&#39;Contents: &#39; + json);
-&#125;, function(error) &#123;
-  console.error(&#39;出错了&#39;, error);
-&#125;);</code></pre>
-<p><code>getJson</code>是对<code>XMLHttpRequest</code>对象的封装，用于发出一个针对<code>JSON</code>数据的<code>HTTP</code>请求，并且返回一个<code>Promise</code>对象。需要注意的是，在<code>getJSON</code>内部，<code>resolve</code>函数和<code>reject</code>函数调用时，都带有参数。<code>reject</code>函数的参数通常是<code>Error</code>对象的实例，表示抛出的错误；<code>resolve</code>函数的参数除了正常的值以为，还可能是另一个<code>Promise</code>实例。</p>
-<h2 id="2-promise-all"><a href="#2-promise-all" class="headerlink" title="2.promise.all()"></a>2.promise.all()</h2><pre><code>// 生成一个Promise对象的数组
-const promises = [2, 3, 5, 7, 11, 13].map(function (id) &#123;
-  return getJSON(&#39;/post/&#39; + id + &quot;.json&quot;);
-&#125;);
-
-Promise.all(promises).then(function (posts) &#123;
-  // ...
-&#125;).catch(function(reason)&#123;
-  // ...
-&#125;);</code></pre>
-<p><code>promises</code>是包含 6 个 <code>Promise</code>实例的数组，只有这 6 个实例的状态都变成<code>fulfilled</code>，或者其中有一个变为<code>rejected</code>，才会调用<code>Promise.all</code>方法后面的回调函数。</p>
-<h2 id="3-手写ajax"><a href="#3-手写ajax" class="headerlink" title="3.手写ajax"></a>3.手写ajax</h2><pre><code>var Ajax = &#123;
-    get: function(url,fn)&#123;
-        // XMLHttpRequest对象用于在后台与服务器交换数据
-        var xhr=new XMLHttpRequest();
-        xhr.open(&#39;GET&#39;,url,false);
-        xhr.onreadystatechange=function()&#123;
-            // readyState == 4说明请求已完成
-            if(xhr.readyState==4)&#123;
-                if(xhr.status==200 || xhr.status==304)&#123;
-                    console.log(xhr.responseText);
-                    fn.call(xhr.responseText);
-                &#125;
-            &#125;
-        &#125;
-        xhr.send();
-    &#125;,
-
-
-    // data应为&#39;a=a1&amp;b=b1&#39;这种字符串格式，在jq里如果data为对象会自动将对象转成这种字符串格式
-    post: function(url,data,fn)&#123;
-        var xhr=new XMLHttpRequest();
-        xhr.open(&#39;POST&#39;,url,false);
-        // 添加http头，发送信息至服务器时内容编码类型
-        xhr.setRequestHeader(&#39;Content-Type&#39;,&#39;application/x-www-form-urlencoded&#39;);
-        xhr.onreadystatechange=function()&#123;
-            if (xhr.readyState==4)&#123;
-                if (xhr.status==200 || xhr.status==304)&#123;
-                    // console.log(xhr.responseText);
-                    fn.call(xhr.responseText);
-                &#125;
-            &#125;
-        &#125;
-        xhr.send(data);
-    &#125;
-&#125;;</code></pre>
-<h2 id="4-串行ajax请求处理"><a href="#4-串行ajax请求处理" class="headerlink" title="4.串行ajax请求处理"></a>4.串行ajax请求处理</h2><p>串行执行分为两种。</p>
-<p>一种是用同步模式async：false，三个ajax请求连着写就可以了。</p>
-<pre><code>$.ajax(&#123;
-  url:&quot;ajax请求1&quot;,
-  async:false,
-  success:function(data)&#123;
-    console.log(&quot;ajax请求1 完成&quot;);
-  &#125;
-
-&#125;);
-$.ajax(&#123;
-    url:&quot;ajax请求2&quot;,
-    async:false,
-    success:function(data)&#123;
-    console.log(&quot;ajax请求2 完成&quot;);
-&#125;);
-$.ajax(&#123;
-    url:&quot;ajax请求3&quot;,
-    async:false,
-    success:function(data)&#123;
-    console.log(&quot;ajax请求3 完成&quot;);
-&#125;);</code></pre>
-<p>二是用异步模式async：ture，三个ajax请求嵌套写。</p>
-<pre><code>$.ajax(&#123;
-url:&quot;ajax请求1&quot;,
-async:true,
-success:function(data)&#123;
-  console.log(&quot;ajax请求1 完成&quot;);
-  $.ajax(&#123;
-    url:&quot;ajax请求2&quot;,
-    async:true,
-    success:function(data)&#123;
-      console.log(&quot;ajax请求2 完成&quot;);
-      $.ajax(&#123;
-        url:&quot;ajax请求3&quot;,
-        async:true,
-        success:function(data)&#123;
-          console.log(&quot;ajax请求3 完成&quot;);
-        &#125;
-      &#125;);
-    &#125;
-  &#125;);
-&#125;
-&#125;);</code></pre>
-<h2 id="5-手写闭包"><a href="#5-手写闭包" class="headerlink" title="5.手写闭包"></a>5.手写闭包</h2><pre><code>var outerValue=&quot;out&quot;;//在全局作用域定义一个变量。
-var later;
-
-function outerFunction()&#123;
-  var innerValue=&quot;in&quot;;
-  function innerFunction()&#123;
-    assert(outerValue===&quot;out&quot;,&quot;i can see the out&quot;);
-    assert(innerValue===&quot;in&quot;,&quot;i can see the in&quot;);
-  &#125;
-  later=innerFunction;
-&#125;
-outerFunction();
-later();//通过later调用内部函数，我们不能直接调用内部函数，因为它的作用域被限制在外部函数outerFunction之内。</code></pre>
-<h2 id="6-柯里化-currying"><a href="#6-柯里化-currying" class="headerlink" title="6.柯里化(currying)"></a>6.柯里化(currying)</h2><p>函数柯里化用于<strong>创建已经设置好了一个或多个参数的函数</strong>，它的基本方法和函数绑定一样的：使用一个闭包返回一个函数。</p>
-<pre><code>curry的主要工作就是将被返回函数的参数进行排序。
-function curry(fn)&#123;
-  var args=Array.prototype.slice.call(arguments,1);//获取第一个参数之后的所有参数。（外部函数的参数）
-  return function()&#123;
-    var innerArgs=Array.prototype.slice.call(arguments);//存放所有传入的参数。
-    var finalArgs=args.concat(innerArgs);
-    return fn.apply(null,finalArgs);//没有考虑到执行环境，所以第一个参数是null。
-  &#125;
-&#125;</code></pre>
-<p>可以按照以下方式应用：</p>
-<pre><code>function add(num1,num2)&#123;
-  return num1+num2;
-&#125;
-var curriedAdd=curry(add,5);
-alert(curriedAdd(3));//8</code></pre>
-<h2 id="7-节流防抖"><a href="#7-节流防抖" class="headerlink" title="7.节流防抖"></a>7.节流防抖</h2><p>函数防抖：在事件被触发n秒后再执行回调，如果再这n秒内又被触发，则重新计时。</p>
-<pre><code>function debounce(fn, delay) &#123;
-    //维护一个timer，用来记录当前执行函数状态
-    let timer=null;
-      return function () &#123;
-           //通过&#39;this&#39;和&#39;arguments&#39;获取函数的作用域和变量
-          let context = this;
-          let args = arguments;
-          //清理正在执行的函数，并重新执行
-          clearTimeout(timer);
-          timer = setTimeout(function () &#123;
-              fn.apply(context, args);
-          &#125;, delay);
-      &#125;
-  &#125;
-  let flag=0;//记录当前函数调用次数
-  //当前用户滚动时被调用的次数
-  function foo()&#123;
-      flag++;
-      console.log(&#39;number of calls: %d&#39;,flag);
-  &#125;
-  //debounce中包装过我们的函数，过2秒触发一次
-  document.body.addEventListener(&#39;scroll&#39;,debounce(foo,2000));</code></pre>
-<p>函数节流：规定在一个单位时间内，只能触发一次函数。如果这个单位时间内触发多次函数，只有一次生效。</p>
-<pre><code>fucntion throttle(func,delay)&#123;
-  let timer=null;
-  return function()&#123;
-    let context=this;
-    let args=arguments;
-    if(!timer)&#123;
-      timer=setTimeout(function()&#123;
-        func.apply(context,args);
-        timer=null;
-        &#125;,delay);
-    &#125;
-  &#125;
-&#125;</code></pre>
-<h2 id="8-bind底层"><a href="#8-bind底层" class="headerlink" title="8.bind底层"></a>8.bind底层</h2><p>参考链接：<a target="_blank" rel="noopener" href="https://juejin.im/post/59093b1fa0bb9f006517b906">https://juejin.im/post/59093b1fa0bb9f006517b906</a></p>
-<pre><code>Function.prototype.bind2 = function (context) &#123;
-
-    if (typeof this !== &quot;function&quot;) &#123;
-      throw new Error(&quot;Function.prototype.bind - what is trying to be bound is not callable&quot;);
-    &#125;
-
-    var self = this;
-    var args = Array.prototype.slice.call(arguments, 1);
-    var fNOP = function () &#123;&#125;;
-
-    var fbound = function () &#123;
-        self.apply(this instanceof self ? this : context, args.concat(Array.prototype.slice.call(arguments)));
-    &#125;
-
-    fNOP.prototype = this.prototype;
-    fbound.prototype = new fNOP();
-
-    return fbound;
-
-&#125;</code></pre>
-<h2 id="9-cookie封装"><a href="#9-cookie封装" class="headerlink" title="9.cookie封装"></a>9.cookie封装</h2><pre><code>        &lt;script type=&quot;text/javascript&quot;&gt;
-        /*****设置cookie*****/
-        function setCookie(name,value,iDay)&#123;
-            var oDate = new Date();//获取日期毫秒数
-            oDate.setDate(oDate.getDate()+iDay);//设置延期日
-            document.cookie = name+&#39;=&#39;+value+&#39;;expires=&#39;+oDate;//到这里的oDate是延期后的时间毫秒数
-        &#125;
-        /*****获取cookie*****/
-        function getCookie(name)&#123;
-            var arr = document.cookie.split(&quot;; &quot;);
-            for(var i=0;i&lt;arr.length;i++)&#123;
-                var arr2 = arr[i].split(&quot;=&quot;);
-                if(arr2[0]==name)&#123;
-                    return arr2[1];
-                &#125;
-            &#125;
-            return &quot;&quot;
-        &#125;
-        /*****移除cookie*****/
-        function removeCookie(name)&#123;
-            setCookie(name,1,-1);//让计算机以为这条数据昨天过期，自己删除本条数据。
-        &#125;;
-        /*****测试cookie*****/
-        setCookie(&#39;123&#39;,&#39;321&#39;,1)
-        setCookie(&#39;124&#39;,&#39;421&#39;,1)
-        removeCookie(&#39;123&#39;);
-        var m = getCookie(&#39;124&#39;);
-        alert(m);
-        document.write(&quot;&lt;hr/&gt;&quot;+document.cookie);
-        &lt;/script&gt;</code></pre>
-<p>getCookie:传一个参数，就是要查找记录的name值，讲现有的cookie字符串进行切割扔个arr，此时的arr就是{name=1,name2=2,name3=3&hellip;}的一个object，就像一个json，此时，再遍历，将arr的每一个元素分别提取出来然后通过等号切割，扔个arr2，这样，arr2就成了俩值得数组，遍历一遍，就被扔进来一对，把扔进来的这对进行判断，如果他的名字等于传进来的要查找的参数值，那么arr2内部的第2个数值就是要找的名字对应值，把他弹出来。否则，遍历完了还没有，就弹回空或者其他的“没找到”等提示语。</p>
-<h2 id="10-数组扁平化"><a href="#10-数组扁平化" class="headerlink" title="10.数组扁平化"></a>10.数组扁平化</h2><pre><code>/*实现一：递归 */
-function flatArray(arr) &#123;
-    var result = [];
-    for (var i = 0; i &lt; arr.length; i++) &#123;
-        if (Array.isArray(arr[i])) &#123;
-            result = result.concat(flatArray(arr[i]));
-        &#125; else &#123;
-            result.push(arr[i]);
-        &#125;
-    &#125;
-    return result;
-&#125;
-/*实现二：如果数组的元素均为数字，可以考虑使用toString()方法或者join()方法，再使用split方法转换为数组。*/
-function flatArray2(arr) &#123;
-    return arr.toString().split(&#39;,&#39;).map(item =&gt; +item);
-&#125;
-/*实现三：使用ES6新增的扩展运算符 */
-function flatArray3(arr) &#123;
-    while (arr.some(item =&gt; Array.isArray(item))) &#123;
-        arr = [].concat(...arr);
-    &#125;
-    return arr;
-&#125;
-/*实现四：reduce */
-function flatArray4(arr) &#123;
-    return arr.reduce((result, item) =&gt; &#123;
-        return result.concat(Array.isArray(item) ? flatArray4(item) : item);
-
-    &#125;, []);
-&#125;</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2019/12/24/23/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wanqing's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/24/23/" class="post-title-link" itemprop="url">js处理异步的几种方式</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-24 15:36:05" itemprop="dateCreated datePublished" datetime="2019-12-24T15:36:05+08:00">2019-12-24</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="js处理异步的几种方式"><a href="#js处理异步的几种方式" class="headerlink" title="js处理异步的几种方式"></a>js处理异步的几种方式</h1><p>JavaScript语言的执行环境是“单线程”，这种模式容易因为某段耗时很长的任务而拖延整段程序的执行。</p>
-<p>为了解决这个问题，JavaScript语言将任务的执行模式分成两种：同步和异步。</p>
-<p><strong>同步模式</strong>就是上一段的模式，后一个任务等待前一个任务结束，然后再执行，程序的执行顺序与任务的排列顺序是一致的，同步的。</p>
-<p><strong>异步模式</strong>非常重要，在浏览器端，耗时很长的操作都应该异步执行，避免浏览器失去响应，最好的例子就是Ajax操作。在服务器端，异步模式甚至是唯一的模式，因为执行环境是单线程的，如果允许同步执行所有http请求，服务器性能会急剧下降，很快就会失去响应。</p>
-<p>下面是处理异步的几种方法：</p>
-<h2 id="一，回调函数（callback）"><a href="#一，回调函数（callback）" class="headerlink" title="一，回调函数（callback）"></a>一，回调函数（callback）</h2><blockquote>
-<p>A callback is a function that is passed as an argument to another function and is executed after its parent function has completed.</p>
 </blockquote>
-<p>回调是一个函数被作为一个参数传递到另一个函数里，在那个函数执行完再执行。（ 也即：B函数被作为参数传递到A函数里，在A函数执行完后再执行B ）</p>
-<p>如果f1是一个很耗时的任务，可以考虑改写f1，把f2写成f1的回调函数。</p>
-<pre><code>function f1(callback)&#123;
-    setTimeout(function()&#123;
-        //f1的任务代码
-        callback();
-    &#125;,1000);
-&#125;
-//执行
-f1(f2)</code></pre>
-<p>采用这种方式，我们把同步操作变成了异步操作，f1不会堵塞程序运行，相当于先执行程序的主要逻辑，将耗时的操作推迟执行。</p>
-<p>回调函数是异步编程最基本的方法，其<strong>优点</strong>是简单，容易理解和部署，<strong>缺点</strong>是不利于代码的阅读和维护，各个部分之间高度耦合，流程会很混乱。而且每个任务只能指定一个回调函数。</p>
-<p><strong>注意区分回调函数和异步，回调并不一定是异步，他们之间没有直接关系</strong></p>
-<p>同步回调：</p>
-<pre><code>function A(callback)&#123;
-    console.log(&quot;I am A&quot;);
-    callback();//调用该函数
-&#125;
-function B()&#123;
-    console.log(&quot;I am B&quot;);
-&#125;
-A(B);</code></pre>
-<h2 id="二，事件监听"><a href="#二，事件监听" class="headerlink" title="二，事件监听"></a>二，事件监听</h2><p>事件驱动模式也可以，任务的执行不取决于代码的顺序，而<strong>取决于某个事件是否发生。</strong></p>
-<pre><code>//on
-f1.on(&#39;done&#39;,f2);
-//或者
-function f1()&#123;
-    settimeout(function()&#123;
-       //...f1的任务代码
-       f1.trigger(&#39;done&#39;);  //执行完成后，立即触发done事件，从而开始执行f2.
-    &#125;,1000);
-&#125;</code></pre>
-<p>这种方法的优点：容易理解，可以绑定<strong>多个事件</strong>，每一个事件可以指定多个回调函数，而且可以去<strong>耦合，有利于实现模块化</strong>。</p>
-<p>缺点：整个程序都要变成事件驱动型，运行<strong>流程会变得不清晰。</strong></p>
-<h3 id="事件监听方法："><a href="#事件监听方法：" class="headerlink" title="事件监听方法："></a>事件监听方法：</h3><p><strong>onclick</strong>:</p>
-<pre><code>element.onclick=function()&#123;
-   //处理函数
-&#125;</code></pre>
-<p>优点：写法兼容到主流浏览器</p>
-<p>缺点：当同一个element元素绑定多个事件时，只有最后一个事件会被添加，相当于一次只能添加一个事件；</p>
-<p><strong>attachEvent和addEvenListener</strong>:</p>
-<pre><code>//IE:attachEvent;三个方法执行顺序：3-2-1；
-elment.attachEvent(&quot;onclick&quot;,handler1);
-elment.attachEvent(&quot;onclick&quot;,handler2);
-elment.attachEvent(&quot;onclick&quot;,handler3);
-//标准addEventListener;执行顺序：1-2-3
-elment.addEvenListener(&quot;click&quot;,handler1,false);
-elment.addEvenListener(&quot;click&quot;,handler2,false);
-elment.addEvenListener(&quot;click&quot;,handler3,false);</code></pre>
-<p>注意：该方法的第三个参数是冒泡获取，是一个布尔值：当为false时表示由里向外（冒泡），true表示由外向里（捕获）。</p>
-<h2 id="三，发布-订阅"><a href="#三，发布-订阅" class="headerlink" title="三，发布/订阅"></a>三，发布/订阅</h2><p>假定存在一个信号中心，某个任务执行完成，就向信号中心“发布”一个信号，其他任务可以向信号中心“订阅”这个信号，从而知道什么时候自己可以开始执行。这就叫做“发布/订阅模式”，也称“观察者模式”。</p>
-<pre><code>//jQuery的一个插件 Ben Alman的Tiny Pub/Sub
-jQuery.subscribe(&quot;done&quot;, f2);//f2向&quot;信号中心&quot;jQuery订阅&quot;done&quot;信号。
-jQuery.unsubscribe(&quot;done&quot;, f2);//取消订阅（unsubscribe）
-//或者
-function f1()&#123;
-　　setTimeout(function () &#123;
-　　　　// ...f1的任务代码
-　　　　jQuery.publish(&quot;done&quot;);//f1执行完成后，向&quot;信号中心&quot;jQuery发布&quot;done&quot;信号，从而引发f2的执行
-　　&#125;, 1000);
-&#125;</code></pre>
-<h2 id="四，promise对象"><a href="#四，promise对象" class="headerlink" title="四，promise对象"></a>四，promise对象</h2><ol>
-<li><p>promise对象是commonJS工作组提出的一种规范，一种模式，目的是为了异步编程提供统一接口。</p>
 </li>
-<li></li>
-</ol>
-<p><strong>promise是一种模式，promise可以帮忙管理异步方式返回的代码</strong>。他将代码进行封装并添加一个类似于事件处理的管理层。我们可以使用promise来注册代码，这些代码会在在promise成功或者失败后运行。</p>
-<ol start="3">
-<li><p>promise完成之后，对应的代码也会执行。我们可以注册任意数量的函数再成功或者失败后运行，也可以在任何时候注册事件处理程序。</p>
+<li><p>分割线</p>
+<p>三个或者三个以上的 - 或者 * 都可以。</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">----</span><br><span class="line">**<span class="strong">*</span></span><br><span class="line"><span class="strong">*</span>***<span class="strong">*</span></span><br><span class="line"><span class="strong">*</span>****<span class="strong">*</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="效果如下，显示出来是一样的"><a href="#效果如下，显示出来是一样的" class="headerlink" title="效果如下，显示出来是一样的"></a>效果如下，显示出来是一样的</h2><hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
 </li>
-<li><p>promise有两种状态：1、等待（pending）；2、完成（settled）。<br>promise会一直处于等待状态，直到它所包装的异步调用返回/超时/结束。</p>
+<li><p>图片</p>
+<p>语法：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">图片alt</span>](<span class="link">图片地址 &#x27;&#x27;图片title&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line">图片alt就是显示在图片下面的文字，相当于对图片内容的解释。</span><br><span class="line">图片title是图片的标题，当鼠标移到图片上时显示的内容。title可加可不加</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>这时候promise状态变成完成。完成状态分成两类：1、解决（resolved）；2、拒绝（rejected）</p>
-<p> //promise<br> var p=new Promise(function(resolved))<br> //在这里进行处理。也许可以使用ajax<br> setTimeout(function(){<br> var result=10*5;<br> if(result===50){<br>   resolve(50);<br> }else{<br>  reject(new Error(‘Bad Math’));<br> }<br> },1000);<br> });<br> p.then(function(result){<br> console.log(‘Resolve with a values of %d’,result);<br> });<br> p.catch(function(){<br> console.error(‘Something went wrong’);<br> });</p>
+<li><p>超链接<br>语法：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">超链接名</span>](<span class="link">超链接地址 &quot;超链接title&quot;</span>)</span><br><span class="line"> title可加可不加</span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">简书</span>](<span class="link">http://jianshu.com</span>)</span><br><span class="line">[<span class="string">百度</span>](<span class="link">http://baidu.com</span>)</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="http://jianshu.com/">简书</a><br><a target="_blank" rel="noopener" href="http://baidu.com/">百度</a></p>
 </li>
-</ol>
-<p>简单来讲，它的思想是：每一个异步任务返回一个promise对象，该对象有一个then方法，允许指定回调函数。<br>缺点：<strong>编写和理解都难</strong></p>
-<h2 id="五，async-await"><a href="#五，async-await" class="headerlink" title="五，async/await"></a>五，async/await</h2><p>async 函数书写的方式跟我们普通的函数书写方式一样，只不过是前面多了一个 async 关键字，并且函数返回的是一个 Promise 对象，所接收的值就是函数 return 的值。</p>
-<p>在 async 函数内部可以使用 await 命令，表示等待一个异步函数的返回。await 后面跟着的是一个 Promise 对象，如果不是的话，系统会调用 Promise.resolve() 方法，将其转为一个 resolve 的 Promise 的对象。</p>
-<pre><code>function fn1 () &#123;
-  console.log(&#39;Function 1&#39;)
-&#125;
-
-function fn2 () &#123;
-  return new Promise((resolve, reject) =&gt; &#123;
-    setTimeout(() =&gt; &#123;
-      console.log(&#39;Function 2&#39;)
-      resolve()
-    &#125;, 500)
-  &#125;)
-&#125;
-
-function fn3 () &#123;
-  console.log(&#39;Function 3&#39;)
-&#125;
-
-async function asyncFunArr () &#123;
-  fn1()
-  await fn2()
-  fn3()
-&#125;
-
-asyncFunArr()
-
-// output =&gt;
-// Function 1
-// Function 2
-// Function 3</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2019/12/23/21/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wanqing's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/23/21/" class="post-title-link" itemprop="url">第八，九章 BOM，客户端检测</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-23 22:50:05" itemprop="dateCreated datePublished" datetime="2019-12-23T22:50:05+08:00">2019-12-23</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="第八，九章-BOM，客户端检测"><a href="#第八，九章-BOM，客户端检测" class="headerlink" title="第八，九章 BOM，客户端检测"></a>第八，九章 BOM，客户端检测</h1><h2 id="第八章"><a href="#第八章" class="headerlink" title="第八章"></a>第八章</h2><p>浏览器对象模型(BOM)以<code>window</code>对象为依托，表示浏览器窗口以及页面可见区域。同时，window对象还是ECMAScript中的Global对象，因而所有全局变量和函数都是它的属性，且所有原生的构造函数以及其他函数也都存在于它的命名空间下。</p>
-<h2 id="本章讨论了下列BOM的组成部分："><a href="#本章讨论了下列BOM的组成部分：" class="headerlink" title="本章讨论了下列BOM的组成部分："></a>本章讨论了下列BOM的组成部分：</h2><ol>
-<li><p>在使用框架时，每个框架都有自己的<code>window</code>对象以及所有原生构造函数及其他函数的副本。每个框架都保存在<code>frames</code>集合中，可以通过位置或通过名称来访问。</p>
-</li>
-<li><p>有一些窗口指针，可以用来引用其他框架，包括父框架。</p>
-</li>
-<li><p><code>top</code>对象始终指向最外围的框架，也就是整个浏览器窗口。</p>
-</li>
-<li><p><code>parent</code>对象表示包含当前框架的框架，而self对象则值回<code>window</code>。</p>
-</li>
-<li><p>使用<code>location</code>对象可以通过编程方式来访问浏览器的导航系统。设置相应的属性，可以逐段或整体地修改浏览器的URL。</p>
-</li>
-<li><p>调用<code>replace()</code>方法可以导航到一个新URL，同时该URL会替换浏览器历史记录中当前显示的页面。</p>
-</li>
-<li><p><code>navigator</code>对象提供了与浏览器有关的信息。到底提供哪些信息，很大程度上取决于用户的浏览器；不过也有一些公共的属性（如userAgent）存在于所有浏览器中。</p>
-</li>
-</ol>
-<p><code>BOM</code>中还有两个对象：screen和history，但它们的功能有限。screen对象中保存着与客户端显示器相关的信息，这些信息一般用于站点分析。<code>history</code>对象为访问浏览器的历史记录开了一个小缝隙，开发人员可以据此判断历史记录数量，也可以在历史记录中向后或向前导航到任意页面。</p>
-<h2 id="第九章"><a href="#第九章" class="headerlink" title="第九章"></a>第九章</h2><p>客户端检测是JavaScript开发中最具争议的一个话题。由于浏览器间存在差别，通常需要根据不同浏览器的能力分别编写不同的代码。</p>
-<h2 id="下列的客户端检测方法是最常用的："><a href="#下列的客户端检测方法是最常用的：" class="headerlink" title="下列的客户端检测方法是最常用的："></a>下列的客户端检测方法是最常用的：</h2><ol>
-<li>能力检测：在编写代码之前先检测特定浏览器的能力。将开发人员从考虑具体的浏览器类型和版本中释放出来，将注意力集中到相应的能力是否存在上。缺点是无法精确的检测特定浏览器和版本。</li>
-<li>怪癖检测： 实际上是浏览器中存在的bug。通常涉及到一小段代码，然后确定浏览器是否存在某个怪癖。效率相比能力检测较低。</li>
-<li>用户代理检测：通过检测用户代理字符串来识别浏览器。需要特殊的技巧。通过用户代理字符串能够检测出浏览器所用的呈现引擎以及所在的平台。</li>
-</ol>
-<p>在决定使用哪一种方法时，优先考虑能力检测，怪癖检测是确定应该如何处理代码的第二选择，最后是对用户字符串有很强依赖性的用户代理检测。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2019/12/23/22/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wanqing's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/23/22/" class="post-title-link" itemprop="url">第十章 DOM，第十三章 事件</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-23 11:36:05" itemprop="dateCreated datePublished" datetime="2019-12-23T11:36:05+08:00">2019-12-23</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="第十章-DOM，第十三章-事件"><a href="#第十章-DOM，第十三章-事件" class="headerlink" title="第十章 DOM，第十三章 事件"></a>第十章 DOM，第十三章 事件</h1><h2 id="第十章-小结"><a href="#第十章-小结" class="headerlink" title="第十章 小结"></a>第十章 小结</h2><p>DOM是语言中立的API，用于访问和操作HTML和XML文档。DOM1级将HTML和XML文档形象地看作一个层次化的节点树，可以使用JavaScript来操作这个节点树，进而改变底层文档的外观和结构。</p>
-<h2 id="DOM由各种节点构成，简要总结如下："><a href="#DOM由各种节点构成，简要总结如下：" class="headerlink" title="DOM由各种节点构成，简要总结如下："></a>DOM由各种节点构成，简要总结如下：</h2><ol>
-<li>最基本的节点类型是Node，用于抽象地表示文档中一个独立的部分；所有其他类型都继承自Node。</li>
-<li>Document类型表示整个文档，是一组分层节点的根节点。在JavaScript中，document对象是Document的一个实例。使用document对象，有很多方式可以查询和取得节点。</li>
-<li>Element节点表示文档中所有HTML或XML元素，可以用来操作这些元素的内容和特性。</li>
-<li>另外还有一些节点类型，分别表示文本内容，注释，文档类型，CDATA区域和文档片段。</li>
-</ol>
-<p>访问DOM的操作在多数情况下都很直观，不过在处理<code>&lt;script&gt;</code>和<code>&lt;style&gt;</code>元素时还是存在一些复杂性。由于这两个元素分别包含脚本和样本信息，因此浏览器通常会将它们和其他元素区别对待。这些区别导致了在针对这些元素使用<code>innerHTML</code>时，以及在创建新元素时的一些问题。</p>
-<p><strong>理解DOM的关键，就是理解DOM对性能的影响</strong>。DOM操作往往是JavaScript程序中开销最大的部分，因而访问<code>NodeList</code>导致的问题最多。<code>NodeList</code>对象都是“动态”的，这就意味着每次访问NodeList对象，都会运行一次查询。有鉴于此，最好的办法就是尽量减少<code>DOM</code>操作。</p>
-<h2 id="第十三章-小结"><a href="#第十三章-小结" class="headerlink" title="第十三章 小结"></a>第十三章 小结</h2><p>事件是将JavaScript与网页联系在一起的主要方式。“DOM3级事件”规范和HTML5定义了常见的大多数事件。即使有规范定义了基本事件，但很多浏览器仍然在规范之外实现了自己的专有事件，从而为开发人员提供更多掌握用户交互的手段。有些专有事件与特定设备关联，例如移动Safari中的一个事件就是特定关联IOS设备的。</p>
-<h2 id="在使用事件时，需要考虑如下一些内存与性能方面的问题"><a href="#在使用事件时，需要考虑如下一些内存与性能方面的问题" class="headerlink" title="在使用事件时，需要考虑如下一些内存与性能方面的问题:"></a>在使用事件时，需要考虑如下一些内存与性能方面的问题:</h2><ol>
-<li><p>有必要限制一个页面中事件处理程序的数量，数量太多会导致占用大量内存，而且也会让用户感觉页面反应不够灵敏。</p>
-</li>
-<li><p>建立在事件冒泡机制之上的事件委托技术，可以有效减少事件处理程序的数量。</p>
-</li>
-<li><p>建议在浏览器卸载页面之前移除页面中的所有事件处理程序。</p>
-</li>
-</ol>
-<p>可以使用JavaScript在浏览器中模拟事件。事件是JavaScript中最重要的主题之一，深入理解事件的工作机制以及它们对性能的影响至关重要。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2019/12/16/28/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wanqing's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/16/28/" class="post-title-link" itemprop="url">HTML知识点</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-16 15:36:05" itemprop="dateCreated datePublished" datetime="2019-12-16T15:36:05+08:00">2019-12-16</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-h5新标签有哪一些？为什么要加强语义化？"><a href="#1-h5新标签有哪一些？为什么要加强语义化？" class="headerlink" title="1. h5新标签有哪一些？为什么要加强语义化？"></a>1. h5新标签有哪一些？为什么要加强语义化？</h2><p>新标签：</p>
-<p><strong>文档类型设定</strong>: <code>&lt;!doctype html&gt;</code>;</p>
-<p><strong>字符设定</strong>: <code>&lt;meta charset=&quot;utf-8&quot;&gt;</code>;</p>
-<p><strong>常用新标签</strong>:<br><code>header</code>,一般作为网页的<strong>头部</strong>使用,可以多个;</p>
-<p><code>footer</code>,底部,<strong>不一定是文档最底部</strong>,可以多个;</p>
-<p><code>aside</code>,侧边栏;</p>
-<p><code>nav</code>,导航栏;</p>
-<p><code>article</code>，独立内容区域，用于文章blog、帖子、短文或者回复、评论等；</p>
-<p><code>section</code>，代表某一个区域/分区/页面/文档的一部分区域，有独立的内容，但结构相近，就可以用<code>section</code>，范围比div大，语义比div更强，可以包含<code>header、h1-h6</code>……凸显语义的标签；</p>
-<h2 id="2-行内元素，块元素有哪些？它们有什么不同？"><a href="#2-行内元素，块元素有哪些？它们有什么不同？" class="headerlink" title="2. 行内元素，块元素有哪些？它们有什么不同？"></a>2. 行内元素，块元素有哪些？它们有什么不同？</h2><p>行内元素：b、span、a、u、em、i、img、input、select、label、textarea、button</p>
-<p>块级元素：div、h、ol、ul、dl、li、table、td、th、tr、dd、dt、p、caption</p>
-<p>空元素：area、meta、link</p>
+<li><p>列表</p>
+<p>无序列表</p>
+<p>语法：无序列表用 - + * 任何一种都可以</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> 列表内容</span><br><span class="line"><span class="bullet">+</span> 列表内容</span><br><span class="line"><span class="bullet">*</span> 列表内容</span><br><span class="line"></span><br><span class="line">注意：- + <span class="emphasis">* 跟内容之间都要有一个空格</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>行内元素的特点:</li>
+<li>列表内容</li>
 </ul>
-<ol>
-<li><p>行内元素<strong>只能容纳文本或者其他行内元素。</strong></p>
-</li>
-<li></li>
-</ol>
-<p><strong>宽度只与内容有关。</strong></p>
-<ol start="3">
-<li><p>和其它元素都<strong>在一行上。</strong></p>
-</li>
-<li><p>高，行高及外边距和内边距左右<strong>可改变。</strong></p>
-</li>
-</ol>
 <ul>
-<li>块级元素的特点:</li>
+<li>列表内容</li>
 </ul>
-<ol>
-<li><p>高度，行高以及外边距和内边距<strong>都可控制。</strong></p>
-</li>
-<li><p>总是在新行上开始，<strong>占据一整行。</strong></p>
-</li>
-<li><p>它可以<strong>容纳内联元素和其他块元素。</strong></p>
-</li>
-<li></li>
-</ol>
-<p><strong>宽度</strong>始终与浏览器宽度一样，<strong>与内容无关。</strong></p>
 <ul>
-<li>区别:</li>
+<li>列表内容</li>
 </ul>
+<p>有序列表</p>
+<p> 语法：数字加点</p>
+ <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 列表内容</span><br><span class="line"><span class="number">2.</span> 列表内容</span><br><span class="line"><span class="number">3.</span> 列表内容</span><br><span class="line"></span><br><span class="line">注意：序号跟内容之间要有空格</span><br></pre></td></tr></table></figure>
+<p> 效果如下：</p>
 <ol>
-<li><strong>行内元素会在一条直线上分列</strong>，都是统一行的，程度偏向分列。</li>
+<li>列表内容</li>
+<li>列表内容</li>
+<li>列表内容</li>
 </ol>
-<p>​   <strong>块级元素各盘踞一行</strong>，垂直偏向分列；块级元素重新行开端停止接着一个断行。</p>
-<ol>
-<li><strong>行内元素不可以包括块级元素</strong>，只能包容文本或许其余行内元素。</li>
-</ol>
-<p>​   <strong>块级元素能够包括行内元素和块级元素</strong>，还能够包容内联元素和其余元素。</p>
-<ol>
-<li>行内元素与块级元素属性的分歧，主要在盒模子属性上。</li>
-</ol>
-<p><strong>行内元素</strong>设置width无效，height无效（能够设置line-height），margin、padding设置上下有效。</p>
-<p>行内元素内嵌块级元素。高度被子元素撑大，而<strong>宽度和父级一致</strong>（父级是body就是body的宽度）。</p>
-<p><strong>行内块元素</strong>内嵌块级元素。宽高都会被子元素撑大的。</p>
-<h2 id="3-html中首行-lt-doctype-gt-的作用？"><a href="#3-html中首行-lt-doctype-gt-的作用？" class="headerlink" title="3.html中首行&lt;!doctype&gt;的作用？"></a>3.html中首行&lt;!doctype&gt;的作用？</h2><p><strong>文档类型说明</strong>，目的是告诉标准通用标记语言解析器要使用什么样的文档类型定义解析文档；声明必须是html文档的第一行，位于html标签之前。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2019/12/06/index2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wanqing's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/06/index2/" class="post-title-link" itemprop="url">CSS知识点</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-06 10:36:05" itemprop="dateCreated datePublished" datetime="2019-12-06T10:36:05+08:00">2019-12-06</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="CSS知识点"><a href="#CSS知识点" class="headerlink" title="CSS知识点"></a>CSS知识点</h1><h2 id="1-基础知识"><a href="#1-基础知识" class="headerlink" title="1.基础知识 "></a>1.基础知识 </h2><ul>
-<li><p>class应用于概念上相似的元素，而id应用于不同的唯一元素。</p>
-</li>
-<li><p>只在没有现有元素能实现区域分割的情况下使用div。</p>
-</li>
-</ul>
-<h2 id="2-为样式找到应用目标"><a href="#2-为样式找到应用目标" class="headerlink" title="2.为样式找到应用目标"></a>2.为样式找到应用目标</h2><ul>
-<li><p><strong>常用的选择器</strong>：元素选择器<code>div&#123;&#125;</code>，后代选择器<code>div p&#123;&#125;</code>，id选择器<code>#header&#123;&#125;</code>，类选择器<code>.header&#123;&#125;</code>，建议混合使用</p>
-</li>
-<li><p><strong>通用选择器</strong>：<code>*</code></p>
-</li>
-<li><p><strong>高级选择器</strong>:子选择器<code>ul&gt;li&#123;&#125;</code>，相邻同胞选择器，根据属性或属性值的属性选择器<code>input[type=&quot;text&quot;]</code></p>
-</li>
-</ul>
-<h2 id="3-可视化模型"><a href="#3-可视化模型" class="headerlink" title="3.可视化模型 "></a>3.可视化模型 </h2><blockquote>
-<p>最重要的3个CSS概念是<strong>浮动，定位和盒模型</strong></p>
-</blockquote>
-<h3 id="3-1-CSS标准盒子模型"><a href="#3-1-CSS标准盒子模型" class="headerlink" title="3.1 CSS标准盒子模型"></a>3.1 CSS标准盒子模型</h3><p>css盒子模型包含了元素内容(content)，内边距(padding)，边框(border)，外边距(margin)几个要素，如下图：<br><img src="https://github.com/hhhwwq/MarkdownPhotos/blob/master/css_box.jpg?raw=true" alt="css-box"></p>
-<p>通常我们设置背景时就是内容，内边距，边框三部分，如果border设置颜色的时候会显示border颜色，当border颜色是透明时会显示background-color的颜色。外边距是透明的，不会遮挡其他元素。width就是指content的宽度，height就是指content的高度。</p>
-<ul>
-<li>只有普通文档流中边框的垂直外边距才会发生外边距叠加。行内框，浮动框或绝对定位框之间的外边距不会叠加。</li>
-</ul>
-<h3 id="3-2-定位"><a href="#3-2-定位" class="headerlink" title="3.2 定位"></a>3.2 定位</h3><ul>
-<li><p>使用相对定位时，无论是否移动，元素仍然占据原来的空间，因此，移动元素会使其覆盖其他框。</p>
-</li>
-<li><p>绝对定位：其元素的位置是相对于距离它最近的那个已定位的祖先元素确定的，如果没有已定位的祖先元素，那么其位置是相对于初始包含块的。</p>
-</li>
-<li><p>浮动：脱离普通文档流。clear属性。</p>
-</li>
-</ul>
-<h2 id="4-画三角形"><a href="#4-画三角形" class="headerlink" title="4.画三角形"></a>4.画三角形</h2><pre><code>.sanjiao &#123;
-        border-top: 50px solid transparent;
-        border-left: 50px solid #f00;
-        border-bottom: 50px solid transparent;
-        border-right: 0px solid #00f;
-        width: 0px;
-        height: 0px;
-        margin: 50px auto;
-    &#125;</code></pre>
-<p>梯形由三角形加width构成</p>
-<h2 id="5-画对话框"><a href="#5-画对话框" class="headerlink" title="5.画对话框 "></a>5.画对话框 </h2><p>利用伪元素<code>::before</code>将小三角放置在长方形框前面构成对话框</p>
-<pre><code>.dialog::before &#123;
-    content: &#39;&#39;;
-    border-left: 0px solid #6A6;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-right: 10px solid #6A6;
-    position: absolute;
-    left: -10px;
-    top: 14px;
-&#125;</code></pre>
-<h2 id="6-盒模型有哪些？Bootstrap里面用的什么盒模型？"><a href="#6-盒模型有哪些？Bootstrap里面用的什么盒模型？" class="headerlink" title="6.盒模型有哪些？Bootstrap里面用的什么盒模型？"></a>6.盒模型有哪些？Bootstrap里面用的什么盒模型？</h2><p>盒模型分为IE盒模型和W3C盒模型。</p>
-<ol>
-<li><p><strong>W3C标准盒模型content-box</strong>：属性width，height只包含内容content，不包含border和padding。</p>
-</li>
-<li><p><strong>IE盒模型border-box</strong>：属性width，height包含border和padding，指的是content+padding+border。<br>Bootstrap里面用的是IE盒模型border-box。</p>
 </li>
 </ol>
-<h2 id="7-CSS3有哪些新特性？"><a href="#7-CSS3有哪些新特性？" class="headerlink" title="7.CSS3有哪些新特性？"></a>7.CSS3有哪些新特性？</h2><ol>
-<li>实现圆角<code>border-radius</code>，阴影<code>box-shadow</code>，<code>border-image</code>;</li>
-<li>对文字加特效<code>text-shadow</code>，线性渐变<code>gradient</code>，旋转<code>transform</code>;</li>
-<li><code>transform</code>:旋转<code>rotate</code>，缩放<code>scale</code>，定位<code>translate</code>，倾斜<code>skew</code>;</li>
-<li>增加了更多的<code>css</code>选择器，多背景，rgba;</li>
-<li>在<code>css3</code>中引入了一个伪类<code>::selection</code>;</li>
-<li>媒体查询，多栏布局</li>
-</ol>
-<h2 id="8-为什么要清除浮动？怎么清除浮动？"><a href="#8-为什么要清除浮动？怎么清除浮动？" class="headerlink" title="8.为什么要清除浮动？怎么清除浮动？"></a>8.为什么要清除浮动？怎么清除浮动？</h2><p><strong>产生原因</strong>：子盒子浮动导致的父盒子内高度为0，父级盒子不能被撑开，发生高度塌陷的情况。</p>
-<p><strong>副作用：</strong></p>
-<ol>
-<li>背景不能显示</li>
-<li>边框不能撑开</li>
-<li><code>margin和padding</code>值不能正确显示</li>
-</ol>
-<p><strong>清楚浮动的方法：</strong></p>
-<ol>
-<li><p>给父盒子设置合适的高度；</p>
-</li>
-<li><p>给父盒子添加样式<code>overflow:hidden/auto;</code>(这个属性相当于触发了BFC，让父级紧贴内容，包括使用了浮动的盒子)(为了去除兼容性问题，会添加<code>zoom:1</code>);</p>
-</li>
-<li><p>在父盒子里面的子盒子后面添加一个子盒子，如div，添加样式<br><code>.clear&#123; clear:both; &#125;；</code></p>
-</li>
-<li><p>采用伪元素，给父元素追加:after，给父元素添加一个类<code>.clearfix&#123;content:&quot;&quot;;clear:both;&#125;</code></p>
-</li>
-</ol>
-<h2 id="9-怎么让文本不自动换行？怎么让超过文本部分变成省略号？"><a href="#9-怎么让文本不自动换行？怎么让超过文本部分变成省略号？" class="headerlink" title="9.怎么让文本不自动换行？怎么让超过文本部分变成省略号？ "></a>9.怎么让文本不自动换行？怎么让超过文本部分变成省略号？ </h2><pre><code>white-space:nowrap;
-overflow:hidden;
-text-overflow:ellipsis;</code></pre>
-<h2 id="10-css中的动画特性可以用js实现，那为什么还要用css来实现？"><a href="#10-css中的动画特性可以用js实现，那为什么还要用css来实现？" class="headerlink" title="10.css中的动画特性可以用js实现，那为什么还要用css来实现？"></a>10.css中的动画特性可以用js实现，那为什么还要用css来实现？</h2><ul>
-<li><p>当为UI元素采用较小的独立状态时，使用CSS。CSS变换和动画非常适用于从侧面引入导航菜单，或显示工具提示。最后，可以使用JavaScript来控制状态，但动画本身是采用CSS。<strong>用CSS制作动画是让元素在屏幕上移动的最简单方法</strong>。</p>
-</li>
-<li><p><strong>在需要对动画进行大量控制时，使用JavaScript</strong>。在需要停止，暂停，减速或倒退时，JavaScript也非常有用。</p>
-</li>
-</ul>
-<p><strong>所以在两者中如何抉择？</strong></p>
-<ul>
-<li><p>渲染线程分为主线程和合成线程，如果CSS动画只是改变transform和opacity，这时整个CSS动画得以在合成线程完成（而JS动画则会在主线程执行，然后触发合成线程进行下一步操作）。在JS执行一些昂贵的任务时，主线程繁忙，CSS动画由于使用了合成线程可以保持流畅。</p>
-</li>
-<li><p>对于低版本浏览器，CSS3可以做到自然降级，而JS则需要撰写额外代码。</p>
-</li>
-<li><p>CSS动画有<strong>天然事件支持，JS则需要自己写事件</strong>。</p>
-</li>
-<li><p>如果有任何动画触发绘画，布局或两者，则需要 “主线程”<br>才能完成工作。这对于基于 CSS 和 JavaScript 的动画都是如此。</p>
-</li>
-<li><p>CSS3有兼容性问题，而JS大多时候没有兼容性问题。</p>
-</li>
-</ul>
-<h2 id="11-边距重叠解决方案-BFC"><a href="#11-边距重叠解决方案-BFC" class="headerlink" title="11.边距重叠解决方案(BFC) "></a>11.边距重叠解决方案(BFC) </h2><p>首先要明确BFC是什么意思，其全英文拼写为 Block Formatting Context<br>直译为“块级格式化上下文”</p>
-<p><strong>BFC块级格式化上下文的原理</strong>:</p>
-<ol>
-<li><p>内部的Box会在<strong>垂直方向</strong>，从顶部开始<strong>一个接一个</strong>地放置。</p>
-</li>
-<li><p>Box垂直方向的距离由margin决定。属于同一个BFC的两个<strong>相邻Box的<code>margin</code>会发生叠加</strong>。</p>
-</li>
-<li><p>每个元素的margin box的左边，<br><strong>与包含块<code>border box</code>的左边相接触</strong>，即使存在浮动也是如此。</p>
-</li>
-<li><p><code>BFC</code>的区域不会与<code>float box</code>叠加。</p>
-</li>
-<li><p><code>BFC</code>就是页面上的一个<strong>隔离的独立容器</strong>，容器里面的子元素不会影响到外面的元素，反之亦然。</p>
-</li>
-<li><p>计算BFC的高度时，<strong>浮动元素也参与计算</strong>。</p>
-</li>
-</ol>
-<p><strong>创建块级格式化上下文</strong>:</p>
-<ol>
-<li><p>浮动(元素的 float不为 none）</p>
-</li>
-<li><p>绝对定位元素 (元素的 position为 absolute 或 fixed)</p>
-</li>
-<li><p>行内块inline-blocks (元素的 display: inline-block)</p>
-</li>
-<li><p>表格单元格 (元素的 display: table-cell，HTML表格单元格默认属性)</p>
-</li>
-<li><p>表格标题(元素的 display: table-caption，HTML表格标题默认属性)</p>
-</li>
-<li><p>overflow的值不为 visible的元素(元素的 overflow: hidden，overflow:<br>auto)</p>
-</li>
-<li><p>弹性盒子flex boxes (元素的 display: flex 或 inline-flex)</p>
-</li>
-</ol>
-<p><strong>应用场景</strong>:</p>
-<ol>
-<li><p>自适应两栏布局</p>
-</li>
-<li><p>清除内部浮动</p>
-</li>
-<li><p>防止垂直margin重叠</p>
-</li>
-</ol>
-<h2 id="12-子盒子在父盒子中水平垂直居中有几种方法？（定位、弹性盒子）"><a href="#12-子盒子在父盒子中水平垂直居中有几种方法？（定位、弹性盒子）" class="headerlink" title="12.子盒子在父盒子中水平垂直居中有几种方法？（定位、弹性盒子）"></a>12.子盒子在父盒子中水平垂直居中有几种方法？（定位、弹性盒子）</h2><ol>
-<li><p>定位position+margin外边距（需要知道子盒子的宽高）</p>
-<pre><code>/*父盒子*/
-position:relative;
-
-/*子盒子*/
-position:absolute;
-top:50%;
-left:50%;
-margin-top:-50px;
-margin-left:-50px;</code></pre>
-</li>
-<li><p>定位position+transform（不需要知道宽高）</p>
-<p>这个方式虽然可变高度且代码量少，但是IE8不支持此方法，属性需要写浏览器厂商前缀而且可能干扰其他transform效果。</p>
-<pre><code>/*父盒子*/
-position:relative;
-
-/*子盒子*/
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);</code></pre>
-</li>
-<li><p>使用弹性盒子flex布局（不需要知道宽高）</p>
-<pre><code>/*父盒子*/
-display:flex;
-justify-content:center;
-align-items:center;</code></pre>
-</li>
-<li><p>margin:auto（不需要知道宽高）</p>
-</li>
-</ol>
-<p>设置margin自动适应，然后设置定位的上下左右都为0，就如四边均衡受力从而实现盒子的居中;</p>
-<pre><code>    position:absolute;
-    left:0;
-    right:0;
-    top:0;
-    bottom:0;
-    margin:auto;</code></pre>
-<ol start="5">
-<li>table-cell</li>
-</ol>
-<p>将父盒子设置为table-cell(能够使元素呈单元格的样式显示)，并设置text-align:<br>center(使内容水平居中)；vertical-align:<br>middle(使内容垂直居中);。子盒子设置为inline-block可以使其内容变为文本格式，也可设置宽高；</p>
-<h2 id="13-css中怎么使盒子上下居中"><a href="#13-css中怎么使盒子上下居中" class="headerlink" title="13.css中怎么使盒子上下居中?"></a>13.css中怎么使盒子上下居中?</h2><p>方法一:</p>
-<p>设置垂直居中的时候要注意，先给<strong>祖先元素<code>html</code>和<code>body</code>的高度</strong>设置为100%；并且<strong>清除默认样式</strong>（<code>margin</code>和<code>padding</code>都设置为0，否则浏览器就会出现滚动条），然后给<strong>子盒子相对定位和位移</strong><code>position:relative;top:50%;</code>，然后<strong>减去本身宽度的一半</strong>即可（<code>margin-top:负自身高度的一半，在不知道高度的情况下可以用：transform:translateY(-50%)</code>）向上偏移自身高度的一半；</p>
-<p>方法二：</p>
-<p>弹性盒子。给<strong>父元素</strong>设置<code>display:flex;align-items:center;</code>设置<strong>body里的元素</strong>垂直居中；（<code>justify-content:center;</code>定义body里的元素水平居中）</p>
 
       
     </div>
@@ -1538,7 +623,7 @@ align-items:center;</code></pre>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/wqBlog/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/wqBlog/">1</a><span class="page-number current">2</span><a class="page-number" href="/wqBlog/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/wqBlog/page/8/">8</a><a class="extend next" rel="next" href="/wqBlog/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1602,20 +687,20 @@ align-items:center;</code></pre>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
+          <a href="/wqBlog/archives/">
         
           <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/categories/">
+            <a href="/wqBlog/categories/">
           
         <span class="site-state-item-count">1</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
+            <a href="/wqBlog/tags/">
           
         <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
@@ -1668,19 +753,19 @@ align-items:center;</code></pre>
   </div>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/wqBlog/lib/anime.min.js"></script>
+  <script src="/wqBlog/lib/velocity/velocity.min.js"></script>
+  <script src="/wqBlog/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/js/utils.js"></script>
+<script src="/wqBlog/js/utils.js"></script>
 
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
+<script src="/wqBlog/js/motion.js"></script>
 
 
-<script src="/js/next-boot.js"></script>
+<script src="/wqBlog/js/schemes/pisces.js"></script>
+
+
+<script src="/wqBlog/js/next-boot.js"></script>
 
 
 

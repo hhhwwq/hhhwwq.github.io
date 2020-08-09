@@ -5,22 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.0.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/wqBlog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/wqBlog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/wqBlog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/wqBlog/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/wqBlog/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/wqBlog/lib/font-awesome/css/font-awesome.min.css">
 
 
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     hostname: new URL('https://hhhwwq.github.io').hostname,
-    root: '/',
+    root: '/wqBlog/',
     scheme: 'Gemini',
     version: '7.7.1',
     exturl: false,
@@ -109,7 +109,7 @@
   <div class="site-meta">
 
     <div>
-      <a href="/" class="brand" rel="start">
+      <a href="/wqBlog/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Wanqing's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -132,22 +132,22 @@
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+    <a href="/wqBlog/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+    <a href="/wqBlog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+    <a href="/wqBlog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+    <a href="/wqBlog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
   </ul>
@@ -176,10 +176,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2019/10/24/14/">
+    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2019/12/24/23/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/wqBlog/images/avatar.gif">
       <meta itemprop="name" content="">
       <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
     </span>
@@ -190,7 +190,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/24/14/" class="post-title-link" itemprop="url">location对象;浏览器从输入URL到页面渲染的整个流程;跨域;回流,重绘;arguments(补充)</a>
+            <a href="/wqBlog/2019/12/24/23/" class="post-title-link" itemprop="url">js处理异步的几种方式</a>
         </h1>
 
         <div class="post-meta">
@@ -200,7 +200,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-10-24 20:36:05" itemprop="dateCreated datePublished" datetime="2019-10-24T20:36:05+08:00">2019-10-24</time>
+              <time title="创建时间：2019-12-24 15:36:05" itemprop="dateCreated datePublished" datetime="2019-12-24T15:36:05+08:00">2019-12-24</time>
             </span>
 
           
@@ -214,1255 +214,647 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="location对象-浏览器从输入URL到页面渲染的整个流程-跨域-回流-重绘-arguments"><a href="#location对象-浏览器从输入URL到页面渲染的整个流程-跨域-回流-重绘-arguments" class="headerlink" title="location对象;浏览器从输入URL到页面渲染的整个流程;跨域;回流,重绘;arguments"></a>location对象;浏览器从输入URL到页面渲染的整个流程;跨域;回流,重绘;arguments</h1><h2 id="22-DOM的location对象"><a href="#22-DOM的location对象" class="headerlink" title="22.DOM的location对象 "></a>22.DOM的location对象 </h2><p>window.location和document.location引用的是同一个对象。location对象的用处不只表现在它保存着当前文档的信息，还表现在它将URL解析为独立的片段，让开发人员可以通过不同的属性访问这些片段。</p>
-<p>如果想要获得当前文档的完整url字符串，有四种方式</p>
-<pre><code>    document.location
-
-    document.location.href
-
-    document.URL
-
-    document.location.toString() </code></pre>
-<h2 id="23-浏览器从输入URL到页面渲染的整个流程（涉及到计算机网络数据传输过程、浏览器解析渲染过程）"><a href="#23-浏览器从输入URL到页面渲染的整个流程（涉及到计算机网络数据传输过程、浏览器解析渲染过程）" class="headerlink" title="23.浏览器从输入URL到页面渲染的整个流程（涉及到计算机网络数据传输过程、浏览器解析渲染过程）"></a>23.浏览器从输入URL到页面渲染的整个流程（涉及到计算机网络数据传输过程、浏览器解析渲染过程）</h2><h2 id="24-跨域、同源策略及跨域实现方式和原理"><a href="#24-跨域、同源策略及跨域实现方式和原理" class="headerlink" title="24.跨域、同源策略及跨域实现方式和原理 "></a>24.跨域、同源策略及跨域实现方式和原理 </h2><h2 id="25-浏览器的回流（Reflow）和重绘（Repaints）"><a href="#25-浏览器的回流（Reflow）和重绘（Repaints）" class="headerlink" title="25.浏览器的回流（Reflow）和重绘（Repaints）"></a>25.浏览器的回流（Reflow）和重绘（Repaints）</h2><h2 id="26-JavaScript中的arguments"><a href="#26-JavaScript中的arguments" class="headerlink" title="26.JavaScript中的arguments "></a>26.JavaScript中的arguments </h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2019/10/22/13/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wanqing's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/22/13/" class="post-title-link" itemprop="url">垃圾回收机制;String、Array和Math方法;addEventListener和onClick();new和Object.create</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-22 20:36:05" itemprop="dateCreated datePublished" datetime="2019-10-22T20:36:05+08:00">2019-10-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="垃圾回收机制-String、Array和Math方法-addEventListener和onClick-new和Object-create"><a href="#垃圾回收机制-String、Array和Math方法-addEventListener和onClick-new和Object-create" class="headerlink" title="垃圾回收机制;String、Array和Math方法;addEventListener和onClick();new和Object.create"></a>垃圾回收机制;String、Array和Math方法;addEventListener和onClick();new和Object.create</h1><h2 id="18-JS的垃圾回收机制"><a href="#18-JS的垃圾回收机制" class="headerlink" title="18.JS的垃圾回收机制 "></a>18.JS的垃圾回收机制 </h2><p>1.离开作用域的值将被自动标记为可以回收，因此将在垃圾收集期间被删除；</p>
-<p>2.<strong>标记清除</strong>是目前最主流的垃圾收集算法，这种算法的思想是给当前不使用的值加上标记，然后再回收其内存（当变量进入环境时，将变量标记为“进入环境”。当变量离开环境时，将其标记为“离开环境”，标记“离开环境”的就回收内存）；</p>
-<p>3.另一种垃圾收集算法是<strong>引用计数</strong>，这种算法的思想是跟踪记录所有值被引用的次数。JavaScript引擎目前都不再使用这种算法；但在<br>IE<br>中访问非原生JavaScript对象（如DOM元素）时，这种算法仍然可能会导致问题；</p>
-<p>4.当代码中存在循环引用现象时，” 引用计数 “算法就会导致问题；</p>
-<p>5.解除变量的引用不仅有助于消除循环引用现象，而且对垃圾收集也有好处。为了确保有效的回收内存，应该及时解除不再使用的全局对象、全局对象属性以及循环引用变量的引用。</p>
-<p><strong>代码回收规则如下：</strong></p>
-<p>　　　　<strong>1.全局变量不会被回收。</strong></p>
-<p>　　　　<strong>2.局部变量会被回收，也就是函数一旦运行完以后，函数内部的东西都会被销毁。</strong></p>
-<p>　　　　<strong>3.只要被另外一个作用域所引用就不会被回收。</strong></p>
-<h2 id="19-JS中的String、Array和Math方法"><a href="#19-JS中的String、Array和Math方法" class="headerlink" title="19.JS中的String、Array和Math方法 "></a>19.JS中的String、Array和Math方法 </h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lihuijuan/p/8490578.html">https://www.cnblogs.com/lihuijuan/p/8490578.html</a><br>了解一下</p>
-<h2 id="20-addEventListener和onClick-的区别"><a href="#20-addEventListener和onClick-的区别" class="headerlink" title="20.addEventListener和onClick()的区别 "></a>20.addEventListener和onClick()的区别 </h2><p>1.onclick事件在同一时间只能指向唯一对象</p>
-<p>2.addEventListener给一个事件注册多个listener</p>
-<p>3.addEventListener对任何DOM都是有效的，而onclick仅限于HTML</p>
-<p>4.addEventListener可以控制listener的触发阶段，（捕获/冒泡）。对于多个相同的事件处理器，不会重复触发，不需要手动使用removeEventListener清除</p>
-<h2 id="21-new和Object-create的区别"><a href="#21-new和Object-create的区别" class="headerlink" title="21.new和Object.create的区别"></a>21.new和Object.create的区别</h2><ul>
-<li>21.1、new 操作符</li>
-</ul>
-<p>JavaScript 中 new 的机制实际上和面向类的语言完全不同。</p>
-<p>在 JavaScript 中，构造函数只是一些使用 new<br>操作符时被调用的函数。它们并不会属于某个类，也不会实例化一个类。实际上，它们甚至都不能说是一种特殊的函数类型，它们只是被<br>new 操作符调用的普通函数而已。</p>
-<p>使用 new 来调用函数，或者说发生构造函数调用时，会自动执行下面的操作。</p>
-<ol>
-<li><p>创建（或者说构造）一个全新的对象。</p>
-</li>
-<li><p>这个新对象会被执行 [[ 原型 ]]  （[[Prototype]]）连接。</p>
-</li>
-<li><p>这个新对象会绑定到函数调用的 this 。</p>
-</li>
-<li><p>如果函数没有返回其他对象，那么 new<br>表达式中的函数调用会自动返回这个新对象。</p>
-</li>
-</ol>
-<ul>
-<li>21.2、Object.create</li>
-</ul>
-<p>调用Object.create(..) 会凭空创建一个“新”对象并把新对象内部的<br>[[Prototype]] 关联到你指定的对象。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2019/10/22/12/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wanqing's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/22/12/" class="post-title-link" itemprop="url">apply，bind，call的区别；new；this；闭包</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-22 11:36:05" itemprop="dateCreated datePublished" datetime="2019-10-22T11:36:05+08:00">2019-10-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="防抖和节流-作用域和作用域链-DOM-Array-sort-Ajax"><a href="#防抖和节流-作用域和作用域链-DOM-Array-sort-Ajax" class="headerlink" title="防抖和节流;作用域和作用域链;DOM;Array.sort();Ajax"></a>防抖和节流;作用域和作用域链;DOM;Array.sort();Ajax</h1><h2 id="防抖和节流"><a href="#防抖和节流" class="headerlink" title="防抖和节流 "></a>防抖和节流 </h2><h3 id="节流概念-Throttle"><a href="#节流概念-Throttle" class="headerlink" title="节流概念(Throttle)"></a>节流概念(Throttle)</h3><p>按照设定的时间固定执行一次函数，比如200ms一次。注意：固定就是你在mousemove过程中，执行这个节流函数，它一定是200ms（你设定的定时器延迟时间）内执行一次。没到200ms，一定会返回，没有执行回调函数的。</p>
-<p>主要应用场景有：scroll、touchmove</p>
-<h3 id="防抖概念-Debounce"><a href="#防抖概念-Debounce" class="headerlink" title="防抖概念(Debounce)"></a>防抖概念(Debounce)</h3><p>抖动停止后的时间超过设定的时间时执行一次函数。注意：这里的抖动停止表示你停止了触发这个函数，从这个时间点开始计算，当间隔时间等于你设定时间，才会执行里面的回调函数。如果你一直在触发这个函数并且两次触发间隔小于设定时间，则一定不会到回调函数那一步。</p>
-<p>主要应用场景有：input验证、搜索联想、resize</p>
-<h2 id="作用域和作用域链、执行期上下文"><a href="#作用域和作用域链、执行期上下文" class="headerlink" title="作用域和作用域链、执行期上下文 "></a>作用域和作用域链、执行期上下文 </h2><h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>js只有函数作用域（function-based），没有块级作用域，也就是只有函数会有自己的作用域，其他都没有。</p>
-<p>接着，作用域分为全局作用域与局部作用域。</p>
-<p>全局作用域中的对象可以在代码的任何地方访问，一般来说，下面情况的对象会在全局作用域中：</p>
-<ul>
-<li>最外层函数和在最外层函数外面定义的变量</li>
-<li>没有通过关键字”var”声明的变量</li>
-<li>浏览器中，window对象的属性</li>
-</ul>
-<p><strong>局部作用域</strong>又被称为函数作用域（Function scope），所有的变量和函数只能在作用域内部使用。</p>
-<pre><code>var foo = 1;
-window.bar = 2;
-
-function baz()&#123;
-    a = 3;
-    var b = 4;
+          <h1 id="js处理异步的几种方式"><a href="#js处理异步的几种方式" class="headerlink" title="js处理异步的几种方式"></a>js处理异步的几种方式</h1><p>JavaScript语言的执行环境是“单线程”，这种模式容易因为某段耗时很长的任务而拖延整段程序的执行。</p>
+<p>为了解决这个问题，JavaScript语言将任务的执行模式分成两种：同步和异步。</p>
+<p><strong>同步模式</strong>就是上一段的模式，后一个任务等待前一个任务结束，然后再执行，程序的执行顺序与任务的排列顺序是一致的，同步的。</p>
+<p><strong>异步模式</strong>非常重要，在浏览器端，耗时很长的操作都应该异步执行，避免浏览器失去响应，最好的例子就是Ajax操作。在服务器端，异步模式甚至是唯一的模式，因为执行环境是单线程的，如果允许同步执行所有http请求，服务器性能会急剧下降，很快就会失去响应。</p>
+<p>下面是处理异步的几种方法：</p>
+<h2 id="一，回调函数（callback）"><a href="#一，回调函数（callback）" class="headerlink" title="一，回调函数（callback）"></a>一，回调函数（callback）</h2><blockquote>
+<p>A callback is a function that is passed as an argument to another function and is executed after its parent function has completed.</p>
+</blockquote>
+<p>回调是一个函数被作为一个参数传递到另一个函数里，在那个函数执行完再执行。（ 也即：B函数被作为参数传递到A函数里，在A函数执行完后再执行B ）</p>
+<p>如果f1是一个很耗时的任务，可以考虑改写f1，把f2写成f1的回调函数。</p>
+<pre><code>function f1(callback)&#123;
+    setTimeout(function()&#123;
+        //f1的任务代码
+        callback();
+    &#125;,1000);
 &#125;
-// Global scope: foo, bar, baz, a 
-// Local scope: b</code></pre>
-<p>在创建这个函数的时候，这个函数的作用域与作用域链（函数的作用域链将会在运行时用到）就已经决定了，而不是在调用的时候。</p>
-<h3 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h3><p>内部[[Scope]]属性包含一个函数被创建的作用域中对象的集合。此集合被称为函数的作用域链，它决定哪些数据可以由函数访问。</p>
-<h3 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h3><p>在JavaScript中有三种代码运行环境：</p>
-<ul>
-<li>Global Code +JavaScript代码开始运行的默认环境</li>
-<li>Function Code 代码进入一个JavaScript函数</li>
-<li>Eval Code 使用eval()执行代码</li>
-</ul>
-<p>为了表示不同的运行环境，JavaScript中有一个执行上下文（Execution<br>context，EC）的概念。也就是说，当JavaScript代码执行的时候，会进入不同的执行上下文，这些执行上下文就构成了一个执行上下文栈（Execution<br>context stack，ECS）。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>函数在定义时就会确定他的作用域与作用域链（静态），只有调用的时候才会创建一个执行上下文，其中包含了调用时的形参，其中的函数声明与变量（VO）,<br>同时创建活动对象（AO），并将AO压入执行上下文的作用域链的最前端并且包含了this的属性，执行上下文的作用域链是通过正在被调用函数的作用域链得到的（动态）。</p>
-<h2 id="DOM常见的操作方式"><a href="#DOM常见的操作方式" class="headerlink" title="DOM常见的操作方式 "></a>DOM常见的操作方式 </h2><h3 id="15-1常用的查找节点的方法有："><a href="#15-1常用的查找节点的方法有：" class="headerlink" title="15.1常用的查找节点的方法有："></a>15.1常用的查找节点的方法有：</h3><p>document.getElementById(‘id属性值’); 返回拥有指定id的对象的引用</p>
-<p>document.getElementsByClassName(‘class属性值’);<br>返回拥有指定class的对象集合</p>
-<p>document.getElementsByTagName(‘标签名’); 返回拥有指定标签名的对象集合</p>
-<h3 id="15-2常用的新建节点的方法有："><a href="#15-2常用的新建节点的方法有：" class="headerlink" title="15.2常用的新建节点的方法有："></a>15.2常用的新建节点的方法有：</h3><p>document.createElement(‘元素名’); 创建新的元素节点</p>
-<p>document.createAttribute(‘属性名’); 创建新的属性节点</p>
-<p>document.createTextNode(‘文本内容’); 创建新的文本节点</p>
-<h3 id="15-3常用的添加新节点的方法有："><a href="#15-3常用的添加新节点的方法有：" class="headerlink" title="15.3常用的添加新节点的方法有："></a>15.3常用的添加新节点的方法有：</h3><p>1.element.setAttribute(attributeName, attributeValue );<br>给元素增加指定属性，并设定属性值。</p>
-<p>2.element.setAttributeNode(attributeName ); 给元素增加属性节点。</p>
-<p>3.如需向HTML<br>DOM添加新元素，您必须首先创建该元素（元素节点），然后向一个已存在的元素追加该元素。</p>
-<p>1)document.createTextNode(‘新增文本内容’); 创建新的文本节点。</p>
-<p>2)parent.appendChild(创建的新节点);<br>向父节点的最后一个子节点后追加新节点，或使用parent.insertBefore(newChild,<br>existingChild ); 向父节点的某个特定子节点之前插入新节点。</p>
-<h3 id="15-4常用的删除节点的方法有："><a href="#15-4常用的删除节点的方法有：" class="headerlink" title="15.4常用的删除节点的方法有："></a>15.4常用的删除节点的方法有：</h3><p>parentNode.removeChild(existingChild );<br>删除已有的子节点，返回值为删除节点。</p>
-<p>DOM需要清楚你需要删除的元素，以及它的父元素。常用的解决方案：找到你希望删除的子元素，然后使用其parentNode属性来找到父元素：</p>
-<p>var<br>child=document.getElementById(“p1”);child.parentNode.removeChild(child);</p>
-<h3 id="15-5常用的修改节点的方法有："><a href="#15-5常用的修改节点的方法有：" class="headerlink" title="15.5常用的修改节点的方法有："></a>15.5常用的修改节点的方法有：</h3><p>parentNode.replaceChild(newChild, existingChild );<br>用新节点替换父节点中已有的子节点</p>
-<p>element.setAttribute(attributeName, attributeValue );<br>给元素增加指定属性，并设定属性值(若原元素已有该节点，此操作能达到修改该属性值的目的)</p>
-<p>element.setAttributeNode(attributeName );<br>给元素增加属性节点(若原元素已有该节点，此操作能达到修改该属性值的目的)</p>
-<h2 id="Array-sort-方法与实现机制"><a href="#Array-sort-方法与实现机制" class="headerlink" title="Array.sort()方法与实现机制 "></a>Array.sort()方法与实现机制 </h2><p>定义与用法：</p>
-<p>sort() 方法用于对数组的元素进行排序。</p>
-<p>语法：</p>
-<p>arrayObject.sort(sortby)</p>
-<p>注意：sortby必须是函数，规定排序顺序。可选参数</p>
-<p>返回值：</p>
-<p>对数组的引用。请注意，数组在原数组上进行排序，不生成副本。</p>
-<p>说明及原理：</p>
-<p>如果调用该方法时没有使用参数，将按字母顺序对数组中的元素进行排序，说得更精确点，是按照字符编码的顺序进行排序。要实现这一点，首先应把数组的元素都转换成字符串（如有必要），以便进行比较。</p>
-<h2 id="Ajax请求过程"><a href="#Ajax请求过程" class="headerlink" title="Ajax请求过程 "></a>Ajax请求过程 </h2><h3 id="Ajax是什么"><a href="#Ajax是什么" class="headerlink" title="Ajax是什么"></a>Ajax是什么</h3><p>是一种异步请求数据的技术，会带来更好的用户体验。</p>
-<h3 id="Ajax的使用"><a href="#Ajax的使用" class="headerlink" title="Ajax的使用"></a>Ajax的使用</h3><p>(1)创建<code>XMLHttpRequest</code>对象,也就是创建一个异步调用对象.</p>
-<p>(2)创建一个新的<code>HTTP</code>请求,并指定该<code>HTTP</code>请求的方法、<code>URL</code>及验证信息.</p>
-<p>(3)设置响应<code>HTTP</code>请求状态变化的函数.</p>
-<p>(4)发送<code>HTTP</code>请求.</p>
-<p>(5)获取异步调用返回的数据.</p>
-<p>(6)使用JavaScript和DOM实现局部刷新.</p>
-<pre><code>  var xmlHttp = new XMLHttpRequest();
-
-    xmlHttp.open(&#39;GET&#39;,&#39;demo.php&#39;,&#39;true&#39;);
-
-    xmlHttp.send()
-
-    xmlHttp.onreadystatechange = function()&#123;
-
-        if(xmlHttp.readyState === 4 &amp; xmlHttp.status === 200)&#123;
-
-        &#125;
-
-    &#125;</code></pre>
-<p>步骤详解： 1.创建Ajax核心对象XMLHttpRequest</p>
-<pre><code>var xmlhttp;
-if(window.XMLHttpRequest)&#123; 
-//IE7+,Chrome,Firefox,Safari,Opera执行此代码 
-    xmlhttp=new XMLHttpRequest;
-&#125;else&#123;
-   //IE5,IE6执行该代码
-   xmlhttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
-&#125;</code></pre>
-<p>2.向服务器发送请求</p>
-<pre><code>xmlhttp.open(method,url,async);
-xmlhttp.send();</code></pre>
-<p>示例如下：</p>
-<pre><code> xmlhttp.open(&quot;GET&quot;,&quot;http://www.runoob.com/try/ajax/demo_get.php&quot;,true);
- xmlhttp.send();</code></pre>
-<p><strong>注意一</strong>：open 的参数要牢记，很多面试官爱问这样的细节<br>method：请求的类型；GET 或 POST</p>
-<p>url：文件在服务器上的位置，相对位置或绝对位置</p>
-<p>async：true（异步）或 false（同步）</p>
-<p>为什么使用 Async=true ？</p>
-<p>我们的实例在 open() 的第三个参数中使用了<br>“true”,该参数规定请求是否异步处理。</p>
-<p>true 表示脚本会在 send() 方法之后继续执行，而不等待来自服务器的响应。</p>
-<p>onreadystatechange<br>事件使代码复杂化了。但是这是在没有得到服务器响应的情况下，防止代码停止的最安全的方法。</p>
-<p>通过把该参数设置为 “false”，可以省去额外的 onreadystatechange<br>代码。如果在请求失败时是否执行其余的代码无关紧要，那么可以使用这个参数。</p>
-<p><strong>注意二</strong>：post请求不同于get请求</p>
-<p>send(string)方法post请求时才使用字符串参数，否则不用带参数。</p>
-<p><strong>注意三</strong>：post请求一定要设置请求头的格式内容</p>
-<pre><code>xmlhttp.open(&quot;POST&quot;,&quot;ajax_test.html&quot;,true);
-xmlhttp.setRequestHeader(&quot;content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);
-xmlhttp.send(&quot;fname=Herry&amp;lname=Ford&quot;);</code></pre>
-<p>3.服务器响应处理</p>
-<p>responseText 获得字符串形式的响应数据。 responseXML 获得XML<br>形式的响应数据。</p>
-<p>3.1 同步处理</p>
-<pre><code>xmlhttp.open(&quot;GET&quot;,&quot;http://www.runoob.com/try/ajax/demo_get.php&quot;,false);
-xmlhttp.send();
-document.getElementById(&quot;mydiv&quot;).innerHTML=xmlhttp.responseText;</code></pre>
-<p>直接在send()后面处理返回来的数据。</p>
-<p>3.2 异步处理</p>
-<p>异步处理相对比较麻烦，要在请求状态改变事件中处理。</p>
-<pre><code> xmlhttp.onreadystatechange=function () &#123;//接收到服务端响应时触发
-      if(xmlhttp.readyState==4&amp;&amp;xmlhttp.status==200)&#123;
-            document.getElementById(&quot;mydiv&quot;).innerHTML=xmlhttp.responseText;
-       &#125;
- &#125;</code></pre>
-<p>一共有5中请求状态，从0 到 4 发生变化。</p>
-<p>0: 请求未初始化</p>
-<p>1: 服务器连接已建立</p>
-<p>2: 请求已接收</p>
-<p>3: 请求处理中</p>
-<p>4: 请求已完成，且响应已就绪</p>
-<p>xmlhttp.status：响应状态码。这个也是面试比较爱问的，这个必须知道4个以上，比较常见的有：</p>
-<p>200: “OK”</p>
-<p>304：该资源在上次请求之后没有任何修改（这通常用于浏览器的缓存机制，使用GET请求时尤其需要注意）。</p>
-<p>403 （禁止） 服务器拒绝请求。</p>
-<p>404 （未找到） 服务器找不到请求的网页。</p>
-<p>408 （请求超时） 服务器等候请求时发生超时。</p>
-<p>500 （服务器内部错误） 服务器遇到错误，无法完成请求。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2019/10/17/11/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wanqing's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/17/11/" class="post-title-link" itemprop="url">apply，bind，call的区别；new；this；闭包</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-17 10:10:50" itemprop="dateCreated datePublished" datetime="2019-10-17T10:10:50+08:00">2019-10-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="原型和原型链-prototype与proto的关系与区别-继承-深拷贝与浅拷贝"><a href="#原型和原型链-prototype与proto的关系与区别-继承-深拷贝与浅拷贝" class="headerlink" title="原型和原型链;prototype与proto的关系与区别;继承;深拷贝与浅拷贝"></a>原型和原型链;prototype与proto的关系与区别;继承;深拷贝与浅拷贝</h1><h2 id="原型和原型链"><a href="#原型和原型链" class="headerlink" title="原型和原型链 "></a>原型和原型链 </h2><h3 id="一、什么是原型："><a href="#一、什么是原型：" class="headerlink" title="一、什么是原型："></a>一、什么是原型：</h3><p>任何对象都有一个原型对象，这个原型对象由对象的内置属性_proto_指向它的构造函数的prototype指向的对象，即任何对象都是由一个构造函数创建的，但是不是每一个对象都有prototype，只有方法才有prototype。</p>
-<pre><code>    function Person() &#123;
-    &#125;
-    var p = new Person();
-    //方法才有prototype,普通对象无prototype
-    console.log(Person.prototype); // Object&#123;&#125; 
-    console.log(p.prototype); // undifined
-
-    //任何对象都是有构造函数的,Person这种方法的构造函数是Function。
-    //备注:constructor很容易被改变，一般不用它，此处只是打印下列对象的构造函数是什么。
-
-    console.log(p.constructor); //function Person()&#123;&#125;  
-    console.log(Person.constructor); //function Function()&#123;&#125; 
-    console.log(&#123;&#125;.constructor); // function Object()&#123;&#125;
-    console.log(Object.constructor); // function Function() &#123;&#125;
-    console.log([].constructor);  //function Array()&#123;&#125; 
-    那什么是构造函数呢？</code></pre>
-<p>用function声明的都是函数，而如果直接调用的话，那么Person()就是一个普通函数，只有用函数new产生对象时，这个函数才是new出来对象的构造函数。</p>
-<h3 id="二、创建对象的过程（采用new关键）"><a href="#二、创建对象的过程（采用new关键）" class="headerlink" title="二、创建对象的过程（采用new关键）"></a>二、创建对象的过程（采用new关键）</h3><p>2.1 、声明方法的过程</p>
-<p> 首先，当我们声明一个function关键字的方法时，会为这个方法添加一个prototype属性，指向默认的原型对象，并且此prototype的constructor属性也指向方法对象。此二个属性会在创建对象时被对象的属性引用。</p>
-<pre><code>    function Hello() &#123;
-    &#125;
-    console.log(Hello.prototype); // Object &#123;&#125; -- &gt; 内部的constructor 指向Hello方法
-    console.log(Hello.prototype.constructor); // function Hello()&#123;&#125;</code></pre>
-<p>2.2、我们如果用Hello创建一个对象h，看这个对象有什么属性。</p>
-<pre><code>    console.log(h.constructor); // function Hello()&#123;&#125;
-    console.log(Object.getPrototypeOf(h)==Hello.prototype); // true  备注：getPrototypeOf是获取_proto_</code></pre>
-<p>我们惊喜的发现，new出来的对象，它的constructor指向了方法对象，它的_proto_和prototype相等。</p>
-<p>即new一个对象，它的_proto_属性指向了方法的prototype属性，并且constructor指向了prototype的constructor属性。</p>
-<p>2.3 、创建一个对象的过程</p>
-<pre><code>    function Hehe(name) &#123;
-        this.name = name;
-    &#125;
-    var h = new Hehe(&quot;笑你妹&quot;);
-    //伪代码:
-    function newObj(name)&#123;
-        var obj = &#123;&#125;;
-        obj.__proto__ = Hehe.prototype; 
-        obj.constructor = Hehe.prototype.constructor;
-        var result = Hehe.call(obj, name);
-        return typeof result===&#39;object&#39;&amp;&amp; result!=null ? result : obj;  //当无返回对象或默认时返回obj。
-    &#125;
-    var hh = newObj(&quot;笑你妹&quot;);
-    console.log(hh);
-    console.log(h);
-    //虽然hh!=h,但是可以看到这个hh就和h的结构一样了。</code></pre>
-<p>过程：先创建一个空对象，设置一个_proto_指向方法的原型，设置constructor，用新对象做this指向方法，返回新对象。</p>
-<p>2.4、延伸</p>
-<p>从上面说明的过程中，我们发现只要是对象就是有构造函数来创建的，并且内部二个属性是从构造函数的prototype衍生的一个指向，而构造函数的prototype也是一个对象，那么它应该肯定也有一个构造函数，首先它是一个Object<br>{}<br>对象，那么它的构造函数肯定是Object,所以就会有一个指针_proto_指向Object.prototype。最后Object.prototype因为没有_proto_，指向null，这样就构成了一个原型链。</p>
-<h3 id="三、原型链"><a href="#三、原型链" class="headerlink" title="三、原型链"></a>三、原型链</h3><p>1）什么是原型链？</p>
-<p> 原型链的核心就是依赖对象的_proto_的指向，当自身不存在的属性时，就一层层的扒出创建对象的构造函数，直至到Object时，就没有_proto_指向了。</p>
-<p>2）如何分析原型链?</p>
-<p>因为_proto_实质找的是prototype，所以我们只要找这个链条上的构造函数的prototype。其中Object.prototype是没有_proto_属性的，它==null。</p>
-<p>3.1、最简单的原型链分析</p>
-<pre><code>    function Person(name)&#123;
-            this.name = name;
-    &#125;
-    var p = new Person();
-    //p ---&gt; Person.prototype ---&gt;Object.prototype----&gt;null</code></pre>
-<p>属性搜索原则：</p>
-<p>1.当访问一个对象的成员的时候，会现在自身找有没有,如果找到直接使用。</p>
-<p>2.如果没有找到，则去<strong>原型链指向的对象的构造函数的prototype中找</strong>，找到直接使用，没找到就返回undifined或报错。</p>
-<h2 id="prototype与proto的关系与区别（）"><a href="#prototype与proto的关系与区别（）" class="headerlink" title=" prototype与proto的关系与区别（） "></a> prototype与<strong>proto</strong>的关系与区别（） </h2><p><strong>proto</strong>是每个对象都有的一个属性，而prototype是函数才会有的属性!!!<br>使用Object.getPrototypeOf()代替<strong>proto</strong>!!!</p>
-<h3 id="10-1、prototype"><a href="#10-1、prototype" class="headerlink" title="10.1、prototype"></a>10.1、prototype</h3><p>几乎所有的函数（除了一些内建函数）都有一个名为prototype（原型）的属性，这个属性是一个指针，指向一个对象，而这个对象的用途是包含可以有特定类型的所有实例共享的属性和方法。prototype是通过调用构造函数而创建的那个对象实例的原型对象。hasOwnProperty()判断指定属性是否为自有属性；in操作符对原型属性和自有属性都返回true。</p>
-<p>示例：自有属性&amp;原型属性</p>
-<pre><code>var obj = &#123;a: 1&#125;;
-obj.hasOwnProperty(&quot;a&quot;); // true
-obj.hasOwnProperty(&quot;toString&quot;); // false
-&quot;a&quot; in obj; // true
-&quot;toString&quot; in obj; // true</code></pre>
-<p>示例：鉴别原型属性</p>
-<pre><code>function hasPrototypeProperty(obj, name)&#123;
-    return name in obj &amp;&amp; !obj.hasOwnProperty(name);
-&#125;</code></pre>
-<h3 id="10-2、-—proto—"><a href="#10-2、-—proto—" class="headerlink" title="10.2、 —proto—"></a>10.2、 —proto—</h3><p>对象具有属性<strong>proto</strong>，可称为隐式原型，一个对象的隐式原型指向构造该对象的构造函数的原型，这也保证了实例能够访问在构造函数原型中定义的属性和方法。</p>
-<pre><code>function Foo()&#123;&#125;
-var Boo = &#123;name: &quot;Boo&quot;&#125;;
-Foo.prototype = Boo;
-var f = new Foo();
-
-console.log(f.__proto__ === Foo.prototype); // true
-console.log(f.__proto__ === Boo);   // true
-Object.getPrototypeOf(f) === f.__proto__;   // true</code></pre>
-<h2 id="继承的实现方式及比较"><a href="#继承的实现方式及比较" class="headerlink" title="继承的实现方式及比较 "></a>继承的实现方式及比较 </h2><p>许多语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际的方法。由于函数没有签名，在ECMAScript中无法实现接口继承。ECMAScript只支持实现继承，而且其实现继承主要是依靠原型链实现的。</p>
-<h3 id="11-1-原型链"><a href="#11-1-原型链" class="headerlink" title="11.1 原型链"></a>11.1 原型链</h3><p>基本思想为利用原型让一个引用类型继承另一个引用类型的属性和方法。<br>（1）可以通过两种方式确定原型和实例的关系：instanceof操作符和isPrototypeOf（）方法，只要是原型链中出现过的原型，都可以说时原型链所派生的实例的原型。<br>（2）应谨慎地定义方法，给原型添加方法的代码一定要放在替换原型的语句之后，而且在通过原型链实现继承时，不能使用对象字面量创建原型方法。</p>
-<h3 id="11-2-借用构造函数"><a href="#11-2-借用构造函数" class="headerlink" title="11.2 借用构造函数"></a>11.2 借用构造函数</h3><p>在解决原型中包含引用类型值所带来的问题中，开发人员开始使用一种叫做<strong>借用构造函数</strong>的技术，基本思想为在子类型构造函数的内部调用超类型构造函数。<br>（1）传递参数</p>
-<pre><code>function SuperType(name)&#123;
-    this.name=name;
+//执行
+f1(f2)</code></pre>
+<p>采用这种方式，我们把同步操作变成了异步操作，f1不会堵塞程序运行，相当于先执行程序的主要逻辑，将耗时的操作推迟执行。</p>
+<p>回调函数是异步编程最基本的方法，其<strong>优点</strong>是简单，容易理解和部署，<strong>缺点</strong>是不利于代码的阅读和维护，各个部分之间高度耦合，流程会很混乱。而且每个任务只能指定一个回调函数。</p>
+<p><strong>注意区分回调函数和异步，回调并不一定是异步，他们之间没有直接关系</strong></p>
+<p>同步回调：</p>
+<pre><code>function A(callback)&#123;
+    console.log(&quot;I am A&quot;);
+    callback();//调用该函数
 &#125;
-function SubType()&#123;
-    //继承了SuperType，同时还传递了参数。
-    SuperType.call(this,&quot;Nicholas&quot;);
-    //实例属性
-    this.age=29;
+function B()&#123;
+    console.log(&quot;I am B&quot;);
 &#125;
-var instance=new SubType();
-alert(instance.name);       //&quot;Nicholas&quot;
-alert(instance.age);        //29</code></pre>
-<p>（2）借用构造函数的问题<br>构造函数模式始终存在的问题为：方法在构造函数中定义，因此函数复用就无从谈起了。</p>
-<h3 id="11-3-组合继承（最常用）"><a href="#11-3-组合继承（最常用）" class="headerlink" title="11.3 组合继承（最常用）"></a>11.3 组合继承（最常用）</h3><p>组合继承时指将原型链和借用构造函数的技术组合到一块，从而发挥二者之长的一种继承模式。思路是使用原型链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承。<br>最大问题为无论在什么情况下都会调用两次超类型构造函数：一次是在创建子类型原型的时候，另一次是在子类型构造函数内部。</p>
-<h3 id="11-4-原型式继承"><a href="#11-4-原型式继承" class="headerlink" title="11.4 原型式继承"></a>11.4 原型式继承</h3><p>es5通过新增Object.create()方法规范化了原型式继承，这个方法接收两个参数：一个用作新对象原型的对象和（可选的）一个为新对象定义额外属性的对象。</p>
-<h3 id="11-5-寄生式继承"><a href="#11-5-寄生式继承" class="headerlink" title="11.5 寄生式继承"></a>11.5 寄生式继承</h3><p>基本思想为创建一个仅用于封装继承过程的函数，该函数在内部以某种方式来增强对象，最后再像真地是它做了所有工作一样返回对象。以下代码示范了寄生式继承模式。</p>
-<pre><code>function createAnother(original)&#123;
-    var clone=object(original); //通过调用函数创建一个新对象
-    clone.sayHi=function()&#123;     //以某种方式来增强这个对象
-        alert(&quot;hi);
-    &#125;;
-    return clone;               //返回这个对象
+A(B);</code></pre>
+<h2 id="二，事件监听"><a href="#二，事件监听" class="headerlink" title="二，事件监听"></a>二，事件监听</h2><p>事件驱动模式也可以，任务的执行不取决于代码的顺序，而<strong>取决于某个事件是否发生。</strong></p>
+<pre><code>//on
+f1.on(&#39;done&#39;,f2);
+//或者
+function f1()&#123;
+    settimeout(function()&#123;
+       //...f1的任务代码
+       f1.trigger(&#39;done&#39;);  //执行完成后，立即触发done事件，从而开始执行f2.
+    &#125;,1000);
 &#125;</code></pre>
-<p>使用寄生式继承来为对象添加函数，会由于不能做到函数复用而降低效率，这一点与构造函数模式类似。</p>
-<h3 id="11-6-寄生组合式继承"><a href="#11-6-寄生组合式继承" class="headerlink" title="11.6 寄生组合式继承"></a>11.6 寄生组合式继承</h3><p>基本思想为不必为了指定子类型的原型而调用超类型的构造函数。</p>
-<pre><code>function inheritPrototype(subType,superType)&#123;
-    var prototype=object(superTypr.prototype);  //创建对象
-    prototype.constructor=subType;              //增强对象
-    subType.prototype=prototype;                //指定对象。
+<p>这种方法的优点：容易理解，可以绑定<strong>多个事件</strong>，每一个事件可以指定多个回调函数，而且可以去<strong>耦合，有利于实现模块化</strong>。</p>
+<p>缺点：整个程序都要变成事件驱动型，运行<strong>流程会变得不清晰。</strong></p>
+<h3 id="事件监听方法："><a href="#事件监听方法：" class="headerlink" title="事件监听方法："></a>事件监听方法：</h3><p><strong>onclick</strong>:</p>
+<pre><code>element.onclick=function()&#123;
+   //处理函数
 &#125;</code></pre>
-<p>总结：</p>
-<p>JavaScript主要通过<strong>原型链实现继承</strong>。原型链的构建是通过将一个类型的实例赋值给另一个构造函数的原型实现的。这样，子类型就能够访问超类型的所有属性和方法，这一点与基于类的继承很相似。</p>
-<p><strong>原型链的问题是对象实例共享所有继承的属性和方法，因此不适宜单独使用。</strong></p>
-<p>解决这个问题的技术是借用构造函数，即在子类型构造函数的内部调用超类型构造函数。这样就可以做到每个实例都具有自己的属性，同时还能保证只使用构造函数模式来定义类型。使用最多的继承模式是<strong>组合继承，这种模式使用原型链继承共享的属性和方法，而通过借用构造函数继承实力属性。</strong></p>
-<p>此外，还存在下列可供选择的继承模式。</p>
-<p><strong>原型式继承</strong>，可以在不必预先定义构造函数的情况下实现继承，其本质是执行对给定对象的浅复制。而复制得到的副本还可以得到进一步改造。</p>
-<p><strong>寄生式继承</strong>，与原型式继承非常相似，也是基于某个对象或某些信息创建一个对象，然后增强对象，最后返回对象。为了解决组合继承模式由于多次调用超类型构造函数而导致的低效率问题，可以将这个模式和组合模式一起使用。</p>
-<p><strong>寄生组合式继承</strong>，集寄生式继承和组合继承的优点于一身，是实现基于类型继承的最有效方式。</p>
-<h2 id="深拷贝与浅拷贝"><a href="#深拷贝与浅拷贝" class="headerlink" title=" 深拷贝与浅拷贝 "></a> 深拷贝与浅拷贝 </h2><p><strong>赋值</strong>是赋的是该对象的在栈中的地址，而不是堆中的数据，也就是两个对象指向的是同一个存储空间，是联动的；</p>
-<p><strong>浅拷贝</strong>只复制一层对象的属性，如果属性是基本类型，拷贝的就是基本类型的值；如果属性是内存地址（引用类型），拷贝的就是内存地址<br>，并不包括对象里面的为引用类型的数据；</p>
-<p><strong>浅拷贝的实现：</strong><br>1.Object.assign()：把任意多个的源对象自身的可枚举属性拷贝给目标对象，然后返回目标对象，拷贝的是对象的属性的引用，而不是对象本身。</p>
-<pre><code>var obj = &#123; a: &#123;a: &quot;copy&quot;, b: 1&#125; &#125;;
-var newlObj = Object.assign(&#123;&#125;, obj);//-----------
-initalObj.a.a = &quot;swallow&quot;;
-console.log(obj.a.a); //swallow</code></pre>
-<p>2.Array.prototype.concat()：修改新对象会改到原对象</p>
-<pre><code>let arr = [1, 2, &#123;    username: &#39;copy&#39;    &#125;];
-let arr2=arr.concat();//----------------    
-arr2[2].username = &#39;swallow&#39;;
-console.log(arr);</code></pre>
-<p>3.Array.prototype.slice()：同样修改新对象会改到原对象</p>
-<pre><code>let arr = [1, 2, &#123;    username: &#39;copy&#39;    &#125;];
-let arr2=arr.slice();//----------------    
-arr2[2].username = &#39;swallow&#39;;
-console.log(arr);</code></pre>
-<p>注：Array的slice和concat方法不修改原数组，只会返回一个浅复制了原数组中的元素的一个新数组。</p>
-<p><strong>深拷贝</strong>是对对象以及对象的所有子对象进行拷贝。</p>
-<p><strong>深拷贝</strong>的实现：</p>
-<p>1.JSON.parse(JSON.stringify())：用JSON.stringify将对象转成JSON字符串，再用JSON.parse()把字符串解析成对象，一去一来，<strong>新的对象产生了，而且对象会开辟新的栈</strong>，可以<strong>实现数组或对象深拷贝</strong>，但<strong>不能处理函数。</strong></p>
-<p>因为JSON.stringify() 方法是将一个JavaScript值(对象或者数组)转换为一个<br>JSON字符串，不能接受函数</p>
-<pre><code>let arr = [1, 3, &#123;    username: &#39; copy&#39;&#125;];
-let arr2 = JSON.parse(JSON.stringify(arr));
-arr2[2].username = &#39;shen&#39;; 
-console.log(arr, arr4)</code></pre>
-<p>2.递归：递归方法实现深度克隆原理：<strong>遍历对象、数组直到里边都是基本数据类型，然后再去复制，就是深度拷贝。</strong></p>
-<pre><code> //定义检测数据类型的功能函数
-    function checkedType(target) &#123;
-      return Object.prototype.toString.call(target).slice(8, -1)
-    &#125;
-    //实现深度克隆---对象/数组
-    function clone(target) &#123;
-      //判断拷贝的数据类型
-      //初始化变量result 成为最终克隆的数据
-      let result, targetType = checkedType(target)
-      if (targetType === &#39;Object&#39;) &#123;
-        result = &#123;&#125;
-      &#125; else if (targetType === &#39;Array&#39;) &#123;
-        result = []
-      &#125; else &#123;
-        return target
-      &#125;
-      //遍历目标数据
-      for (let i in target) &#123;
-        //获取遍历数据结构的每一项值。
-        let value = target[i]
-        //判断目标结构里的每一值是否存在对象/数组
-        if (checkedType(value) === &#39;Object&#39; ||
-          checkedType(value) === &#39;Array&#39;) &#123; //对象/数组里嵌套了对象/数组
-          //继续遍历获取到value值
-          result[i] = clone(value)
-        &#125; else &#123; //获取到value值是基本的数据类型或者是函数。
-          result[i] = value;
-        &#125;
-      &#125;
-      return result
-    &#125;
-
-  // 内部方法：用户合并一个或多个对象到第一个对象
-    // 参数：
-    // target 目标对象  对象都合并到target里
-    // source 合并对象
-    // deep 是否执行深度合并
-    function extend(target, source, deep) &#123;
-        for (key in source)
-            if (deep &amp;&amp; (isPlainObject(source[key]) || isArray(source[key]))) &#123;
-// source[key]是对象，而target[key]不是对象，则target[key]=&#123;&#125;初始化一下，否则递归会出错的
-                if (isPlainObject(source[key]) &amp;&amp; !isPlainObject(target[key]))
-                    target[key] = &#123;&#125;
-
-// source[key] 是数组，而 target[key]不是数组，则 target[key] = []初始化一下，否则递归会出错的
-                if (isArray(source[key]) &amp;&amp; !isArray(target[key]))
-                    target[key] = []
-                // 执行递归
-                extend(target[key], source[key], deep)
-            &#125;
-            // 不满足以上条件，说明 source[key] 是一般的值类型，直接赋值给 target 就是了
-            else if (source[key] !== undefined) target[key] = source[key]
-    &#125;
-
-    // Copy all but undefined properties from one or more
-    // objects to the `target` object.
-    $.extend = function(target)&#123;
-        var deep, args = slice.call(arguments, 1);
-
-        //第一个参数为boolean值时，表示是否深度合并
-        if (typeof target == &#39;boolean&#39;) &#123;
-            deep = target;
-            //target取第二个参数
-            target = args.shift()
-        &#125;
-        // 遍历后面的参数，都合并到target上
-        args.forEach(function(arg)&#123; extend(target, arg, deep) &#125;)
-        return target
-    &#125;</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2019/10/16/10/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wanqing's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/16/10/" class="post-title-link" itemprop="url">apply，bind，call的区别；new；this；闭包</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-16 18:40:53" itemprop="dateCreated datePublished" datetime="2019-10-16T18:40:53+08:00">2019-10-16</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="apply，bind，call的区别；new；this；闭包"><a href="#apply，bind，call的区别；new；this；闭包" class="headerlink" title="apply，bind，call的区别；new；this；闭包 "></a>apply，bind，call的区别；new；this；闭包 </h1><ol start="5">
-<li>apply、call、bind的区别 </li>
+<p>优点：写法兼容到主流浏览器</p>
+<p>缺点：当同一个element元素绑定多个事件时，只有最后一个事件会被添加，相当于一次只能添加一个事件；</p>
+<p><strong>attachEvent和addEvenListener</strong>:</p>
+<pre><code>//IE:attachEvent;三个方法执行顺序：3-2-1；
+elment.attachEvent(&quot;onclick&quot;,handler1);
+elment.attachEvent(&quot;onclick&quot;,handler2);
+elment.attachEvent(&quot;onclick&quot;,handler3);
+//标准addEventListener;执行顺序：1-2-3
+elment.addEvenListener(&quot;click&quot;,handler1,false);
+elment.addEvenListener(&quot;click&quot;,handler2,false);
+elment.addEvenListener(&quot;click&quot;,handler3,false);</code></pre>
+<p>注意：该方法的第三个参数是冒泡获取，是一个布尔值：当为false时表示由里向外（冒泡），true表示由外向里（捕获）。</p>
+<h2 id="三，发布-订阅"><a href="#三，发布-订阅" class="headerlink" title="三，发布/订阅"></a>三，发布/订阅</h2><p>假定存在一个信号中心，某个任务执行完成，就向信号中心“发布”一个信号，其他任务可以向信号中心“订阅”这个信号，从而知道什么时候自己可以开始执行。这就叫做“发布/订阅模式”，也称“观察者模式”。</p>
+<pre><code>//jQuery的一个插件 Ben Alman的Tiny Pub/Sub
+jQuery.subscribe(&quot;done&quot;, f2);//f2向&quot;信号中心&quot;jQuery订阅&quot;done&quot;信号。
+jQuery.unsubscribe(&quot;done&quot;, f2);//取消订阅（unsubscribe）
+//或者
+function f1()&#123;
+　　setTimeout(function () &#123;
+　　　　// ...f1的任务代码
+　　　　jQuery.publish(&quot;done&quot;);//f1执行完成后，向&quot;信号中心&quot;jQuery发布&quot;done&quot;信号，从而引发f2的执行
+　　&#125;, 1000);
+&#125;</code></pre>
+<h2 id="四，promise对象"><a href="#四，promise对象" class="headerlink" title="四，promise对象"></a>四，promise对象</h2><ol>
+<li><p>promise对象是commonJS工作组提出的一种规范，一种模式，目的是为了异步编程提供统一接口。</p>
+</li>
+<li></li>
 </ol>
-<hr>
-<ul>
-<li><p>三者的相同点：都是用来改变this的指向</p>
-</li>
-<li><p>区别</p>
-<ul>
-<li><p>call()和apply()的区别：</p>
-<p>1.相同点：都是调用一个对象的一个方法，用另一个对象替换当前对象（功能相同）</p>
-<p>例如:</p>
-<p>B.call(A, args1,args2); 即A对象调用B对象的方法。</p>
-<p>F.apply(G, arguments);即G对象应用F对象的方法。</p>
-<p>2.不同点：参数书写方式不同。</p>
-<p>call()：第一个参数是this要指向的对象，后面传入的是参数列表，参数可以是任意类型，当第一个参数为null、undefined的时候，默认指向window；</p>
-<p>apply()：第一个参数是this要指向的对象，第二个参数是数组。</p>
-<p>例如：</p>
-<pre><code>    var obj = &#123;&#125;//定义一个空的对象
-    function f(x,y)&#123;
-    console.log(x,y)
-    console.log(this) //this是指obj
-    &#125;
-    f.apply(obj,[1,2]) //后面的值需要用[]括起来
-    f.call(obj,1,2) //直接写</code></pre>
-</li>
-<li><p>call()和bind()的区别：</p>
-<p>1.相同点：都是用来改变this的指向</p>
-<p>2.不同点：call()改过this的指向后，会再执行函数，bind()改过this后，不执行函数，会返回一个绑定新this的函数</p>
-<pre><code>    //例如：
-    function f()&#123;
-    console.log(&quot;看我怎么被调用&quot;);
-    console.log(this) //指向this
-    &#125;
-    var obj = &#123;&#125;;
-    f.call(obj) //直接调用函数
-    var g = f.bind(obj); //bind()不能调用函数
-    g();  //此时才调用函数</code></pre>
-</li>
-</ul>
-<ol start="6">
-<li>new的原理 </li>
-</ol>
-<hr>
-</li>
-</ul>
-<p><strong>通过new创建对象经历4个步骤</strong></p>
-<p>1、创建一个新对象；</p>
-<p>2、将构造函数的作用域赋给新对象（因此this指向了这个新对象）；</p>
-<p>3、执行构造函数中的代码(为这个新对象添加属性)；</p>
-<p>4、返回新对象。</p>
-<pre><code>            function Person(name, age) &#123;
-
-                this.name = name;
-
-                this.age = age;
-
-                this.job=job;
-
-                this.sayName = function() &#123;
-
-                    alert(this.name);
-                &#125;;
-
-            &#125;
-            var person1 = new Person(&quot;yan&quot;,23,&quot;teacher&quot;);
-            var person2 = new Person(&quot;sun&quot;,23,&quot;docter&quot;);</code></pre>
-<ol start="7">
-<li>如何正确判断this？ </li>
-</ol>
-<hr>
-<h3 id="1-谁作为拥有者调用它就指向谁"><a href="#1-谁作为拥有者调用它就指向谁" class="headerlink" title="1.谁作为拥有者调用它就指向谁"></a>1.谁作为拥有者调用它就指向谁</h3><pre><code>    function a() &#123; 
-        console.log(this); 
-    &#125;
-    var b  = &#123;&#125;;
-    b.hehe = a;
-    b.hehe();
-    //这时候this指向b//常见的就是绑定事件</code></pre>
-<h3 id="2-bind谁就指向谁"><a href="#2-bind谁就指向谁" class="headerlink" title="2.bind谁就指向谁"></a>2.bind谁就指向谁</h3><pre><code>    function a() &#123; 
-        console.log(this); 
-    &#125;
-    var b  = &#123;&#125;;
-    var c = &#123;&#125;;
-    b.hehe = a.bind(c);
-    b.hehe();
-    //这时候this指向c//如果你用bind的话</code></pre>
-<h3 id="3-没有拥有者，直接调用，就指向window"><a href="#3-没有拥有者，直接调用，就指向window" class="headerlink" title="3.没有拥有者，直接调用，就指向window"></a>3.没有拥有者，直接调用，就指向window</h3><pre><code>    function a() &#123; 
-        console.log(this); 
-    &#125;
-    a();
-    //this指向window</code></pre>
-<h3 id="4-call谁就是谁，apply谁就是谁，其实bind就是通过call和apply实现的"><a href="#4-call谁就是谁，apply谁就是谁，其实bind就是通过call和apply实现的" class="headerlink" title="4.call谁就是谁，apply谁就是谁，其实bind就是通过call和apply实现的"></a>4.call谁就是谁，apply谁就是谁，其实bind就是通过call和apply实现的</h3><h3 id="其中2覆盖掉1"><a href="#其中2覆盖掉1" class="headerlink" title="其中2覆盖掉1"></a>其中2覆盖掉1</h3><ol start="8">
-<li>闭包及其作用 </li>
-</ol>
-<hr>
-<ul>
-<li><p>闭包</p>
-<p>闭包是指有权访问另一个函数作用域中的变量的函数。</p>
-<p>创建闭包的常见方式就是在一个函数内部创建另一个函数。</p>
-<p>//闭包实际应用中主要用于封装变量，收敛权限。</p>
-</li>
-<li><p>作用</p>
-</li>
-</ul>
-<ol>
-<li><p>匿名自执行函数</p>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
-    (function (a) &#123;
-        console.log(a)
-    &#125;)(3)     // 3
-&lt;/script&gt;</code></pre>
-<ul>
-<li>为什么要使用匿名函数自执行函数,好处是什么</li>
-</ul>
-<p>定义变量是需要加上var<br>否则会默认添加到全局对象的属性上,或者别的函数可能误用这些变量；或者造成全局对象过于庞大，影响访问速度(因为变量的取值是需要从原型链上遍历的),<br>实际中有的函数只调用一次使用自执行函数也是很好的,</p>
-<p>我们创建了一个匿名的函数，并立即执行它，由于外部无法引用它内部的变量，<br>因此在执行完后很快就会被释放，关键是这种机制不会污染全局对象。</p>
-</li>
-<li><p>缓存</p>
-<pre><code>var CachedSearchBox = (function()&#123;    
-    var cache = &#123;&#125;,    
-    count = [];    
-    return &#123;    
-    attachSearchBox : function(dsid)&#123;    
-        if(dsid in cache)&#123;//如果结果在缓存中    
-            return cache[dsid];//直接返回缓存中的对象    
-        &#125;    
-        var fsb = new uikit.webctrl.SearchBox(dsid);//新建    
-        cache[dsid] = fsb;//更新缓存    
-        if(count.length &gt; 100)&#123;//保证缓存的大小&lt;=100    
-            delete cache[count.shift()];    
-        &#125;    
-        return fsb;          
-    &#125;,    
-
-    clearSearchBox : function(dsid)&#123;    
-        if(dsid in cache)&#123;    
-            cache[dsid].clearSelection();      
-        &#125;    
-    &#125;    
-    &#125;;    
-&#125;)();    
-
-CachedSearchBox.attachSearchBox(&quot;input1&quot;); </code></pre>
-<p>这样，当我们第二次调用CachedSearchBox.attachSerachBox(“input1”)的时候，<br>我们就可以从缓存中取道该对象，而不用再去创建一个新的searchbox对象。</p>
-</li>
-<li><p>实现封装</p>
-<pre><code>var person = function()&#123;    
-    //变量作用域为函数内部，外部无法访问    
-    var name = &quot;default&quot;;       
-
-    return &#123;    
-    getName : function()&#123;    
-        return name;    
-    &#125;,    
-    setName : function(newName)&#123;    
-        name = newName;    
-    &#125;    
-    &#125;    
-&#125;();    
-
-console.log(person.name);//直接访问，结果为undefined    
-console.log(person.getName());  // default   
-person.setName(&quot;Tom&quot;);    
-console.log(person.getName());    // Tom</code></pre>
-<p>在person之外的地方无法访问其内部的变量，而通过提供闭包的形式来访问。</p>
-</li>
-<li><p>实现面向对象中的对象，传统的对象语言都提供类的模板机制，</p>
-<pre><code>function Person()&#123;    
-    var name = &quot;default&quot;;       
-
-    return &#123;    
-    getName : function()&#123;    
-        return name;    
-    &#125;,    
-    setName : function(newName)&#123;    
-        name = newName;    
-    &#125;    
-    &#125;    
-&#125;;    </code></pre>
-</li>
-</ol>
-<pre><code>    var john = Person();    
-    console.log(john.getName());    // default
-    john.setName(&quot;john&quot;);    
-    console.log(john.getName());    // john
-
-    var jack = Person();    
-    console.log(jack.getName());    // default 
-    jack.setName(&quot;jack&quot;);    
-    console.log(jack.getName());    // jack
-
-john和jack都可以称为是Person这个类的实例，因为这两个实例对name这个成员的访问是独立的，互不影响的。</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2019/10/16/index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wanqing's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/16/index/" class="post-title-link" itemprop="url">原始值与引用值;判断数据类型;类数组与数组;数组的常见API</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-16 15:36:05" itemprop="dateCreated datePublished" datetime="2019-10-16T15:36:05+08:00">2019-10-16</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-原始值与引用值类型及区别"><a href="#1-原始值与引用值类型及区别" class="headerlink" title="1.原始值与引用值类型及区别"></a>1.原始值与引用值类型及区别</h2><p>原始值(primitive value):</p>
-<blockquote>
-<p>存储在栈（stack）中的简单数据段，也就是说，它们的值直接存储在变量访问的位置</p>
-</blockquote>
-<p>引用值(reference value):</p>
-<blockquote>
-<p>存储在堆（heap）中的对象，也就是说，存储在变量处的值是一个指针（point），指向存储对象的内存处。</p>
-</blockquote>
-<ul>
-<li><p>有哪些类型是原始类型呢？</p>
-<ul>
-<li>Undefined：未定义,值只有一个:undefined</li>
-<li>Null：空类型,值只有一个:null,一个对象指向为空了,此时可以赋值为null</li>
-<li>Boolean：布尔类型(值只有两个,true,false)</li>
-<li>Number：数字类型(整数和小数)</li>
-<li>String：字符串类型(值一般都是用单引号或者是双引号括起来)</li>
-</ul>
-</li>
-<li><p>有哪些类型是引用类型呢？</p>
-<ul>
-<li>Object</li>
-<li>Array</li>
-<li>Function</li>
-</ul>
-</li>
-<li><p>原始值类型与引用类型的区别？</p>
-<p>（1）值类型：1、占用空间固定，保存在栈中（当一个方法执行时，每个方法都会建立自己的内存栈，在这个方法内定义的变量将会逐个放入这块栈内存里，随着方法的执行结束，这个方法的内存栈也将自然销毁了。因此，所有在方法中定义的变量都是放在栈内存中的；栈中存储的是基础变量以及一些对象的引用变量，基础变量的值是存储在栈中，而引用变量存储在栈中的是指向堆中的数组或者对象的地址，这就是为何<strong>修改引用类型总会影响到其他指向这个地址的引用变量。</strong></p>
-<p>2、<strong>保存与复制的是值本身</strong></p>
-<p>3、使用typeof检测数据的类型</p>
-<p>4、基本类型数据是值类型</p>
-<p>（2）引用类型：<br>1、占用空间不固定，保存在堆中（当我们在程序中创建一个对象时，这个对象将被保存到运行时数据区中，以便反复利用（因为对象的创建成本通常较大），这个运行时数据区就是堆内存。堆内存中的对象不会随方法的结束而销毁，即使方法结束后，这个对象还可能被另一个引用变量所引用（方法的参数传递时很常见），则这个对象依然不会被销毁，只有当一个对象没有任何引用变量引用它时，系统的垃圾回收机制才会在核实的时候回收它。）</p>
-<p>2、<strong>保存与复制的是指向对象的一个指针</strong></p>
-<p>3、使用instanceof检测数据类型</p>
-<p>4、使用new()方法构造出的对象是引用型</p>
-</li>
-</ul>
-<h2 id="2-判断数据类型typeof、instanceof、Object-prototype-toString-call-、constructor"><a href="#2-判断数据类型typeof、instanceof、Object-prototype-toString-call-、constructor" class="headerlink" title="2.判断数据类型typeof、instanceof、Object.prototype.toString.call()、constructor"></a>2.判断数据类型typeof、instanceof、Object.prototype.toString.call()、constructor</h2><h3 id="1-typeof关键字"><a href="#1-typeof关键字" class="headerlink" title="(1) typeof关键字"></a>(1) typeof关键字</h3><pre><code>对一个值使用typeof操作符可能会返回下列某个字符串：
-- &quot;undefined&quot;-如果这个值未定义
-- &quot;boolean&quot;-如果这个值是布尔值
-- &quot;string&quot;-如果这个值是字符串
-- &quot;number&quot;-如果这个值是数值
-- &quot;object&quot;-如果这个值是对象或null
-- &quot;function&quot;-如果这个值是函数
-
-有些时候，typeof操作符会返回一些令人迷惑但技术上正确的值，例如调用typeof null 会返回“object”，因为特殊值null被认为是一个空的对象引用。</code></pre>
-<h3 id="2-instanceof关键字"><a href="#2-instanceof关键字" class="headerlink" title="(2) instanceof关键字"></a>(2) instanceof关键字</h3><pre><code>instanceof 运算符用来测试一个对象在其原型链中是否存在一个构造函数的 prototype 属性。其意思就是判断对象是否是某一数据类型（如Array）的实例，请重点关注一下是判断&lt;font color=grey&gt;一个对象是否是数据类型的实例。&lt;/font&gt;所以有以下例子：
-
-    console.log(2 instanceof Number);           //false
-    console.log(true instanceof Boolean);       //false
-    console.log(&#39;str&#39; instanceof String);       //false
-    console.log([] instanceof Array);           //true
-    console.log(function()&#123;&#125; instanceof Function); //true
-    console.log(&#123;&#125; instanceof Object);           //true
-
-在这里字面量值，2， true ，&#39;str&#39;不是实例，所以判断值为false。眼见为实，看下面的例子：
-
-    console.log(new Number(2) instanceof Number);  //true
-
-接着说下undefined 和 null   ,说说为什么这两货比较特殊，实际上按理来说，null的所属类就是Null，undefined就是Undefined，然而事实并非如此，浏览器认为null，undefined不是构造器。但是在 typeof 中你可能已经发现了，typeof null的结果是object，typeof undefined的结果是undefined 。这是js发展过程中的重大失误，需要记住。</code></pre>
-<h3 id="3-Object-prototype-toString-call"><a href="#3-Object-prototype-toString-call" class="headerlink" title="(3) Object.prototype.toString.call()"></a>(3) Object.prototype.toString.call()</h3><pre><code>使用 Object 对象的原型方法 toString，即使改变对象的原型，也可以显示正确的数据类型。
-
-var a=Object.prototype.toString;
-console.log(a.call(2));                     //[object Number]
-console.log(a.call(true));                  //[object Boolean]
-console.log(a.call(function()&#123;&#125;));          //[object Function]
-console.log(a.call(&#123;&#125;));                    //[object Object]
-console.log(a.call(undefined));             //[object Undefined]
-console.log(a.call(null));                  //[object Null]</code></pre>
-<h3 id="4-constructor"><a href="#4-constructor" class="headerlink" title="(4) constructor"></a>(4) constructor</h3><pre><code>console.log((2).constructor === Number);      //true
-console.log((true).constructor === Boolean);  //true
-console.log((&#39;str&#39;).constructor === String);   //true
-console.log(([]).constructor === Array);       //true
-console.log((function()&#123;&#125;).constructor === Function); //true
-console.log((&#123;&#125;).constructor === Object);           //true
-
-用costructor来判断类型看起来是完美的，然而，如果创建一个对象，更改它的原型，这种方式也变得不可靠了。
-
-function Fn()&#123;&#125;;
-Fn.prototype= new Array();
-var f=new Fn();
-console.log(f.constructor === Fn);              //false
-console.log(f.constructor === Array);           //true
-
-所以最精准的判断方式是第三种Object.prototype.toString.call()。</code></pre>
-<h2 id="3-类数组与数组的区别与转换"><a href="#3-类数组与数组的区别与转换" class="headerlink" title="3.类数组与数组的区别与转换 "></a>3.类数组与数组的区别与转换 </h2><ul>
-<li><p>什么是类数组对象(ArrayLike)</p>
-<ul>
-<li>拥有length属性，其它属性（索引）为非负整数(对象中的索引会被当做字符串来处理，这里你可以当做是个非负整数串来理解)</li>
-<li>不具有数组所具有的方法</li>
-</ul>
-<p>//类数组示例</p>
-<p>var a = {‘1’:‘gg’,‘2’:‘love’,‘4’:‘meimei’,length:5};</p>
-<p>Array.prototype.join.call(a,‘+’);//‘+gg+love++meimei’</p>
-<p>//非类数组示例</p>
-<p>var c = {‘1’:2}; //没有length属性就不是类数组</p>
-</li>
-</ul>
-<p>javascript中常见的类数组有<strong>arguments对象</strong>和<br>DOM方法的返回结果。比如 **document.getElementsByTagName()**。 -<br>类数组和数组的区别</p>
-<pre><code>类数组对象：
-
-console.log(typeof a);//object 注意：数组也是对象哦
-
-console.log(a); //  Object &#123;0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81&#125; 很明显对象啊
-
-console.log(a.length); //undefined  区别就在这了  类数组对象没有长度的属性和数组的方法
-
-console.log(Object.prototype.toString.call(a));//[object Object] 
-
-数组对象：
-
-console.log(typeof b);//object
-
-console.log(b);//  [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]  很明显数组啊 
-
-console.log(b.length); //8
-
-console.log(Object.prototype.toString.call(b));//[object Array]</code></pre>
-<ul>
-<li><p>类数组转换为数组方法</p>
-<pre><code>Array.prototype.slice.call(arrayLike)</code></pre>
-<p>首先Array.prototype.slice.call(arrayLike)的结果是将arrayLike对象转换成一个Array对象。所以其后面可以直接调用数组具有的方法</p>
-<pre><code>Array.prototype.slice.call(arrayLike).forEach(function(element,index)&#123;  //可以随意操作每一个element了 &#125;)</code></pre>
-<p>（1）Array.prototype.slice表示数组的原型中的slice方法。<strong>注意这个slice方法返回的是一个Array类型的对象。</strong></p>
-<pre><code>//slice的内部实现
-Array.prototype.slice = function(start,end)&#123;  
-    var result = new Array();  
-    start = start || 0;  
-    end = end || this.length; //this指向调用的对象，当用了call后，能够改变this的指向，也就是指向传进来的对象，这是关键  
-    for(var i = start; i &lt; end; i++)&#123;  
-        result.push(this[i]);  
-    &#125;  
-    return result;  
-&#125; </code></pre>
-<p>（2）能调用call的只有方法，所以不能用[].call这种形式，得用[].slice。而call的第一个参数表示真正调用slice的环境变为了arrayLike对象。所以就好像arrayLike也具有了数组的方法。</p>
-<ul>
-<li>将数组转换为参数列表（类数组）</li>
-</ul>
-<p>调用apply方法的时候,第一个参数是对象(this), 第二个参数是一个数组集合,<br> <br>这里就说明apply的一个巧妙用法，可以将一个数组默认的转换为一个参数列表([param1,param2,param3] 转换为 param1,param2,param3)， 这个如果让我们用程序来实现将数组的每一个项,来转换为参数的列表,可能都得费一会功夫,借助apply的这点特性,所以就有了以下高效率的方法。</p>
-<p>（1）Math.max 实现得到数组中最大的一项</p>
-<p>（2）Array.prototype.push 可以实现两个数组合并</p>
-</li>
-</ul>
-<h2 id="4-数组的常见API"><a href="#4-数组的常见API" class="headerlink" title="4.数组的常见API "></a>4.数组的常见API </h2><h3 id="第一组：操作方法"><a href="#第一组：操作方法" class="headerlink" title="第一组：操作方法"></a>第一组：操作方法</h3><ol>
-<li><p>concat():基于当前数组，创建一个当前数组的一个副本，然后将接收到的参数添加到这个副本的末尾，最后返回新构建的数组；</p>
-<p>var color2 = [“red”,“green”,“blue”]; var colors2 =<br>color.concat(“yellow”,[“black”,“brown”]); alert(colors);<br>//red,green,blue alert(colors2); //red,green,blue,yellow,black,brown</p>
-</li>
-<li><p>slice():基于当前数组中的一个或多个创建一个新数组，可以接受一个或两个参数，要返回项的起始和结束位置。如果参数中有一个负数，则用数组长度加上该数来确定相应的位置。</p>
-</li>
-<li><p>splice():主要用法是向数组的中部插入项，会改变原数组，是最强大的数组方法。最多指定3个参数，使用这种方法的方式主要有以下3种</p>
-<ol>
-<li>删除：可以删除任意数量的项，指定2个参数，要删除的第一项的位置和要删除的项数。splice(0,2)删除数组的前两项。</li>
-<li>插入：可以向指定位置插入任意数量的项，指定3个参数：起始位置，0(要删除的项数)和要插入的项。splice(2,0,“red”,“green”)会从当前数组的位置2开始插入字符串”red”和”green”。</li>
-<li>替换：可向指定位置插入任意数量的项，且同时删除任意数量的项。splice(2,1,“red”,“green”)会删除当前数组的位置2的项，然后再从位置2开始插入字符串”red”和”green”。</li>
-</ol>
-</li>
-</ol>
-<h3 id="第二组：位置方法"><a href="#第二组：位置方法" class="headerlink" title="第二组：位置方法"></a>第二组：位置方法</h3><p>indexOf()和lastIndexOf()。<br>这两个方法都接受两个参数：要查找的项和(可选的)表示查找起点位置的索引。indexOf()从数组的开头开始向后查找，lastIndexOf()从数组的末尾开始向前查找。</p>
-<h3 id="第三组：迭代方法"><a href="#第三组：迭代方法" class="headerlink" title="第三组：迭代方法"></a>第三组：迭代方法</h3><p>ES5为数组定义了5个迭代方法,这些方法都不会修改数组中包含的值。</p>
-<p>每个方法接受两个参数，要在每一项上运行的函数和运行该函数的作用域对象，传入这些方法中的函数会接收三个参数：数组项的值、该项在数组中的位置和数组对象本身(item,index,array）。</p>
-<p>以下是5个迭代器方法的作用</p>
-<pre><code>(1)every():对数组的每一项运行给定函数，如果数组的每一项都返回true，则返回true。对数组应用该方法，有返回值为true或false 
-
-(2)some():对数组的每一项运行给定函数，如果数组的任一项都返回true，则返回true。对数组应用该方法，有返回值为true或false 
-
-(3)filter():对数组的每一项运行给定函数，返回该函数中会返回true的项组成的数组。有返回值，为符合条件的项组成的数组 
-
-(4)map()::对数组的每一项运行给定函数,有返回每次函数调用的结果组成的数组。 
-
-(5)forEach():对数组的每一项运行给定函数,这个方法没有返回值。本质上与使用for循环迭代数组是一样的。</code></pre>
-<h3 id="第四组：归并方法"><a href="#第四组：归并方法" class="headerlink" title="第四组：归并方法"></a>第四组：归并方法</h3><p>reduce()和reduceRight()。他们的区别在于从哪头开始遍历数组，除此之外，它们完全相同。</p>
-<p>这两个方法都接收两个参数：一个在每一项上调用的函数和(可选)作为归并基础的初始值。</p>
-<p>传给reduce()和reduceRight()的函数接收4个参数：前一个值、当前值、项的索引和数组对象。</p>
-<h3 id="第五组：转换方法"><a href="#第五组：转换方法" class="headerlink" title="第五组：转换方法"></a>第五组：转换方法</h3><p>toLocaleString(),toString()和valueOf()方法。</p>
-<p>valueOf()方法返回的是数组本身，而调用toString()方法会返回由数组中每个值的字符串形式拼接而成的一个以逗号分隔的字符串。toLocaleString()调用的是每一项的toLocaleString()方法，而不是toString()方法。</p>
-<h3 id="第六组：重排序方法"><a href="#第六组：重排序方法" class="headerlink" title="第六组：重排序方法"></a>第六组：重排序方法</h3><p>reverse()和sort()方法都是用来重排序的方法，需要注意的是对于sort()方法来说，即使数组中的每一项都是数值，sort()方法比较的也是字符串。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2019/10/11/test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wanqing's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/11/test/" class="post-title-link" itemprop="url">JavaScript常见问题（一）</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-11 16:43:53" itemprop="dateCreated datePublished" datetime="2019-10-11T16:43:53+08:00">2019-10-11</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-原始值与引用值类型及区别"><a href="#1-原始值与引用值类型及区别" class="headerlink" title="1.原始值与引用值类型及区别"></a>1.原始值与引用值类型及区别</h2><p>原始值(primitive value):</p>
-<blockquote>
-<p>存储在栈（stack）中的简单数据段，也就是说，它们的值直接存储在变量访问的位置</p>
-</blockquote>
-<p>引用值(reference value):</p>
-<blockquote>
-<p>存储在堆（heap）中的对象，也就是说，存储在变量处的值是一个指针（point），指向存储对象的内存处。</p>
-</blockquote>
-<ul>
-<li><p>有哪些类型是原始类型呢？</p>
-<ul>
-<li>Undefined：未定义,值只有一个:undefined</li>
-<li>Null：空类型,值只有一个:null,一个对象指向为空了,此时可以赋值为null</li>
-<li>Boolean：布尔类型(值只有两个,true,false)</li>
-<li>Number：数字类型(整数和小数)</li>
-<li>String：字符串类型(值一般都是用单引号或者是双引号括起来)</li>
-</ul>
-</li>
-<li><p>有哪些类型是引用类型呢？</p>
-<ul>
-<li>Object</li>
-<li>Array</li>
-<li>Function</li>
-</ul>
-</li>
-<li><p>原始值类型与引用类型的区别？</p>
-<p>（1）值类型：1、占用空间固定，保存在栈中（当一个方法执行时，每个方法都会建立自己的内存栈，在这个方法内定义的变量将会逐个放入这块栈内存里，随着方法的执行结束，这个方法的内存栈也将自然销毁了。因此，所有在方法中定义的变量都是放在栈内存中的；栈中存储的是基础变量以及一些对象的引用变量，基础变量的值是存储在栈中，而引用变量存储在栈中的是指向堆中的数组或者对象的地址，这就是为何<strong>修改引用类型总会影响到其他指向这个地址的引用变量。</strong></p>
-<p>2、<strong>保存与复制的是值本身</strong></p>
-<p>3、使用typeof检测数据的类型</p>
-<p>4、基本类型数据是值类型</p>
-<p>（2）引用类型：<br>1、占用空间不固定，保存在堆中（当我们在程序中创建一个对象时，这个对象将被保存到运行时数据区中，以便反复利用（因为对象的创建成本通常较大），这个运行时数据区就是堆内存。堆内存中的对象不会随方法的结束而销毁，即使方法结束后，这个对象还可能被另一个引用变量所引用（方法的参数传递时很常见），则这个对象依然不会被销毁，只有当一个对象没有任何引用变量引用它时，系统的垃圾回收机制才会在核实的时候回收它。）</p>
-<p>2、<strong>保存与复制的是指向对象的一个指针</strong></p>
-<p>3、使用instanceof检测数据类型</p>
-<p>4、使用new()方法构造出的对象是引用型</p>
-</li>
-</ul>
-<ol start="2">
-<li><h2 id="判断数据类型typeof、instanceof、Object-prototype-toString-call-、constructor"><a href="#判断数据类型typeof、instanceof、Object-prototype-toString-call-、constructor" class="headerlink" title="判断数据类型typeof、instanceof、Object.prototype.toString.call()、constructor"></a>判断数据类型typeof、instanceof、Object.prototype.toString.call()、constructor</h2></li>
-</ol>
-<h3 id="1-typeof关键字"><a href="#1-typeof关键字" class="headerlink" title="(1) typeof关键字"></a>(1) typeof关键字</h3><p>对一个值使用typeof操作符可能会返回下列某个字符串：</p>
-<ul>
-<li>“undefined”-如果这个值未定义</li>
-<li>“boolean”-如果这个值是布尔值</li>
-<li>“string”-如果这个值是字符串</li>
-<li>“number”-如果这个值是数值</li>
-<li>“object”-如果这个值是对象或null</li>
-<li>“function”-如果这个值是函数</li>
-</ul>
-<p>有些时候，typeof操作符会返回一些令人迷惑但技术上正确的值，例如调用typeof null 会返回“object”，因为特殊值null被认为是一个空的对象引用。</p>
-<h3 id="2-instanceof关键字"><a href="#2-instanceof关键字" class="headerlink" title="(2) instanceof关键字"></a>(2) instanceof关键字</h3><p>instanceof 运算符用来测试一个对象在其原型链中是否存在一个构造函数的 prototype 属性。其意思就是判断对象是否是某一数据类型（如Array）的实例，请重点关注一下是判断<font color=grey>一个对象是否是数据类型的实例。</font>所以有以下例子：</p>
-<pre><code>console.log(2 instanceof Number);           //false
-console.log(true instanceof Boolean);       //false
-console.log(&#39;str&#39; instanceof String);       //false
-console.log([] instanceof Array);           //true
-console.log(function()&#123;&#125; instanceof Function); //true
-console.log(&#123;&#125; instanceof Object);           //true</code></pre>
-<p>在这里字面量值，2， true ，’str’不是实例，所以判断值为false。眼见为实，看下面的例子：</p>
-<pre><code>console.log(new Number(2) instanceof Number);  //true</code></pre>
-<p>接着说下undefined 和 null   ,说说为什么这两货比较特殊，实际上按理来说，null的所属类就是Null，undefined就是Undefined，然而事实并非如此，浏览器认为null，undefined不是构造器。但是在 typeof 中你可能已经发现了，typeof null的结果是object，typeof undefined的结果是undefined 。这是js发展过程中的重大失误，需要记住。</p>
-<h3 id="3-Object-prototype-toString-call"><a href="#3-Object-prototype-toString-call" class="headerlink" title="(3) Object.prototype.toString.call()"></a>(3) Object.prototype.toString.call()</h3><p>使用 Object 对象的原型方法 toString，即使改变对象的原型，也可以显示正确的数据类型。</p>
-<p>var a=Object.prototype.toString;<br>console.log(a.call(2));                     //[object Number]<br>console.log(a.call(true));                  //[object Boolean]<br>console.log(a.call(function(){}));          //[object Function]<br>console.log(a.call({}));                    //[object Object]<br>console.log(a.call(undefined));             //[object Undefined]<br>console.log(a.call(null));                  //[object Null]</p>
-<h3 id="4-constructor"><a href="#4-constructor" class="headerlink" title="(4) constructor"></a>(4) constructor</h3><p>console.log((2).constructor === Number);      //true<br>console.log((true).constructor === Boolean);  //true<br>console.log((‘str’).constructor === String);   //true<br>console.log(([]).constructor === Array);       //true<br>console.log((function(){}).constructor === Function); //true<br>console.log(({}).constructor === Object);           //true</p>
-<p>用costructor来判断类型看起来是完美的，然而，如果创建一个对象，更改它的原型，这种方式也变得不可靠了。</p>
-<p>function Fn(){};<br>Fn.prototype= new Array();<br>var f=new Fn();<br>console.log(f.constructor === Fn);              //false<br>console.log(f.constructor === Array);           //true</p>
-<p>所以最精准的判断方式是第三种Object.prototype.toString.call()。</p>
+<p><strong>promise是一种模式，promise可以帮忙管理异步方式返回的代码</strong>。他将代码进行封装并添加一个类似于事件处理的管理层。我们可以使用promise来注册代码，这些代码会在在promise成功或者失败后运行。</p>
 <ol start="3">
-<li>类数组与数组的区别与转换 </li>
-</ol>
-<hr>
-<ul>
-<li><p>什么是类数组对象(ArrayLike)</p>
-<ul>
-<li>拥有length属性，其它属性（索引）为非负整数(对象中的索引会被当做字符串来处理，这里你可以当做是个非负整数串来理解)</li>
-<li>不具有数组所具有的方法</li>
-</ul>
-<p>//类数组示例</p>
-<p>var a = {‘1’:‘gg’,‘2’:‘love’,‘4’:‘meimei’,length:5};</p>
-<p>Array.prototype.join.call(a,‘+’);//‘+gg+love++meimei’</p>
-<p>//非类数组示例</p>
-<p>var c = {‘1’:2}; //没有length属性就不是类数组</p>
+<li><p>promise完成之后，对应的代码也会执行。我们可以注册任意数量的函数再成功或者失败后运行，也可以在任何时候注册事件处理程序。</p>
 </li>
-</ul>
-<p>javascript中常见的类数组有<strong>arguments对象</strong>和<br>DOM方法的返回结果。比如 **document.getElementsByTagName()**。 -<br>类数组和数组的区别</p>
-<p>类数组对象：</p>
-<p>console.log(typeof a);//object 注意：数组也是对象哦</p>
-<p>console.log(a); //  Object {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81} 很明显对象啊</p>
-<p>console.log(a.length); //undefined  区别就在这了  类数组对象没有长度的属性和数组的方法</p>
-<p>console.log(Object.prototype.toString.call(a));//[object Object] </p>
-<p>数组对象：</p>
-<p>console.log(typeof b);//object</p>
-<p>console.log(b);//  [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]  很明显数组啊 </p>
-<p>console.log(b.length); //8</p>
-<p>console.log(Object.prototype.toString.call(b));//[object Array]</p>
-<ul>
-<li><p>类数组转换为数组方法</p>
-<p> Array.prototype.slice.call(arrayLike)</p>
-<p>首先Array.prototype.slice.call(arrayLike)的结果是将arrayLike对象转换成一个Array对象。所以其后面可以直接调用数组具有的方法</p>
-<p> Array.prototype.slice.call(arrayLike).forEach(function(element,index){  //可以随意操作每一个element了 })</p>
-<p>（1）Array.prototype.slice表示数组的原型中的slice方法。<strong>注意这个slice方法返回的是一个Array类型的对象。</strong></p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//<span class="keyword">slice</span>的内部实现</span><br><span class="line"><span class="keyword">Array</span>.prototype.<span class="keyword">slice</span> = <span class="keyword">function</span>(<span class="keyword">start</span>,<span class="keyword">end</span>)&#123;  </span><br><span class="line">    var result = <span class="built_in">new</span> <span class="keyword">Array</span>();  </span><br><span class="line">    start = <span class="keyword">start</span> || <span class="number">0</span>;  </span><br><span class="line">    end = <span class="keyword">end</span> || this.length; //this指向调用的对象，当用了<span class="keyword">call</span>后，能够改变this的指向，也就是指向传进来的对象，这是关键  </span><br><span class="line">    <span class="keyword">for</span>(var i = <span class="keyword">start</span>; i &lt; <span class="keyword">end</span>; i++)&#123;  </span><br><span class="line">        result.push(this[i]);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> result;  </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<li><p>promise有两种状态：1、等待（pending）；2、完成（settled）。<br>promise会一直处于等待状态，直到它所包装的异步调用返回/超时/结束。</p>
+</li>
+<li><p>这时候promise状态变成完成。完成状态分成两类：1、解决（resolved）；2、拒绝（rejected）</p>
+<p> //promise<br> var p=new Promise(function(resolved))<br> //在这里进行处理。也许可以使用ajax<br> setTimeout(function(){<br> var result=10*5;<br> if(result===50){<br>   resolve(50);<br> }else{<br>  reject(new Error(‘Bad Math’));<br> }<br> },1000);<br> });<br> p.then(function(result){<br> console.log(‘Resolve with a values of %d’,result);<br> });<br> p.catch(function(){<br> console.error(‘Something went wrong’);<br> });</p>
+</li>
+</ol>
+<p>简单来讲，它的思想是：每一个异步任务返回一个promise对象，该对象有一个then方法，允许指定回调函数。<br>缺点：<strong>编写和理解都难</strong></p>
+<h2 id="五，async-await"><a href="#五，async-await" class="headerlink" title="五，async/await"></a>五，async/await</h2><p>async 函数书写的方式跟我们普通的函数书写方式一样，只不过是前面多了一个 async 关键字，并且函数返回的是一个 Promise 对象，所接收的值就是函数 return 的值。</p>
+<p>在 async 函数内部可以使用 await 命令，表示等待一个异步函数的返回。await 后面跟着的是一个 Promise 对象，如果不是的话，系统会调用 Promise.resolve() 方法，将其转为一个 resolve 的 Promise 的对象。</p>
+<pre><code>function fn1 () &#123;
+  console.log(&#39;Function 1&#39;)
+&#125;
 
-<p>（2）能调用call的只有方法，所以不能用[].call这种形式，得用[].slice。而call的第一个参数表示真正调用slice的环境变为了arrayLike对象。所以就好像arrayLike也具有了数组的方法。</p>
+function fn2 () &#123;
+  return new Promise((resolve, reject) =&gt; &#123;
+    setTimeout(() =&gt; &#123;
+      console.log(&#39;Function 2&#39;)
+      resolve()
+    &#125;, 500)
+  &#125;)
+&#125;
+
+function fn3 () &#123;
+  console.log(&#39;Function 3&#39;)
+&#125;
+
+async function asyncFunArr () &#123;
+  fn1()
+  await fn2()
+  fn3()
+&#125;
+
+asyncFunArr()
+
+// output =&gt;
+// Function 1
+// Function 2
+// Function 3</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2019/12/23/21/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/wqBlog/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wanqing's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/wqBlog/2019/12/23/21/" class="post-title-link" itemprop="url">第八，九章 BOM，客户端检测</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-23 22:50:05" itemprop="dateCreated datePublished" datetime="2019-12-23T22:50:05+08:00">2019-12-23</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="第八，九章-BOM，客户端检测"><a href="#第八，九章-BOM，客户端检测" class="headerlink" title="第八，九章 BOM，客户端检测"></a>第八，九章 BOM，客户端检测</h1><h2 id="第八章"><a href="#第八章" class="headerlink" title="第八章"></a>第八章</h2><p>浏览器对象模型(BOM)以<code>window</code>对象为依托，表示浏览器窗口以及页面可见区域。同时，window对象还是ECMAScript中的Global对象，因而所有全局变量和函数都是它的属性，且所有原生的构造函数以及其他函数也都存在于它的命名空间下。</p>
+<h2 id="本章讨论了下列BOM的组成部分："><a href="#本章讨论了下列BOM的组成部分：" class="headerlink" title="本章讨论了下列BOM的组成部分："></a>本章讨论了下列BOM的组成部分：</h2><ol>
+<li><p>在使用框架时，每个框架都有自己的<code>window</code>对象以及所有原生构造函数及其他函数的副本。每个框架都保存在<code>frames</code>集合中，可以通过位置或通过名称来访问。</p>
+</li>
+<li><p>有一些窗口指针，可以用来引用其他框架，包括父框架。</p>
+</li>
+<li><p><code>top</code>对象始终指向最外围的框架，也就是整个浏览器窗口。</p>
+</li>
+<li><p><code>parent</code>对象表示包含当前框架的框架，而self对象则值回<code>window</code>。</p>
+</li>
+<li><p>使用<code>location</code>对象可以通过编程方式来访问浏览器的导航系统。设置相应的属性，可以逐段或整体地修改浏览器的URL。</p>
+</li>
+<li><p>调用<code>replace()</code>方法可以导航到一个新URL，同时该URL会替换浏览器历史记录中当前显示的页面。</p>
+</li>
+<li><p><code>navigator</code>对象提供了与浏览器有关的信息。到底提供哪些信息，很大程度上取决于用户的浏览器；不过也有一些公共的属性（如userAgent）存在于所有浏览器中。</p>
+</li>
+</ol>
+<p><code>BOM</code>中还有两个对象：screen和history，但它们的功能有限。screen对象中保存着与客户端显示器相关的信息，这些信息一般用于站点分析。<code>history</code>对象为访问浏览器的历史记录开了一个小缝隙，开发人员可以据此判断历史记录数量，也可以在历史记录中向后或向前导航到任意页面。</p>
+<h2 id="第九章"><a href="#第九章" class="headerlink" title="第九章"></a>第九章</h2><p>客户端检测是JavaScript开发中最具争议的一个话题。由于浏览器间存在差别，通常需要根据不同浏览器的能力分别编写不同的代码。</p>
+<h2 id="下列的客户端检测方法是最常用的："><a href="#下列的客户端检测方法是最常用的：" class="headerlink" title="下列的客户端检测方法是最常用的："></a>下列的客户端检测方法是最常用的：</h2><ol>
+<li>能力检测：在编写代码之前先检测特定浏览器的能力。将开发人员从考虑具体的浏览器类型和版本中释放出来，将注意力集中到相应的能力是否存在上。缺点是无法精确的检测特定浏览器和版本。</li>
+<li>怪癖检测： 实际上是浏览器中存在的bug。通常涉及到一小段代码，然后确定浏览器是否存在某个怪癖。效率相比能力检测较低。</li>
+<li>用户代理检测：通过检测用户代理字符串来识别浏览器。需要特殊的技巧。通过用户代理字符串能够检测出浏览器所用的呈现引擎以及所在的平台。</li>
+</ol>
+<p>在决定使用哪一种方法时，优先考虑能力检测，怪癖检测是确定应该如何处理代码的第二选择，最后是对用户字符串有很强依赖性的用户代理检测。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2019/12/23/22/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/wqBlog/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wanqing's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/wqBlog/2019/12/23/22/" class="post-title-link" itemprop="url">第十章 DOM，第十三章 事件</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-23 11:36:05" itemprop="dateCreated datePublished" datetime="2019-12-23T11:36:05+08:00">2019-12-23</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="第十章-DOM，第十三章-事件"><a href="#第十章-DOM，第十三章-事件" class="headerlink" title="第十章 DOM，第十三章 事件"></a>第十章 DOM，第十三章 事件</h1><h2 id="第十章-小结"><a href="#第十章-小结" class="headerlink" title="第十章 小结"></a>第十章 小结</h2><p>DOM是语言中立的API，用于访问和操作HTML和XML文档。DOM1级将HTML和XML文档形象地看作一个层次化的节点树，可以使用JavaScript来操作这个节点树，进而改变底层文档的外观和结构。</p>
+<h2 id="DOM由各种节点构成，简要总结如下："><a href="#DOM由各种节点构成，简要总结如下：" class="headerlink" title="DOM由各种节点构成，简要总结如下："></a>DOM由各种节点构成，简要总结如下：</h2><ol>
+<li>最基本的节点类型是Node，用于抽象地表示文档中一个独立的部分；所有其他类型都继承自Node。</li>
+<li>Document类型表示整个文档，是一组分层节点的根节点。在JavaScript中，document对象是Document的一个实例。使用document对象，有很多方式可以查询和取得节点。</li>
+<li>Element节点表示文档中所有HTML或XML元素，可以用来操作这些元素的内容和特性。</li>
+<li>另外还有一些节点类型，分别表示文本内容，注释，文档类型，CDATA区域和文档片段。</li>
+</ol>
+<p>访问DOM的操作在多数情况下都很直观，不过在处理<code>&lt;script&gt;</code>和<code>&lt;style&gt;</code>元素时还是存在一些复杂性。由于这两个元素分别包含脚本和样本信息，因此浏览器通常会将它们和其他元素区别对待。这些区别导致了在针对这些元素使用<code>innerHTML</code>时，以及在创建新元素时的一些问题。</p>
+<p><strong>理解DOM的关键，就是理解DOM对性能的影响</strong>。DOM操作往往是JavaScript程序中开销最大的部分，因而访问<code>NodeList</code>导致的问题最多。<code>NodeList</code>对象都是“动态”的，这就意味着每次访问NodeList对象，都会运行一次查询。有鉴于此，最好的办法就是尽量减少<code>DOM</code>操作。</p>
+<h2 id="第十三章-小结"><a href="#第十三章-小结" class="headerlink" title="第十三章 小结"></a>第十三章 小结</h2><p>事件是将JavaScript与网页联系在一起的主要方式。“DOM3级事件”规范和HTML5定义了常见的大多数事件。即使有规范定义了基本事件，但很多浏览器仍然在规范之外实现了自己的专有事件，从而为开发人员提供更多掌握用户交互的手段。有些专有事件与特定设备关联，例如移动Safari中的一个事件就是特定关联IOS设备的。</p>
+<h2 id="在使用事件时，需要考虑如下一些内存与性能方面的问题"><a href="#在使用事件时，需要考虑如下一些内存与性能方面的问题" class="headerlink" title="在使用事件时，需要考虑如下一些内存与性能方面的问题:"></a>在使用事件时，需要考虑如下一些内存与性能方面的问题:</h2><ol>
+<li><p>有必要限制一个页面中事件处理程序的数量，数量太多会导致占用大量内存，而且也会让用户感觉页面反应不够灵敏。</p>
+</li>
+<li><p>建立在事件冒泡机制之上的事件委托技术，可以有效减少事件处理程序的数量。</p>
+</li>
+<li><p>建议在浏览器卸载页面之前移除页面中的所有事件处理程序。</p>
+</li>
+</ol>
+<p>可以使用JavaScript在浏览器中模拟事件。事件是JavaScript中最重要的主题之一，深入理解事件的工作机制以及它们对性能的影响至关重要。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2019/12/16/28/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/wqBlog/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wanqing's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/wqBlog/2019/12/16/28/" class="post-title-link" itemprop="url">HTML知识点</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-16 15:36:05" itemprop="dateCreated datePublished" datetime="2019-12-16T15:36:05+08:00">2019-12-16</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-h5新标签有哪一些？为什么要加强语义化？"><a href="#1-h5新标签有哪一些？为什么要加强语义化？" class="headerlink" title="1. h5新标签有哪一些？为什么要加强语义化？"></a>1. h5新标签有哪一些？为什么要加强语义化？</h2><p>新标签：</p>
+<p><strong>文档类型设定</strong>: <code>&lt;!doctype html&gt;</code>;</p>
+<p><strong>字符设定</strong>: <code>&lt;meta charset=&quot;utf-8&quot;&gt;</code>;</p>
+<p><strong>常用新标签</strong>:<br><code>header</code>,一般作为网页的<strong>头部</strong>使用,可以多个;</p>
+<p><code>footer</code>,底部,<strong>不一定是文档最底部</strong>,可以多个;</p>
+<p><code>aside</code>,侧边栏;</p>
+<p><code>nav</code>,导航栏;</p>
+<p><code>article</code>，独立内容区域，用于文章blog、帖子、短文或者回复、评论等；</p>
+<p><code>section</code>，代表某一个区域/分区/页面/文档的一部分区域，有独立的内容，但结构相近，就可以用<code>section</code>，范围比div大，语义比div更强，可以包含<code>header、h1-h6</code>……凸显语义的标签；</p>
+<h2 id="2-行内元素，块元素有哪些？它们有什么不同？"><a href="#2-行内元素，块元素有哪些？它们有什么不同？" class="headerlink" title="2. 行内元素，块元素有哪些？它们有什么不同？"></a>2. 行内元素，块元素有哪些？它们有什么不同？</h2><p>行内元素：b、span、a、u、em、i、img、input、select、label、textarea、button</p>
+<p>块级元素：div、h、ol、ul、dl、li、table、td、th、tr、dd、dt、p、caption</p>
+<p>空元素：area、meta、link</p>
 <ul>
-<li>将数组转换为参数列表（类数组）</li>
+<li>行内元素的特点:</li>
 </ul>
-<p>调用apply方法的时候,第一个参数是对象(this), 第二个参数是一个数组集合,<br> <br>这里就说明apply的一个巧妙用法，可以将一个数组默认的转换为一个参数列表([param1,param2,param3] 转换为 param1,param2,param3)， 这个如果让我们用程序来实现将数组的每一个项,来转换为参数的列表,可能都得费一会功夫,借助apply的这点特性,所以就有了以下高效率的方法。</p>
-<p>（1）Math.max 实现得到数组中最大的一项</p>
-<p>（2）Array.prototype.push 可以实现两个数组合并</p>
-</li>
-</ul>
-<ol start="4">
-<li>数组的常见API </li>
-</ol>
-<hr>
-<h3 id="第一组：操作方法"><a href="#第一组：操作方法" class="headerlink" title="第一组：操作方法"></a>第一组：操作方法</h3><ol>
-<li><p>concat():基于当前数组，创建一个当前数组的一个副本，然后将接收到的参数添加到这个副本的末尾，最后返回新构建的数组；</p>
-<p>var color2 = [“red”,“green”,“blue”]; var colors2 =<br>color.concat(“yellow”,[“black”,“brown”]); alert(colors);<br>//red,green,blue alert(colors2); //red,green,blue,yellow,black,brown</p>
-</li>
-<li><p>slice():基于当前数组中的一个或多个创建一个新数组，可以接受一个或两个参数，要返回项的起始和结束位置。如果参数中有一个负数，则用数组长度加上该数来确定相应的位置。</p>
-</li>
-<li><p>splice():主要用法是向数组的中部插入项，会改变原数组，是最强大的数组方法。最多指定3个参数，使用这种方法的方式主要有以下3种</p>
 <ol>
-<li>删除：可以删除任意数量的项，指定2个参数，要删除的第一项的位置和要删除的项数。splice(0,2)删除数组的前两项。</li>
-<li>插入：可以向指定位置插入任意数量的项，指定3个参数：起始位置，0(要删除的项数)和要插入的项。splice(2,0,“red”,“green”)会从当前数组的位置2开始插入字符串”red”和”green”。</li>
-<li>替换：可向指定位置插入任意数量的项，且同时删除任意数量的项。splice(2,1,“red”,“green”)会删除当前数组的位置2的项，然后再从位置2开始插入字符串”red”和”green”。</li>
+<li><p>行内元素<strong>只能容纳文本或者其他行内元素。</strong></p>
+</li>
+<li></li>
 </ol>
+<p><strong>宽度只与内容有关。</strong></p>
+<ol start="3">
+<li><p>和其它元素都<strong>在一行上。</strong></p>
+</li>
+<li><p>高，行高及外边距和内边距左右<strong>可改变。</strong></p>
 </li>
 </ol>
-<h3 id="第二组：位置方法"><a href="#第二组：位置方法" class="headerlink" title="第二组：位置方法"></a>第二组：位置方法</h3><p>indexOf()和lastIndexOf()。<br>这两个方法都接受两个参数：要查找的项和(可选的)表示查找起点位置的索引。indexOf()从数组的开头开始向后查找，lastIndexOf()从数组的末尾开始向前查找。</p>
-<h3 id="第三组：迭代方法"><a href="#第三组：迭代方法" class="headerlink" title="第三组：迭代方法"></a>第三组：迭代方法</h3><p>ES5为数组定义了5个迭代方法,这些方法都不会修改数组中包含的值。</p>
-<p>每个方法接受两个参数，要在每一项上运行的函数和运行该函数的作用域对象，传入这些方法中的函数会接收三个参数：数组项的值、该项在数组中的位置和数组对象本身(item,index,array）。</p>
-<p>以下是5个迭代器方法的作用</p>
-<p>(1)every():对数组的每一项运行给定函数，如果数组的每一项都返回true，则返回true。对数组应用该方法，有返回值为true或false </p>
-<p>(2)some():对数组的每一项运行给定函数，如果数组的任一项都返回true，则返回true。对数组应用该方法，有返回值为true或false </p>
-<p>(3)filter():对数组的每一项运行给定函数，返回该函数中会返回true的项组成的数组。有返回值，为符合条件的项组成的数组 </p>
-<p>(4)map()::对数组的每一项运行给定函数,有返回每次函数调用的结果组成的数组。 </p>
-<p>(5)forEach():对数组的每一项运行给定函数,这个方法没有返回值。本质上与使用for循环迭代数组是一样的。</p>
-<h3 id="第四组：归并方法"><a href="#第四组：归并方法" class="headerlink" title="第四组：归并方法"></a>第四组：归并方法</h3><p>reduce()和reduceRight()。他们的区别在于从哪头开始遍历数组，除此之外，它们完全相同。</p>
-<p>这两个方法都接收两个参数：一个在每一项上调用的函数和(可选)作为归并基础的初始值。</p>
-<p>传给reduce()和reduceRight()的函数接收4个参数：前一个值、当前值、项的索引和数组对象。</p>
-<h3 id="第五组：转换方法"><a href="#第五组：转换方法" class="headerlink" title="第五组：转换方法"></a>第五组：转换方法</h3><p>toLocaleString(),toString()和valueOf()方法。</p>
-<p>valueOf()方法返回的是数组本身，而调用toString()方法会返回由数组中每个值的字符串形式拼接而成的一个以逗号分隔的字符串。toLocaleString()调用的是每一项的toLocaleString()方法，而不是toString()方法。</p>
-<h3 id="第六组：重排序方法"><a href="#第六组：重排序方法" class="headerlink" title="第六组：重排序方法"></a>第六组：重排序方法</h3><p>reverse()和sort()方法都是用来重排序的方法，需要注意的是对于sort()方法来说，即使数组中的每一项都是数值，sort()方法比较的也是字符串。</p>
+<ul>
+<li>块级元素的特点:</li>
+</ul>
+<ol>
+<li><p>高度，行高以及外边距和内边距<strong>都可控制。</strong></p>
+</li>
+<li><p>总是在新行上开始，<strong>占据一整行。</strong></p>
+</li>
+<li><p>它可以<strong>容纳内联元素和其他块元素。</strong></p>
+</li>
+<li></li>
+</ol>
+<p><strong>宽度</strong>始终与浏览器宽度一样，<strong>与内容无关。</strong></p>
+<ul>
+<li>区别:</li>
+</ul>
+<ol>
+<li><strong>行内元素会在一条直线上分列</strong>，都是统一行的，程度偏向分列。</li>
+</ol>
+<p>​   <strong>块级元素各盘踞一行</strong>，垂直偏向分列；块级元素重新行开端停止接着一个断行。</p>
+<ol>
+<li><strong>行内元素不可以包括块级元素</strong>，只能包容文本或许其余行内元素。</li>
+</ol>
+<p>​   <strong>块级元素能够包括行内元素和块级元素</strong>，还能够包容内联元素和其余元素。</p>
+<ol>
+<li>行内元素与块级元素属性的分歧，主要在盒模子属性上。</li>
+</ol>
+<p><strong>行内元素</strong>设置width无效，height无效（能够设置line-height），margin、padding设置上下有效。</p>
+<p>行内元素内嵌块级元素。高度被子元素撑大，而<strong>宽度和父级一致</strong>（父级是body就是body的宽度）。</p>
+<p><strong>行内块元素</strong>内嵌块级元素。宽高都会被子元素撑大的。</p>
+<h2 id="3-html中首行-lt-doctype-gt-的作用？"><a href="#3-html中首行-lt-doctype-gt-的作用？" class="headerlink" title="3.html中首行&lt;!doctype&gt;的作用？"></a>3.html中首行&lt;!doctype&gt;的作用？</h2><p><strong>文档类型说明</strong>，目的是告诉标准通用标记语言解析器要使用什么样的文档类型定义解析文档；声明必须是html文档的第一行，位于html标签之前。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hhhwwq.github.io/2019/12/06/index2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/wqBlog/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="怕什么真理无穷，进一寸有进一寸的欢喜。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wanqing's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/wqBlog/2019/12/06/index2/" class="post-title-link" itemprop="url">CSS知识点</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-06 10:36:05" itemprop="dateCreated datePublished" datetime="2019-12-06T10:36:05+08:00">2019-12-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="CSS知识点"><a href="#CSS知识点" class="headerlink" title="CSS知识点"></a>CSS知识点</h1><h2 id="1-基础知识"><a href="#1-基础知识" class="headerlink" title="1.基础知识 "></a>1.基础知识 </h2><ul>
+<li><p>class应用于概念上相似的元素，而id应用于不同的唯一元素。</p>
+</li>
+<li><p>只在没有现有元素能实现区域分割的情况下使用div。</p>
+</li>
+</ul>
+<h2 id="2-为样式找到应用目标"><a href="#2-为样式找到应用目标" class="headerlink" title="2.为样式找到应用目标"></a>2.为样式找到应用目标</h2><ul>
+<li><p><strong>常用的选择器</strong>：元素选择器<code>div&#123;&#125;</code>，后代选择器<code>div p&#123;&#125;</code>，id选择器<code>#header&#123;&#125;</code>，类选择器<code>.header&#123;&#125;</code>，建议混合使用</p>
+</li>
+<li><p><strong>通用选择器</strong>：<code>*</code></p>
+</li>
+<li><p><strong>高级选择器</strong>:子选择器<code>ul&gt;li&#123;&#125;</code>，相邻同胞选择器，根据属性或属性值的属性选择器<code>input[type=&quot;text&quot;]</code></p>
+</li>
+</ul>
+<h2 id="3-可视化模型"><a href="#3-可视化模型" class="headerlink" title="3.可视化模型 "></a>3.可视化模型 </h2><blockquote>
+<p>最重要的3个CSS概念是<strong>浮动，定位和盒模型</strong></p>
+</blockquote>
+<h3 id="3-1-CSS标准盒子模型"><a href="#3-1-CSS标准盒子模型" class="headerlink" title="3.1 CSS标准盒子模型"></a>3.1 CSS标准盒子模型</h3><p>css盒子模型包含了元素内容(content)，内边距(padding)，边框(border)，外边距(margin)几个要素，如下图：<br><img src="https://github.com/hhhwwq/MarkdownPhotos/blob/master/css_box.jpg?raw=true" alt="css-box"></p>
+<p>通常我们设置背景时就是内容，内边距，边框三部分，如果border设置颜色的时候会显示border颜色，当border颜色是透明时会显示background-color的颜色。外边距是透明的，不会遮挡其他元素。width就是指content的宽度，height就是指content的高度。</p>
+<ul>
+<li>只有普通文档流中边框的垂直外边距才会发生外边距叠加。行内框，浮动框或绝对定位框之间的外边距不会叠加。</li>
+</ul>
+<h3 id="3-2-定位"><a href="#3-2-定位" class="headerlink" title="3.2 定位"></a>3.2 定位</h3><ul>
+<li><p>使用相对定位时，无论是否移动，元素仍然占据原来的空间，因此，移动元素会使其覆盖其他框。</p>
+</li>
+<li><p>绝对定位：其元素的位置是相对于距离它最近的那个已定位的祖先元素确定的，如果没有已定位的祖先元素，那么其位置是相对于初始包含块的。</p>
+</li>
+<li><p>浮动：脱离普通文档流。clear属性。</p>
+</li>
+</ul>
+<h2 id="4-画三角形"><a href="#4-画三角形" class="headerlink" title="4.画三角形"></a>4.画三角形</h2><pre><code>.sanjiao &#123;
+        border-top: 50px solid transparent;
+        border-left: 50px solid #f00;
+        border-bottom: 50px solid transparent;
+        border-right: 0px solid #00f;
+        width: 0px;
+        height: 0px;
+        margin: 50px auto;
+    &#125;</code></pre>
+<p>梯形由三角形加width构成</p>
+<h2 id="5-画对话框"><a href="#5-画对话框" class="headerlink" title="5.画对话框 "></a>5.画对话框 </h2><p>利用伪元素<code>::before</code>将小三角放置在长方形框前面构成对话框</p>
+<pre><code>.dialog::before &#123;
+    content: &#39;&#39;;
+    border-left: 0px solid #6A6;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #6A6;
+    position: absolute;
+    left: -10px;
+    top: 14px;
+&#125;</code></pre>
+<h2 id="6-盒模型有哪些？Bootstrap里面用的什么盒模型？"><a href="#6-盒模型有哪些？Bootstrap里面用的什么盒模型？" class="headerlink" title="6.盒模型有哪些？Bootstrap里面用的什么盒模型？"></a>6.盒模型有哪些？Bootstrap里面用的什么盒模型？</h2><p>盒模型分为IE盒模型和W3C盒模型。</p>
+<ol>
+<li><p><strong>W3C标准盒模型content-box</strong>：属性width，height只包含内容content，不包含border和padding。</p>
+</li>
+<li><p><strong>IE盒模型border-box</strong>：属性width，height包含border和padding，指的是content+padding+border。<br>Bootstrap里面用的是IE盒模型border-box。</p>
+</li>
+</ol>
+<h2 id="7-CSS3有哪些新特性？"><a href="#7-CSS3有哪些新特性？" class="headerlink" title="7.CSS3有哪些新特性？"></a>7.CSS3有哪些新特性？</h2><ol>
+<li>实现圆角<code>border-radius</code>，阴影<code>box-shadow</code>，<code>border-image</code>;</li>
+<li>对文字加特效<code>text-shadow</code>，线性渐变<code>gradient</code>，旋转<code>transform</code>;</li>
+<li><code>transform</code>:旋转<code>rotate</code>，缩放<code>scale</code>，定位<code>translate</code>，倾斜<code>skew</code>;</li>
+<li>增加了更多的<code>css</code>选择器，多背景，rgba;</li>
+<li>在<code>css3</code>中引入了一个伪类<code>::selection</code>;</li>
+<li>媒体查询，多栏布局</li>
+</ol>
+<h2 id="8-为什么要清除浮动？怎么清除浮动？"><a href="#8-为什么要清除浮动？怎么清除浮动？" class="headerlink" title="8.为什么要清除浮动？怎么清除浮动？"></a>8.为什么要清除浮动？怎么清除浮动？</h2><p><strong>产生原因</strong>：子盒子浮动导致的父盒子内高度为0，父级盒子不能被撑开，发生高度塌陷的情况。</p>
+<p><strong>副作用：</strong></p>
+<ol>
+<li>背景不能显示</li>
+<li>边框不能撑开</li>
+<li><code>margin和padding</code>值不能正确显示</li>
+</ol>
+<p><strong>清楚浮动的方法：</strong></p>
+<ol>
+<li><p>给父盒子设置合适的高度；</p>
+</li>
+<li><p>给父盒子添加样式<code>overflow:hidden/auto;</code>(这个属性相当于触发了BFC，让父级紧贴内容，包括使用了浮动的盒子)(为了去除兼容性问题，会添加<code>zoom:1</code>);</p>
+</li>
+<li><p>在父盒子里面的子盒子后面添加一个子盒子，如div，添加样式<br><code>.clear&#123; clear:both; &#125;；</code></p>
+</li>
+<li><p>采用伪元素，给父元素追加:after，给父元素添加一个类<code>.clearfix&#123;content:&quot;&quot;;clear:both;&#125;</code></p>
+</li>
+</ol>
+<h2 id="9-怎么让文本不自动换行？怎么让超过文本部分变成省略号？"><a href="#9-怎么让文本不自动换行？怎么让超过文本部分变成省略号？" class="headerlink" title="9.怎么让文本不自动换行？怎么让超过文本部分变成省略号？ "></a>9.怎么让文本不自动换行？怎么让超过文本部分变成省略号？ </h2><pre><code>white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;</code></pre>
+<h2 id="10-css中的动画特性可以用js实现，那为什么还要用css来实现？"><a href="#10-css中的动画特性可以用js实现，那为什么还要用css来实现？" class="headerlink" title="10.css中的动画特性可以用js实现，那为什么还要用css来实现？"></a>10.css中的动画特性可以用js实现，那为什么还要用css来实现？</h2><ul>
+<li><p>当为UI元素采用较小的独立状态时，使用CSS。CSS变换和动画非常适用于从侧面引入导航菜单，或显示工具提示。最后，可以使用JavaScript来控制状态，但动画本身是采用CSS。<strong>用CSS制作动画是让元素在屏幕上移动的最简单方法</strong>。</p>
+</li>
+<li><p><strong>在需要对动画进行大量控制时，使用JavaScript</strong>。在需要停止，暂停，减速或倒退时，JavaScript也非常有用。</p>
+</li>
+</ul>
+<p><strong>所以在两者中如何抉择？</strong></p>
+<ul>
+<li><p>渲染线程分为主线程和合成线程，如果CSS动画只是改变transform和opacity，这时整个CSS动画得以在合成线程完成（而JS动画则会在主线程执行，然后触发合成线程进行下一步操作）。在JS执行一些昂贵的任务时，主线程繁忙，CSS动画由于使用了合成线程可以保持流畅。</p>
+</li>
+<li><p>对于低版本浏览器，CSS3可以做到自然降级，而JS则需要撰写额外代码。</p>
+</li>
+<li><p>CSS动画有<strong>天然事件支持，JS则需要自己写事件</strong>。</p>
+</li>
+<li><p>如果有任何动画触发绘画，布局或两者，则需要 “主线程”<br>才能完成工作。这对于基于 CSS 和 JavaScript 的动画都是如此。</p>
+</li>
+<li><p>CSS3有兼容性问题，而JS大多时候没有兼容性问题。</p>
+</li>
+</ul>
+<h2 id="11-边距重叠解决方案-BFC"><a href="#11-边距重叠解决方案-BFC" class="headerlink" title="11.边距重叠解决方案(BFC) "></a>11.边距重叠解决方案(BFC) </h2><p>首先要明确BFC是什么意思，其全英文拼写为 Block Formatting Context<br>直译为“块级格式化上下文”</p>
+<p><strong>BFC块级格式化上下文的原理</strong>:</p>
+<ol>
+<li><p>内部的Box会在<strong>垂直方向</strong>，从顶部开始<strong>一个接一个</strong>地放置。</p>
+</li>
+<li><p>Box垂直方向的距离由margin决定。属于同一个BFC的两个<strong>相邻Box的<code>margin</code>会发生叠加</strong>。</p>
+</li>
+<li><p>每个元素的margin box的左边，<br><strong>与包含块<code>border box</code>的左边相接触</strong>，即使存在浮动也是如此。</p>
+</li>
+<li><p><code>BFC</code>的区域不会与<code>float box</code>叠加。</p>
+</li>
+<li><p><code>BFC</code>就是页面上的一个<strong>隔离的独立容器</strong>，容器里面的子元素不会影响到外面的元素，反之亦然。</p>
+</li>
+<li><p>计算BFC的高度时，<strong>浮动元素也参与计算</strong>。</p>
+</li>
+</ol>
+<p><strong>创建块级格式化上下文</strong>:</p>
+<ol>
+<li><p>浮动(元素的 float不为 none）</p>
+</li>
+<li><p>绝对定位元素 (元素的 position为 absolute 或 fixed)</p>
+</li>
+<li><p>行内块inline-blocks (元素的 display: inline-block)</p>
+</li>
+<li><p>表格单元格 (元素的 display: table-cell，HTML表格单元格默认属性)</p>
+</li>
+<li><p>表格标题(元素的 display: table-caption，HTML表格标题默认属性)</p>
+</li>
+<li><p>overflow的值不为 visible的元素(元素的 overflow: hidden，overflow:<br>auto)</p>
+</li>
+<li><p>弹性盒子flex boxes (元素的 display: flex 或 inline-flex)</p>
+</li>
+</ol>
+<p><strong>应用场景</strong>:</p>
+<ol>
+<li><p>自适应两栏布局</p>
+</li>
+<li><p>清除内部浮动</p>
+</li>
+<li><p>防止垂直margin重叠</p>
+</li>
+</ol>
+<h2 id="12-子盒子在父盒子中水平垂直居中有几种方法？（定位、弹性盒子）"><a href="#12-子盒子在父盒子中水平垂直居中有几种方法？（定位、弹性盒子）" class="headerlink" title="12.子盒子在父盒子中水平垂直居中有几种方法？（定位、弹性盒子）"></a>12.子盒子在父盒子中水平垂直居中有几种方法？（定位、弹性盒子）</h2><ol>
+<li><p>定位position+margin外边距（需要知道子盒子的宽高）</p>
+<pre><code>/*父盒子*/
+position:relative;
+
+/*子盒子*/
+position:absolute;
+top:50%;
+left:50%;
+margin-top:-50px;
+margin-left:-50px;</code></pre>
+</li>
+<li><p>定位position+transform（不需要知道宽高）</p>
+<p>这个方式虽然可变高度且代码量少，但是IE8不支持此方法，属性需要写浏览器厂商前缀而且可能干扰其他transform效果。</p>
+<pre><code>/*父盒子*/
+position:relative;
+
+/*子盒子*/
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);</code></pre>
+</li>
+<li><p>使用弹性盒子flex布局（不需要知道宽高）</p>
+<pre><code>/*父盒子*/
+display:flex;
+justify-content:center;
+align-items:center;</code></pre>
+</li>
+<li><p>margin:auto（不需要知道宽高）</p>
+</li>
+</ol>
+<p>设置margin自动适应，然后设置定位的上下左右都为0，就如四边均衡受力从而实现盒子的居中;</p>
+<pre><code>    position:absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    margin:auto;</code></pre>
+<ol start="5">
+<li>table-cell</li>
+</ol>
+<p>将父盒子设置为table-cell(能够使元素呈单元格的样式显示)，并设置text-align:<br>center(使内容水平居中)；vertical-align:<br>middle(使内容垂直居中);。子盒子设置为inline-block可以使其内容变为文本格式，也可设置宽高；</p>
+<h2 id="13-css中怎么使盒子上下居中"><a href="#13-css中怎么使盒子上下居中" class="headerlink" title="13.css中怎么使盒子上下居中?"></a>13.css中怎么使盒子上下居中?</h2><p>方法一:</p>
+<p>设置垂直居中的时候要注意，先给<strong>祖先元素<code>html</code>和<code>body</code>的高度</strong>设置为100%；并且<strong>清除默认样式</strong>（<code>margin</code>和<code>padding</code>都设置为0，否则浏览器就会出现滚动条），然后给<strong>子盒子相对定位和位移</strong><code>position:relative;top:50%;</code>，然后<strong>减去本身宽度的一半</strong>即可（<code>margin-top:负自身高度的一半，在不知道高度的情况下可以用：transform:translateY(-50%)</code>）向上偏移自身高度的一半；</p>
+<p>方法二：</p>
+<p>弹性盒子。给<strong>父元素</strong>设置<code>display:flex;align-items:center;</code>设置<strong>body里的元素</strong>垂直居中；（<code>justify-content:center;</code>定义body里的元素水平居中）</p>
 
       
     </div>
@@ -1482,7 +874,7 @@ console.log(&#123;&#125; instanceof Object);           //true</code></pre>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/wqBlog/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/wqBlog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/wqBlog/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/wqBlog/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/wqBlog/page/8/">8</a><a class="extend next" rel="next" href="/wqBlog/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1546,20 +938,20 @@ console.log(&#123;&#125; instanceof Object);           //true</code></pre>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
+          <a href="/wqBlog/archives/">
         
           <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/categories/">
+            <a href="/wqBlog/categories/">
           
         <span class="site-state-item-count">1</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
+            <a href="/wqBlog/tags/">
           
         <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
@@ -1612,19 +1004,19 @@ console.log(&#123;&#125; instanceof Object);           //true</code></pre>
   </div>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/wqBlog/lib/anime.min.js"></script>
+  <script src="/wqBlog/lib/velocity/velocity.min.js"></script>
+  <script src="/wqBlog/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/js/utils.js"></script>
+<script src="/wqBlog/js/utils.js"></script>
 
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
+<script src="/wqBlog/js/motion.js"></script>
 
 
-<script src="/js/next-boot.js"></script>
+<script src="/wqBlog/js/schemes/pisces.js"></script>
+
+
+<script src="/wqBlog/js/next-boot.js"></script>
 
 
 
